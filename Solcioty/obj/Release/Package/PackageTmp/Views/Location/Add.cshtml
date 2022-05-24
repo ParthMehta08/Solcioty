@@ -1,0 +1,156 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using Services;
+@using System.Web.Optimization;
+@model ModelLocation
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Location";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Location</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                @if (ViewBag.OperationType == "success")
+                {
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Success! </strong>@ViewBag.OperationMessage
+                    </div>
+                }
+                @if (ViewBag.OperationType == "fail")
+                {
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Fail! </strong>@ViewBag.OperationMessage
+                    </div>
+                }
+
+                @using (@Html.BeginForm("Add", "Location", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.ID)
+
+                    <div class="col-md-6">
+                        <label>Name *</label>
+                        @Html.TextBoxFor(m => m.LocationName, new { @class = "form-control", @placeholder = "Location" })
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.LocationName)</span>
+                    </div>
+
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address Line1</label>
+                            @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label>Address 2</label>
+                            @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label>State *</label>
+                        @Html.DropDownList("StateId",
+                                         new SelectList(Model.StateList, "Abbreviation", "StateName"), new { @class = "form-control" }
+                                     )
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>City *</label>
+                            @Html.DropDownListFor(m => m.CityID,
+                                       new SelectList(Model.CityList, "ID", "CityName"), new { @class = "form-control" }
+                                   )
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label>Zipcode *</label>
+                            @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="checkbox checkbox-primary">
+                                @{
+
+                                    var isChecked = Model.IsActive ? "checked" : "";
+                                }
+                                <input type="checkbox" name="IsActiveString" id="IsActiveString" @isChecked>
+                                <label>Active</label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
+
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#multiple-checkboxes').multiselect();
+    //});
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#StateId').change(function () {
+                var stateId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetAllCityByStateCode","location")", // Location of the service
+                    data: { stateCode: stateId }, //Data sent to server
+                    contentType: "application/json", // content type sent to server
+                    success: function (result) {
+                        if (result.Data != null && result.Data.length > 0) {
+                            var htmlString = '';
+                            $.each(result.Data, function (index, city) {
+                                htmlString += '<option label="' + city.CityName + '" >"' + city.ID + '"</option>"';
+                            });
+                            $('#CityID').html(htmlString);
+                        } else {
+                            $('#CityID').html('');
+                        }
+                    }
+                });
+            })
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

@@ -1,0 +1,369 @@
+﻿@using Models;
+@using System.Web.Optimization;
+@model  ModelGymConfiguration
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Configuration";
+    var userData = Session["UserData"] as UserData;
+}
+@section beforeappcss{
+    @*<link href="~/Content/assets/css/colorpicker.css" rel="stylesheet" />*@
+}
+
+<div>
+    <div class="container userdetail">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Configuration</h4>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        @*<span class="deleteitem gymuser-delete" data-id="@Model.UserId"></span>*@
+        <div class="row">
+            <div class="col-sm-12 card-box">
+                <div class="">
+
+                    @using (@Html.BeginForm("SaveConfiguration", "Gym", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                    {
+                        @Html.HiddenFor(m => m.ClientId)
+                        @Html.HiddenFor(m => m.LogoName);
+                        @Html.HiddenFor(m => m.AlternateLogoName);
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label>Primary Text</label>
+                                @Html.TextBoxFor(m => m.PrimaryText, new { @class = "form-control", @maxlength = "10" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Primary Background Color</label>
+                                @Html.TextBoxFor(m => m.PrimaryBackground, new { @class = "form-control jscolor" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Primary Gradient Background Color</label>
+                                @Html.TextBoxFor(m => m.PrimaryGradientBackground, new { @class = "form-control jscolor" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Primary Font Color</label>
+                                @Html.TextBoxFor(m => m.PrimaryFontColor, new { @class = "form-control jscolor" })
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-md-3">
+                                <label>Alternate Text</label>
+                                @Html.TextBoxFor(m => m.AlternateText, new { @class = "form-control", @maxlength = "10" })
+                            </div>
+                            <div class="col-md-3">
+                                <label>Alternate Background Color</label>
+                                @Html.TextBoxFor(m => m.AlternateBackground, new { @class = "form-control jscolor" })
+
+                            </div>
+                            <div class="col-md-3">
+                                <label>Alternate Gradient Background Color</label>
+                                @Html.TextBoxFor(m => m.AlternateGradientBackground, new { @class = "form-control jscolor" })
+
+                            </div>
+                            <div class="col-md-3">
+                                <label>Alternate Font Color</label>
+                                @Html.TextBoxFor(m => m.AlternateFontColor, new { @class = "form-control jscolor" })
+
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Logout Background Color</label>
+                                    @Html.TextBoxFor(m => m.SignoutBackground, new { @class = "form-control jscolor" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Video Title Color</label>
+                                    @Html.TextBoxFor(m => m.VideoTitleColor, new { @class = "form-control jscolor" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Video Title Background Color</label>
+                                    @Html.TextBoxFor(m => m.VideoTitleBackgroundColor, new { @class = "form-control jscolor" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-md-12 form-group">
+                                <div class="checkbox checkbox-primary">
+                                    @{
+
+                                        var isChecked = Convert.ToBoolean(Model.ShowTime) ? "checked" : "";
+                                    }
+                                    <input type="checkbox" name="IsActiveString" id="IsActiveString" @isChecked>
+                                    <label class="activechk">Want to show time?</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-10">
+                            <div class="col-md-6">
+                                <label>Logo</label>
+                                <input type="file" name="Logo" id="Logo" />
+                                <span>For best user experience, upload logo of resolution: 500 * 70</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="m-t-25" id="preview">
+                                    @if (Model != null && !string.IsNullOrEmpty(Model.LogoName))
+                                    {
+                                        <img src='@Url.Content("~/ClientLogos/"+Model.ClientId+"/"+Model.LogoName)' id="logourl" class="img-responsive logothumbnail" />
+                                    }
+                                    else
+                                    {
+                                        <img src="" id="logourl" class="img-responsive logothumbnail" />
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row m-t-10">
+                            <div class="col-md-6">
+                                <label>Alternate Logo</label>
+                                <input type="file" name="AlternateLogo" id="AlternateLogo" />
+                                <span>For best user experience, upload logo of resolution: 500 * 70</span>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="m-t-25" id="alternatepreview">
+                                    @if (Model != null && !string.IsNullOrEmpty(Model.AlternateLogoName))
+                                    {
+                                        <img src='@Url.Content("~/ClientLogos/"+Model.ClientId+"/"+Model.AlternateLogoName)' id="alternatelogourl" class="img-responsive alternatelogothumbnail" />
+                                    }
+                                    else
+                                    {
+                                        <img src="" id="alternatelogourl" class="img-responsive alternatelogothumbnail" />
+                                    }
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row m-t-10">
+                            <button type="submit" class="btn btn-purple waves-effect waves-light m-left-5" id="saveconfiguration">Submit</button>
+
+                        </div>
+
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section beforeappjs
+{
+
+    @*<script src="~/Content/assets/js/jquery.js"></script>
+        $.noConflict();*@
+    @*<script src="~/Content/assets/js/colorpicker.js"></script>
+        <script src="~/Content/assets/js/eye.js"></script>
+        <script src="~/Content/assets/js/utils.js"></script>
+        <script src="~/Content/assets/js/layout.js"></script>*@
+    @*@Scripts.Render("~/bundle/bootstrapjs");*@
+    <script src="~/Content/assets/js/jscolor.js"></script>
+    @Scripts.Render("~/bundle/jqueryfiler");
+
+}
+
+@section footerscript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#preview').hide();
+            if ($('#LogoName').val().length > 0) {
+                $('#preview').show();
+            }
+            if ($('#AlternateLogoName').val().length > 0) {
+                $('#alternatepreview').show();
+            }
+            $('#PrimaryBackground').change(function () {
+                $('#SignoutBackground').val($(this).val());
+                $('#SignoutBackground').focus();
+            });
+
+        $('#Logo').filer({
+            limit: 1,
+            maxSize: null,
+            extensions: null,
+            changeInput: '<div class="jFiler-input-dragDrop">' +
+                '<div class="jFiler-input-inner">' +
+
+                '<div class="jFiler-input-icon">' +
+                '<i class="icon-jfi-cloud-up-o "></i>' +
+                '</div>' +
+
+                '<div class="fa fa-upload display-block">' +
+                '<h3>Drag & Drop files here</h3>' +
+                '<span style="display:inline-block;margin: 15px 0">or</span>' +
+                '</div>' +
+
+                '<a class="jFiler-input-choose-btn blue">Browse Files</a> </div </div>',
+            showThumbs: false,
+            appendTo: null,
+            theme: "default",
+            dragDrop: {
+                dragEnter: function () {
+                },
+                dragLeave: null,
+                drop: function (file) {
+                    var uploadedFile = file[0];
+                    var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                    if ($.inArray(uploadedFile.type, ValidImageTypes) < 0) {
+                        toastr.error("Only image allowed!");
+                        $('#Logo')[0].files = null;
+                        return;
+                    } else {
+                        $('#preview').show();
+                        var fileURL = URL.createObjectURL(uploadedFile)
+                        $('#Logo')[0].files = file ;
+                        $('#logourl').attr('src', fileURL);
+                        $('#preview').show();
+                    }
+                },
+            },
+            addMore: false,
+            clipBoardPaste: true,
+            excludeName: null,
+            beforeShow: function () { return true },
+            onSelect: function () { },
+            afterShow: function () { },
+            onRemove: function () { },
+            onEmpty: function () { },
+            captions: {
+                button: "Choose Files",
+                feedback: "Choose files To Upload",
+                feedback2: "files were chosen",
+                drop: "Drop file here to Upload",
+                removeConfirmation: "Are you sure you want to remove this file?",
+                errors: {
+                    filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+                    filesType: "Only Images are allowed to be uploaded.",
+                    filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+                    filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+                }
+            }
+        });
+
+        $('#Logo').change(function () {
+            var uploadedFile = $(this)[0].files[0];
+            if (uploadedFile != undefined) {
+                var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                if ($.inArray(uploadedFile.type, ValidImageTypes) < 0) {
+                    toastr.error("Only image allowed!")
+                    $('#Logo')[0].files = null;
+                    return;
+                } else {
+                    $('#preview').show();
+                    var fileURL = URL.createObjectURL(uploadedFile)
+                    $('#logourl').attr('src', fileURL);
+                    $('#preview').show();
+                }
+            }
+
+            });
+
+
+            $('#AlternateLogo').filer({
+                limit: 1,
+                maxSize: null,
+                extensions: null,
+                changeInput: '<div class="jFiler-input-dragDrop">' +
+                    '<div class="jFiler-input-inner">' +
+
+                    '<div class="jFiler-input-icon">' +
+                    '<i class="icon-jfi-cloud-up-o "></i>' +
+                    '</div>' +
+
+                    '<div class="fa fa-upload display-block">' +
+                    '<h3>Drag & Drop files here</h3>' +
+                    '<span style="display:inline-block;margin: 15px 0">or</span>' +
+                    '</div>' +
+
+                    '<a class="jFiler-input-choose-btn blue">Browse Files</a> </div </div>',
+                showThumbs: false,
+                appendTo: null,
+                theme: "default",
+                dragDrop: {
+                    dragEnter: function () {
+                    },
+                    dragLeave: null,
+                    drop: function (file) {
+                        var uploadedFile = file[0];
+                        var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                        if ($.inArray(uploadedFile.type, ValidImageTypes) < 0) {
+                            toastr.error("Only image allowed!");
+                            $('#AlternateLogo')[0].files = null;
+                            return;
+                        } else {
+                            $('#alternatepreview').show();
+                            var fileURL = URL.createObjectURL(uploadedFile)
+                            $('#AlternateLogo')[0].files = file;
+                            $('#alternatelogourl').attr('src', fileURL);
+                            $('#alternatepreview').show();
+                        }
+                    },
+                },
+                addMore: false,
+                clipBoardPaste: true,
+                excludeName: null,
+                beforeShow: function () { return true },
+                onSelect: function () { },
+                afterShow: function () { },
+                onRemove: function () { },
+                onEmpty: function () { },
+                captions: {
+                    button: "Choose Files",
+                    feedback: "Choose files To Upload",
+                    feedback2: "files were chosen",
+                    drop: "Drop file here to Upload",
+                    removeConfirmation: "Are you sure you want to remove this file?",
+                    errors: {
+                        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+                        filesType: "Only Images are allowed to be uploaded.",
+                        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+                        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+                    }
+                }
+            });
+
+            $('#AlternateLogo').change(function () {
+                var uploadedFile = $(this)[0].files[0];
+                if (uploadedFile != undefined) {
+                    var ValidImageTypes = ["image/gif", "image/jpeg", "image/png"];
+                    if ($.inArray(uploadedFile.type, ValidImageTypes) < 0) {
+                        toastr.error("Only image allowed!")
+                        $('#AlternateLogo')[0].files = null;
+                        return;
+                    } else {
+                        $('#alternatepreview').show();
+                        var fileURL = URL.createObjectURL(uploadedFile)
+                        $('#alternatelogourl').attr('src', fileURL);
+                        $('#alternatepreview').show();
+                    }
+                }
+
+            });
+    })
+    </script>
+    @if (ViewBag.OperationType == "success")
+    {
+        <script type="text/javascript">
+        toastr.success("@ViewBag.OperationMessage.ToString()")
+        </script>
+    }
+    @if (ViewBag.OperationType == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@ViewBag.OperationMessage.ToString()")
+        </script>
+    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+

@@ -1,0 +1,407 @@
+﻿@using Services;
+@using System.Web.Optimization;
+@using Models;
+@{
+    /**/
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Workout Selection";
+
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/style2.css?v=@(DateTime.Now.Ticks)" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+    <!-- qTip -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.css" />
+
+    <!-- Full Calendar -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" />
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.print.css" media="print" />
+
+
+    @*@Styles.Render("~/bundle/jqueryui")*@
+}
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Workouts_Schedule);
+}
+    <style type="text/css">
+        .modal-content .carousel-inner > .active, .modal-content .carousel-inner > .next, .modal-content .carousel-inner > .prev {
+            display: inline-block;
+        }
+
+        .modal-content .Line1 {
+            position: relative;
+            float: left;
+            width: 100%;
+        }
+
+        /*.modal-content .sidebar1 {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0px;
+            height: 100% !important;
+            float: left;
+            width: 50px !important;
+            z-index: 9999;
+        }*/
+        .card-box {
+            border: none;
+            background-color: transparent;
+        }
+        /* .modal-content .sidebar2 {
+            position: absolute;
+            left: 0;
+            top: 0; */
+        /* height: 100%;
+           float: left;
+            width: 80px;
+            z-index: 9999;
+            background: #000;*/
+        }
+
+        .modal-content .sidebar1 h3 {
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: 50%;
+            margin-top: -50px;
+        }
+
+        /*.sidebar2 h3 {
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -50px;
+        }*/
+        .reps {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+        }
+
+        .video1 video {
+            height: 54%;
+        }
+
+        .video2 video {
+            height: 27%;
+        }
+
+        .video3 video {
+            height: 27%;
+        }
+
+        .workoutarea .item {
+            width: 100%;
+        }
+
+        .video4 video {
+            height: 26%;
+        }
+
+        .video5 video {
+            height: 27%;
+        }
+
+        @@media (max-width: 5000px) and (min-width: 2561px) {
+            .video1 video {
+                height: 80%;
+            }
+
+            .video5 video, .video4 video, .video3 video, .video2 video {
+                height: 80%;
+            }
+        }
+
+        @@media (min-width: 1920px) and (max-width: 2560px) {
+            .video1 video {
+                height: 80%;
+            }
+
+            .video2 video, .video3 video, .video4 video, .video5 video {
+                height: 50%;
+            }
+        }
+    </style>
+@*<style type="text/css">
+    .modal-content .carousel-inner > .active, .modal-content .carousel-inner > .next, .modal-content .carousel-inner > .prev {
+        display: inline-block;
+    }
+    .modal-content .Line1 {
+        position:relative;
+        float:left;
+        width:100%;
+    }
+
+    .modal-content .sidebar1 {
+        position: absolute !important;
+        left: 0 !important;
+        top: 0px;
+        height: 100% !important;
+        /* float: left; */
+        width: 50px !important;
+        z-index: 9999;
+    }
+    .modal-content .sidebar2 {
+        position: absolute;
+        left: 0;
+        /* top: 0; */
+        height: 100%;
+        /* float: left; */
+        width: 80px;
+        z-index: 9999;
+        background: #000;
+    }
+    .modal-content .sidebar1 h3 {
+        font-size: 11px;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50%;
+        margin-top: -50px;
+    }
+    .sidebar2 h3 {
+        font-size:11px;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: -50px;
+    }
+</style>*@
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Workout Selection</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <div id="workoutcalendar"></div>
+                <div class="selectedworkout">Selected Workouts</div>
+                <div class="unselectedworkout">Unselected Workouts</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<div class="modal fade" id="workoutdetailtable" style="z-index: 9999;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90% !important;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                Workout Detail
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <button type="button" class="btn btn-purple waves-effect waves-light m-r-10 pull-right" id="selectworkout">Select</button>
+            </div>
+            <div class="modal-body" style="display:inline-table;width:100% !important;">
+                <div class="col-sm-12">
+                    <div class="card-box table-responsive workoutarea">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>*@
+<div class="modal fade" id="workoutdetailtable" style="z-index: 9999; overflow: inherit;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90% !important; height:100%;" role="document">
+        <div class="modal-content" style="height: 100%;">
+            <div class="modal-header">
+                Workout Detail
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <button type="button" class="btn btn-purple waves-effect waves-light m-r-10 pull-right" id="selectworkout">Select</button>
+            </div>
+            <div class="modal-body" style="display:inline-table;width:100% !important; height:100%;">
+                <div class="col-sm-12" style="height: 100%;">
+                    <div class="card-box table-responsive workoutarea" style="height: 100%;">
+                        <div class="workoutareabody Fullscreen"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+<script src="~/Content/assets/js/jquery.min.js"></script>
+<script src="~/Content/assets/js/bootstrap.min.js"></script>
+@section beforeappjs
+{
+
+    @*@Scripts.Render("~/bundle/jquery")*@
+    @Scripts.Render("~/bundle/jqueryui")
+    @*@Scripts.Render("~/bundle/bootstrapjs")*@
+}
+@section footerscript
+{
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var ViewWorkout = function (workoutId, workoutScheduledId, IsSelected) {
+                var workoutScheduledId = workoutScheduledId;
+                var isSelected = IsSelected;
+                $.ajax({
+                type: "get",
+                url: "@Url.Action("ViewWorkout","Workout")", // Location of the service
+                data: { WorkoutId: workoutId }, //Data sent to server
+                dataType: 'html',
+                success: function (data) {
+                    $('.workoutareabody').html(data);
+
+                    $($('.item')[0]).addClass('active');
+
+                    $('.carousel-indicators').hide();
+                    $('#workoutdetailtable').modal();
+                    $('#selectworkout').attr('data-sc-id', workoutScheduledId);
+                    $('#selectworkout').text(isSelected ? "Unselect" : "Select");
+                    $('#selectworkout').click(function () {
+                        var workoutScheduledId = $(this).attr('data-sc-id');
+                        SelectWorkoutSchedule(workoutScheduledId);
+
+                    });
+                }
+                });
+            }
+
+            $('#workoutcalendar').fullCalendar({
+                header:
+                    {
+                        left: 'prev,next today',
+                        center: 'title',
+                        right: 'month,agendaWeek,agendaDay'
+                    },
+                buttonText: {
+                    today: 'today',
+                    month: 'month',
+                    week: 'week',
+                    day: 'day'
+                },
+
+                events: function (start, end, timezone, callback) {
+                    $.ajax({
+                        url: '/Workout/GetScheduledWorkout',
+                        type: "GET",
+                        dataType: "JSON",
+                        data: { LocationId: @userData.BranchId },
+                        success: function (result) {
+                            var events = [];
+                            if (result.data.length > 0) {
+                                $.each(result.data, function (i, data) {
+                                    events.push(
+                                        {
+                                            title: data.WorkoutName,
+                                            description: data.WorkoutName,
+                                            //start: moment(data.ScheduledDate).format('YYYY-MM-DD'),
+                                            //end: moment(data.ScheduledDate).format('YYYY-MM-DD'),
+                                            start: moment(data.DisplayDate).format('YYYY-MM-DD'),
+                                            end: moment(data.DisplayDate).format('YYYY-MM-DD'),
+                                            backgroundColor: data.IsSelected == true ? "#008000" :"#ff0000",
+                                            borderColor: "#000",
+                                            id: data.WorkoutScheduleId,
+                                            workoutId: data.WorkoutId,
+                                            isSelected: data.IsSelected
+
+                                        });
+                                });
+                            }
+
+
+                            callback(events);
+                        }
+                    });
+                },
+
+                eventRender: function (event, element) {
+                    element.qtip(
+                        {
+                            content: event.description
+                        });
+                },
+                eventClick: function (calEvent, jsEvent, view) {
+                    var workoutShceduleId = calEvent.id;
+                    var workoutId = calEvent.workoutId;
+                    var IsSelected = calEvent.isSelected;
+                    //SelectWorkoutSchedule(workoutShceduleId)
+                    ViewWorkout(workoutId, workoutShceduleId, IsSelected)
+
+                }
+            });
+
+        });
+        var SelectWorkoutSchedule = function (WorkoutScheduleId) {
+            $.ajax({
+                url: '@Url.Action("WorkoutSelect", "Workout")',
+                type: "get",
+                dataType: "JSON",
+                contentType: "application/json", // content type sent to server
+                data: { WorkoutScheduleId: WorkoutScheduleId  },
+                success: function (result) {
+                    if (result.IsSuccess) {
+                        toastr.success(result.Message);
+                        window.location.reload();
+                    } else {
+                        toastr.error(result.Message);
+                    }
+                }
+            });
+
+        }
+
+
+        $('.user-icon-top').click(function () {
+            $(this).toggleClass("open");
+        })
+    </script>
+
+}
+
+
+
+

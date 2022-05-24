@@ -1,0 +1,365 @@
+E:\Work\Solcioty\trunk\src\Solcioty\bin\ApplicationInsights.config
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\csc.exe
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\System.Collections.Immutable.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\System.Reflection.Metadata.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\vbc.exe
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\VBCSCompiler.exe
+E:\Work\Solcioty\trunk\src\Solcioty\bin\roslyn\VBCSCompiler.exe.config
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Solcioty.dll.config
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Solcioty.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Solcioty.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Antlr3.Runtime.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\BusinessLayer.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\EntityFramework.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\EntityFramework.SqlServer.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\itextsharp.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\itextsharp.xmlworker.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.Agent.Intercept.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.DependencyCollector.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.Web.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.WindowsServer.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.ApplicationInsights.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.Web.Infrastructure.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Models.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Newtonsoft.Json.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Services.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Helpers.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Mvc.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Optimization.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Razor.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.Deployment.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.Razor.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\WebGrease.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\DataAccessLayer.dll
+E:\Work\Solcioty\trunk\src\Solcioty\bin\BusinessLayer.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\BusinessLayer.dll.config
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Models.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Services.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Services.dll.config
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Antlr3.Runtime.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\EntityFramework.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\EntityFramework.SqlServer.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\itextsharp.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.DependencyCollector.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.Web.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.AI.WindowsServer.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.ApplicationInsights.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\Newtonsoft.Json.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Optimization.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Razor.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.Deployment.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Webpages.Razor.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Helpers.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\System.Web.Mvc.xml
+E:\Work\Solcioty\trunk\src\Solcioty\bin\DataAccessLayer.pdb
+E:\Work\Solcioty\trunk\src\Solcioty\bin\DataAccessLayer.dll.config
+E:\Work\Solcioty\trunk\src\Solcioty\obj\Release\Solcioty.csprojAssemblyReference.cache
+E:\Work\Solcioty\trunk\src\Solcioty\obj\Release\Solcioty.csproj.CoreCompileInputs.cache
+E:\Work\Solcioty\trunk\src\Solcioty\obj\Release\Solcioty.csproj.CopyComplete
+E:\Work\Solcioty\trunk\src\Solcioty\obj\Release\Solcioty.dll
+E:\Work\Solcioty\trunk\src\Solcioty\obj\Release\Solcioty.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\ApplicationInsights.config
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\csc.exe
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\System.Collections.Immutable.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\System.Reflection.Metadata.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\vbc.exe
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\VBCSCompiler.exe
+F:\Work\Solcioty\src\src\Solcioty\bin\roslyn\VBCSCompiler.exe.config
+F:\Work\Solcioty\src\src\Solcioty\bin\Solcioty.dll.config
+F:\Work\Solcioty\src\src\Solcioty\bin\Solcioty.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Solcioty.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\Antlr3.Runtime.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\BusinessLayer.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\EntityFramework.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\EntityFramework.SqlServer.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\itextsharp.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\itextsharp.xmlworker.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.DependencyCollector.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.Web.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.WindowsServer.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.ApplicationInsights.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.Web.Infrastructure.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Models.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Newtonsoft.Json.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\Services.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Helpers.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Mvc.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Optimization.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Razor.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.Deployment.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.Razor.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\WebGrease.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\DataAccessLayer.dll
+F:\Work\Solcioty\src\src\Solcioty\bin\BusinessLayer.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\BusinessLayer.dll.config
+F:\Work\Solcioty\src\src\Solcioty\bin\Models.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\Services.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\Services.dll.config
+F:\Work\Solcioty\src\src\Solcioty\bin\Antlr3.Runtime.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\EntityFramework.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\EntityFramework.SqlServer.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\itextsharp.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.DependencyCollector.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.Web.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.AI.WindowsServer.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.ApplicationInsights.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\Newtonsoft.Json.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Helpers.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Mvc.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Optimization.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.Razor.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.Deployment.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\System.Web.WebPages.Razor.xml
+F:\Work\Solcioty\src\src\Solcioty\bin\DataAccessLayer.pdb
+F:\Work\Solcioty\src\src\Solcioty\bin\DataAccessLayer.dll.config
+F:\Work\Solcioty\src\src\Solcioty\obj\Release\Solcioty.csproj.CoreCompileInputs.cache
+F:\Work\Solcioty\src\src\Solcioty\obj\Release\Solcioty.csproj.CopyComplete
+F:\Work\Solcioty\src\src\Solcioty\obj\Release\Solcioty.dll
+F:\Work\Solcioty\src\src\Solcioty\obj\Release\Solcioty.pdb
+F:\Work\Solcioty\src\src\Solcioty\obj\Release\Solcioty.csprojResolveAssemblyReference.cache
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\ApplicationInsights.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\csc.exe
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\System.Collections.Immutable.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\System.Reflection.Metadata.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\vbc.exe
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\VBCSCompiler.exe
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\roslyn\VBCSCompiler.exe.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Solcioty.dll.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Solcioty.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Solcioty.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Antlr3.Runtime.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\BusinessLayer.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\EntityFramework.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\EntityFramework.SqlServer.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\itextsharp.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\itextsharp.xmlworker.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.DependencyCollector.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.Web.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.WindowsServer.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.ApplicationInsights.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.Web.Infrastructure.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Models.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Newtonsoft.Json.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Services.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Helpers.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Mvc.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Optimization.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Razor.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.Deployment.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.Razor.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\WebGrease.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\DataAccessLayer.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\BusinessLayer.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\BusinessLayer.dll.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Models.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Services.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Services.dll.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Antlr3.Runtime.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\EntityFramework.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\EntityFramework.SqlServer.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\itextsharp.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.DependencyCollector.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.Web.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.AI.WindowsServer.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.ApplicationInsights.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\Newtonsoft.Json.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Helpers.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Mvc.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Optimization.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.Razor.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.Deployment.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\System.Web.WebPages.Razor.xml
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\DataAccessLayer.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\bin\DataAccessLayer.dll.config
+F:\Work\Solcioty\Jaimik\src\Solcioty\obj\Release\Solcioty.csproj.CoreCompileInputs.cache
+F:\Work\Solcioty\Jaimik\src\Solcioty\obj\Release\Solcioty.csproj.CopyComplete
+F:\Work\Solcioty\Jaimik\src\Solcioty\obj\Release\Solcioty.dll
+F:\Work\Solcioty\Jaimik\src\Solcioty\obj\Release\Solcioty.pdb
+F:\Work\Solcioty\Jaimik\src\Solcioty\obj\Release\Solcioty.csprojResolveAssemblyReference.cache
+F:\Project\Solcioty\Solcioty\bin\ApplicationInsights.config
+F:\Project\Solcioty\Solcioty\bin\roslyn\csc.exe
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.CSharp.Core.targets
+F:\Project\Solcioty\Solcioty\bin\roslyn\Microsoft.VisualBasic.Core.targets
+F:\Project\Solcioty\Solcioty\bin\roslyn\System.Collections.Immutable.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\System.Reflection.Metadata.dll
+F:\Project\Solcioty\Solcioty\bin\roslyn\vbc.exe
+F:\Project\Solcioty\Solcioty\bin\roslyn\VBCSCompiler.exe
+F:\Project\Solcioty\Solcioty\bin\roslyn\VBCSCompiler.exe.config
+F:\Project\Solcioty\Solcioty\bin\Solcioty.dll.config
+F:\Project\Solcioty\Solcioty\bin\Solcioty.dll
+F:\Project\Solcioty\Solcioty\bin\Solcioty.pdb
+F:\Project\Solcioty\Solcioty\bin\Antlr3.Runtime.dll
+F:\Project\Solcioty\Solcioty\bin\BusinessLayer.dll
+F:\Project\Solcioty\Solcioty\bin\EntityFramework.dll
+F:\Project\Solcioty\Solcioty\bin\EntityFramework.SqlServer.dll
+F:\Project\Solcioty\Solcioty\bin\itextsharp.dll
+F:\Project\Solcioty\Solcioty\bin\itextsharp.xmlworker.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.Agent.Intercept.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.DependencyCollector.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.Web.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.WindowsServer.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.ApplicationInsights.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+F:\Project\Solcioty\Solcioty\bin\Microsoft.Web.Infrastructure.dll
+F:\Project\Solcioty\Solcioty\bin\Models.dll
+F:\Project\Solcioty\Solcioty\bin\Newtonsoft.Json.dll
+F:\Project\Solcioty\Solcioty\bin\Services.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.Helpers.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.Mvc.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.Optimization.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.Razor.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.Deployment.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.dll
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.Razor.dll
+F:\Project\Solcioty\Solcioty\bin\WebGrease.dll
+F:\Project\Solcioty\Solcioty\bin\DataAccessLayer.dll
+F:\Project\Solcioty\Solcioty\bin\BusinessLayer.pdb
+F:\Project\Solcioty\Solcioty\bin\BusinessLayer.dll.config
+F:\Project\Solcioty\Solcioty\bin\Models.pdb
+F:\Project\Solcioty\Solcioty\bin\Services.pdb
+F:\Project\Solcioty\Solcioty\bin\Services.dll.config
+F:\Project\Solcioty\Solcioty\bin\Antlr3.Runtime.pdb
+F:\Project\Solcioty\Solcioty\bin\EntityFramework.xml
+F:\Project\Solcioty\Solcioty\bin\EntityFramework.SqlServer.xml
+F:\Project\Solcioty\Solcioty\bin\itextsharp.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.DependencyCollector.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.Web.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.AI.WindowsServer.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.ApplicationInsights.xml
+F:\Project\Solcioty\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+F:\Project\Solcioty\Solcioty\bin\Newtonsoft.Json.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.Helpers.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.Mvc.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.Optimization.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.Razor.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.Deployment.xml
+F:\Project\Solcioty\Solcioty\bin\System.Web.WebPages.Razor.xml
+F:\Project\Solcioty\Solcioty\bin\DataAccessLayer.pdb
+F:\Project\Solcioty\Solcioty\bin\DataAccessLayer.dll.config
+F:\Project\Solcioty\Solcioty\obj\Release\Solcioty.csprojResolveAssemblyReference.cache
+F:\Project\Solcioty\Solcioty\obj\Release\Solcioty.csproj.CoreCompileInputs.cache
+F:\Project\Solcioty\Solcioty\obj\Release\Solcioty.csproj.CopyComplete
+F:\Project\Solcioty\Solcioty\obj\Release\Solcioty.dll
+F:\Project\Solcioty\Solcioty\obj\Release\Solcioty.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\ApplicationInsights.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\csc.exe
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.CSharp.Core.targets
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\Microsoft.VisualBasic.Core.targets
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\System.Collections.Immutable.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\System.Reflection.Metadata.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\vbc.exe
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\VBCSCompiler.exe
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\roslyn\VBCSCompiler.exe.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Solcioty.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Solcioty.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Solcioty.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Antlr3.Runtime.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\BusinessLayer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\EntityFramework.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\EntityFramework.SqlServer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\itextsharp.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\itextsharp.xmlworker.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.Agent.Intercept.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.DependencyCollector.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.Web.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.WindowsServer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.ApplicationInsights.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.Web.Infrastructure.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Models.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Newtonsoft.Json.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Services.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Helpers.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Mvc.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Optimization.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Razor.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.Deployment.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.Razor.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\WebGrease.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\DataAccessLayer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\BusinessLayer.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\BusinessLayer.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Models.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Services.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Services.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Antlr3.Runtime.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\EntityFramework.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\EntityFramework.SqlServer.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\itextsharp.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.DependencyCollector.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.Web.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.AI.WindowsServer.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.ApplicationInsights.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\Newtonsoft.Json.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Helpers.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Mvc.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Optimization.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.Razor.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.Deployment.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\System.Web.WebPages.Razor.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\DataAccessLayer.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\bin\DataAccessLayer.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\obj\Release\Solcioty.csproj.AssemblyReference.cache
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\obj\Release\Solcioty.csproj.CoreCompileInputs.cache
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\obj\Release\Solcioty.csproj.CopyComplete
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\obj\Release\Solcioty.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Solcioty\obj\Release\Solcioty.pdb

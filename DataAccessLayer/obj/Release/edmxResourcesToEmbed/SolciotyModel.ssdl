@@ -1,0 +1,1553 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SolciotyNewModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="BoxerTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="TemplateDescription" Type="varchar(max)" />
+    <Property Name="IsReadyForLocations" Type="bit" />
+    <Property Name="TemplateName" Type="varchar(max)" Nullable="false" />
+    <Property Name="NumberOfBasicVideos" Type="int" Nullable="false" />
+    <Property Name="NumberOfAlterVideos" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="PrimaryText" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateText" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrimaryGradientColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateGradientColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrimaryBackgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateBackgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeText" Type="varchar" MaxLength="50" />
+    <Property Name="BlockLineOneText" Type="varchar" MaxLength="50" />
+    <Property Name="BlockLineTwoText" Type="varchar" MaxLength="50" />
+    <Property Name="GoalText" Type="varchar" MaxLength="50" />
+    <Property Name="IsFooterText" Type="bit" />
+    <Property Name="FooterTextColor" Type="varchar" MaxLength="50" />
+    <Property Name="FooterText" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="BoxerTemplateVideoMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxerTemplateID" Type="int" Nullable="false" />
+    <Property Name="VideoID" Type="int" Nullable="false" />
+    <Property Name="VideoPosition" Type="int" />
+    <Property Name="IsBasicVideo" Type="bit" Nullable="false" />
+    <Property Name="IsAlterVideo" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Reps" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="BoxerWorkoutCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="BoxerWorkoutMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="WorkoutDescription" Type="varchar(max)" />
+    <Property Name="IsReadyForLocations" Type="bit" />
+    <Property Name="WorkoutName" Type="varchar(max)" Nullable="false" />
+    <Property Name="PDFName" Type="varchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="FrontCoverImageId" Type="int" />
+    <Property Name="BackCoverImageId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="BoxerWorkoutSchedule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxerWorkoutMasterID" Type="int" Nullable="false" />
+    <Property Name="ScheduledDate" Type="datetime" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="BoxerWorkoutTemplateMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxerWorkoutMasterID" Type="int" Nullable="false" />
+    <Property Name="BoxerTemplateID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BoxerWorkoutUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="BoxerWorkoutId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="varchar(max)" Nullable="false" />
+    <Property Name="StateCode" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FitnessTag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TagName" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Gym">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" />
+    <Property Name="Logo" Type="varchar" MaxLength="150" />
+    <Property Name="PrimaryText" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryBackground" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryGradientBackground" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryFontColor" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateText" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateBackground" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateGradientBackground" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateFontColor" Type="varchar" MaxLength="50" />
+    <Property Name="LogoutBackground" Type="varchar" MaxLength="50" />
+    <Property Name="ShowTime" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="AlternateLogo" Type="nvarchar" MaxLength="250" />
+    <Property Name="VideoTitleColor" Type="nvarchar" MaxLength="250" />
+    <Property Name="VideoTitleBackgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="BackgroundImage" Type="nvarchar" MaxLength="350" />
+    <Property Name="HeaderPrimaryColor" Type="varchar" MaxLength="50" />
+    <Property Name="HeaderSecondaryColor" Type="varchar" MaxLength="50" />
+    <Property Name="HeaderTextColor" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="GymLocationMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GymId" Type="int" />
+    <Property Name="LocationId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="GymUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GymId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="ImageGallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageTitle" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImageFile" Type="varchar(max)" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ImageTagMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImageId" Type="int" Nullable="false" />
+    <Property Name="TagId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="varchar(max)" Nullable="false" />
+    <Property Name="AddressLine1" Type="varchar(max)" />
+    <Property Name="AddressLine2" Type="varchar(max)" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="LocationSelectedBoxerWorkouts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BoxerWorkoutScheduleID" Type="int" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="Token" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="LocationSelectedWorkouts">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkoutScheduleID" Type="int" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="Token" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="MailLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MailTo" Type="varchar(max)" />
+    <Property Name="Subject" Type="varchar(max)" />
+    <Property Name="MessageBody" Type="varchar(max)" />
+    <Property Name="CreatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Subject" Type="varchar(max)" Nullable="false" />
+    <Property Name="MessageBody" Type="varchar(max)" Nullable="false" />
+    <Property Name="MailUDC" Type="varchar" MaxLength="5" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PermissionCode" Type="varchar" MaxLength="50" />
+    <Property Name="PermissionName" Type="nvarchar" MaxLength="150" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UDC" Type="varchar" MaxLength="6" Nullable="false" />
+    <Property Name="RoleName" Type="varchar(max)" Nullable="false" />
+    <Property Name="DisplayName" Type="varchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="RolePermissionMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PermissionCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="PermissionType" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Abbreviation" />
+    </Key>
+    <Property Name="StateName" Type="varchar(max)" Nullable="false" />
+    <Property Name="Abbreviation" Type="varchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Template">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="TemplateDescription" Type="varchar(max)" />
+    <Property Name="IsReadyForLocations" Type="bit" />
+    <Property Name="TemplateName" Type="varchar(max)" Nullable="false" />
+    <Property Name="NumberOfBasicVideos" Type="int" Nullable="false" />
+    <Property Name="NumberOfAlterVideos" Type="int" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="PrimaryText" Type="varchar" MaxLength="50" />
+    <Property Name="AlternateText" Type="varchar" MaxLength="50" />
+    <Property Name="PrimaryColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrimaryGradientColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateGradientColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrimaryBackgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="AlternateBackgroundColor" Type="nvarchar" MaxLength="50" />
+    <Property Name="TimeText" Type="varchar" MaxLength="50" />
+    <Property Name="BlockLineOneText" Type="varchar" MaxLength="50" />
+    <Property Name="BlockLineTwoText" Type="varchar" MaxLength="50" />
+    <Property Name="GoalText" Type="varchar" MaxLength="50" />
+    <Property Name="IsFooterText" Type="bit" />
+    <Property Name="FooterTextColor" Type="varchar" MaxLength="50" />
+    <Property Name="FooterText" Type="varchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="TemplateVideoMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TemplateID" Type="int" Nullable="false" />
+    <Property Name="VideoID" Type="int" Nullable="false" />
+    <Property Name="VideoPosition" Type="int" />
+    <Property Name="IsBasicVideo" Type="bit" Nullable="false" />
+    <Property Name="IsAlterVideo" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+    <Property Name="Note" Type="nvarchar" MaxLength="150" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="Reps" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TrainingPortal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Description" Type="varchar(max)" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingPortalCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrainingPortalId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="IconString" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingPortalSubCategories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TrainingPortalId" Type="bigint" Nullable="false" />
+    <Property Name="TrainingPortalCategoryId" Type="bigint" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingPortalSubCategoryVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="VideoPath" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="TrainingPortalSubCategoryId" Type="bigint" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TrainingPortalUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="TrainingPortalId" Type="bigint" Nullable="false" />
+    <Property Name="PermissionType" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="IsDeleted" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar(max)" Nullable="false" />
+    <Property Name="LastName" Type="varchar(max)" Nullable="false" />
+    <Property Name="EmailID" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="varchar" MaxLength="20" />
+    <Property Name="AddressLine1" Type="varchar(max)" />
+    <Property Name="AddressLine2" Type="varchar(max)" />
+    <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+    <Property Name="UserPassword" Type="varchar(max)" />
+    <Property Name="SaltKey" Type="varchar(max)" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="CityId" Type="int" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="PasswordResetToken" Type="varchar" MaxLength="200" />
+    <Property Name="TokenExpiryDate" Type="datetime" />
+    <Property Name="Username" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="UserLocationMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="LocationID" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="UserRoleMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VideoTitle" Type="varchar(max)" Nullable="false" />
+    <Property Name="VideoAttachment" Type="varchar(max)" />
+    <Property Name="ContentType" Type="varchar(max)" />
+    <Property Name="SmallDescription" Type="varchar(max)" />
+    <Property Name="FullDescription" Type="varchar(max)" />
+    <Property Name="CounterOfUseInWorkout" Type="int" />
+    <Property Name="RepsCount" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="DisplayOrder" Type="int" />
+  </EntityType>
+  <EntityType Name="VideoTagMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VideoID" Type="int" Nullable="false" />
+    <Property Name="TagID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WorkoutCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="WorkoutMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="WorkoutDescription" Type="varchar(max)" />
+    <Property Name="IsReadyForLocations" Type="bit" />
+    <Property Name="WorkoutName" Type="varchar(max)" Nullable="false" />
+    <Property Name="PDFName" Type="varchar(max)" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="FrontCoverImageId" Type="int" />
+    <Property Name="BackCoverImageId" Type="int" />
+    <Property Name="CategoryId" Type="int" />
+    <Property Name="IsActive" Type="bit" />
+  </EntityType>
+  <EntityType Name="WorkoutSchedule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkoutMasterID" Type="int" Nullable="false" />
+    <Property Name="ScheduledDate" Type="datetime" Nullable="false" />
+    <Property Name="LocationId" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+  </EntityType>
+  <EntityType Name="WorkoutTemplateMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="WorkoutMasterID" Type="int" Nullable="false" />
+    <Property Name="TemplateID" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" />
+    <Property Name="CreatedDate" Type="datetime" />
+    <Property Name="UpdatedDate" Type="datetime" />
+    <Property Name="IsDeleted" Type="bit" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="WorkoutUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="WorkoutId" Type="int" Nullable="false" />
+    <Property Name="LocationId" Type="int" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_BoxerTemplate_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerTemplate">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerTemplate_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerTemplate">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerTemplateVideoMapping_BoxerTemplate">
+    <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="1" />
+    <End Role="BoxerTemplateVideoMapping" Type="Self.BoxerTemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerTemplate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerTemplateVideoMapping">
+        <PropertyRef Name="BoxerTemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerTemplateVideoMapping_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="BoxerTemplateVideoMapping" Type="Self.BoxerTemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerTemplateVideoMapping">
+        <PropertyRef Name="VideoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutMaster_BoxerWorkoutCategory">
+    <End Role="BoxerWorkoutCategory" Type="Self.BoxerWorkoutCategory" Multiplicity="0..1" />
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutMaster">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutMaster_ImageGallery">
+    <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="0..1" />
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutMaster">
+        <PropertyRef Name="FrontCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutMaster_ImageGallery1">
+    <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="0..1" />
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutMaster">
+        <PropertyRef Name="BackCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutSchedule_BoxerWorkoutMaster">
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="1" />
+    <End Role="BoxerWorkoutSchedule" Type="Self.BoxerWorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutSchedule">
+        <PropertyRef Name="BoxerWorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutSchedule_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="BoxerWorkoutSchedule" Type="Self.BoxerWorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutSchedule">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutTemplateMapping_BoxerTemplate">
+    <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="1" />
+    <End Role="BoxerWorkoutTemplateMapping" Type="Self.BoxerWorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerTemplate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutTemplateMapping">
+        <PropertyRef Name="BoxerTemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutTemplateMapping_BoxerWorkoutMaster">
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="1" />
+    <End Role="BoxerWorkoutTemplateMapping" Type="Self.BoxerWorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutTemplateMapping">
+        <PropertyRef Name="BoxerWorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutUserMapping_BoxerWorkoutMaster">
+    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="1" />
+    <End Role="BoxerWorkoutUserMapping" Type="Self.BoxerWorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutUserMapping">
+        <PropertyRef Name="BoxerWorkoutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutUserMapping_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="BoxerWorkoutUserMapping" Type="Self.BoxerWorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutUserMapping">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_BoxerWorkoutUserMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="BoxerWorkoutUserMapping" Type="Self.BoxerWorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerWorkoutUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_City_State">
+    <End Role="State" Type="Self.State" Multiplicity="1" />
+    <End Role="City" Type="Self.City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Abbreviation" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymLocationMapping_Gym">
+    <End Role="Gym" Type="Self.Gym" Multiplicity="0..1" />
+    <End Role="GymLocationMapping" Type="Self.GymLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gym">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GymLocationMapping">
+        <PropertyRef Name="GymId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymLocationMapping_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="GymLocationMapping" Type="Self.GymLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GymLocationMapping">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymUserMapping_Gym">
+    <End Role="Gym" Type="Self.Gym" Multiplicity="0..1" />
+    <End Role="GymUserMapping" Type="Self.GymUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gym">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GymUserMapping">
+        <PropertyRef Name="GymId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymUserMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="GymUserMapping" Type="Self.GymUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GymUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageGalary_BackCoverImageId">
+    <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="0..1" />
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="BackCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageGalary_FrontCoverImageId">
+    <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="0..1" />
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="FrontCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageTagMapping_FitnessTag">
+    <End Role="FitnessTag" Type="Self.FitnessTag" Multiplicity="1" />
+    <End Role="ImageTagMapping" Type="Self.ImageTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FitnessTag">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ImageTagMapping">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageTagMapping_ImageGallery">
+    <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="1" />
+    <End Role="ImageTagMapping" Type="Self.ImageTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImageTagMapping">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="Location" Type="Self.Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationSelectedBoxerWorkouts_BoxerWorkoutSchedule">
+    <End Role="BoxerWorkoutSchedule" Type="Self.BoxerWorkoutSchedule" Multiplicity="1" />
+    <End Role="LocationSelectedBoxerWorkouts" Type="Self.LocationSelectedBoxerWorkouts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutSchedule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LocationSelectedBoxerWorkouts">
+        <PropertyRef Name="BoxerWorkoutScheduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationSelectedWorkouts_WorkoutSchedule">
+    <End Role="WorkoutSchedule" Type="Self.WorkoutSchedule" Multiplicity="1" />
+    <End Role="LocationSelectedWorkouts" Type="Self.LocationSelectedWorkouts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutSchedule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LocationSelectedWorkouts">
+        <PropertyRef Name="WorkoutScheduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Template_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Template" Type="Self.Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Template">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Template_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Template" Type="Self.Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Template">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemplateVideoMapping_Template">
+    <End Role="Template" Type="Self.Template" Multiplicity="1" />
+    <End Role="TemplateVideoMapping" Type="Self.TemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Template">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TemplateVideoMapping">
+        <PropertyRef Name="TemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemplateVideoMapping_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="TemplateVideoMapping" Type="Self.TemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TemplateVideoMapping">
+        <PropertyRef Name="VideoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalCategories_TrainingPortal">
+    <End Role="TrainingPortal" Type="Self.TrainingPortal" Multiplicity="1" />
+    <End Role="TrainingPortalCategories" Type="Self.TrainingPortalCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalCategories">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalSubCategories_TrainingPortal">
+    <End Role="TrainingPortal" Type="Self.TrainingPortal" Multiplicity="1" />
+    <End Role="TrainingPortalSubCategories" Type="Self.TrainingPortalSubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategories">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalSubCategories_TrainingPortalCategories">
+    <End Role="TrainingPortalCategories" Type="Self.TrainingPortalCategories" Multiplicity="1" />
+    <End Role="TrainingPortalSubCategories" Type="Self.TrainingPortalSubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortalCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategories">
+        <PropertyRef Name="TrainingPortalCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories">
+    <End Role="TrainingPortalSubCategories" Type="Self.TrainingPortalSubCategories" Multiplicity="1" />
+    <End Role="TrainingPortalSubCategoryVideo" Type="Self.TrainingPortalSubCategoryVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortalSubCategories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategoryVideo">
+        <PropertyRef Name="TrainingPortalSubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalUserMapping_TrainingPortal">
+    <End Role="TrainingPortal" Type="Self.TrainingPortal" Multiplicity="1" />
+    <End Role="TrainingPortalUserMapping" Type="Self.TrainingPortalUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalUserMapping">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalUserMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="TrainingPortalUserMapping" Type="Self.TrainingPortalUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TrainingPortalUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_City">
+    <End Role="City" Type="Self.City" Multiplicity="0..1" />
+    <End Role="User" Type="Self.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLocationMapping_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="UserLocationMapping" Type="Self.UserLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLocationMapping">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLocationMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="UserLocationMapping" Type="Self.UserLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLocationMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_User">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_User1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTagMapping_FitnessTag">
+    <End Role="FitnessTag" Type="Self.FitnessTag" Multiplicity="1" />
+    <End Role="VideoTagMapping" Type="Self.VideoTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FitnessTag">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VideoTagMapping">
+        <PropertyRef Name="TagID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTagMapping_Video">
+    <End Role="Video" Type="Self.Video" Multiplicity="1" />
+    <End Role="VideoTagMapping" Type="Self.VideoTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VideoTagMapping">
+        <PropertyRef Name="VideoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutMaster_WorkoutCategory">
+    <End Role="WorkoutCategory" Type="Self.WorkoutCategory" Multiplicity="0..1" />
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutSchedule_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="WorkoutSchedule" Type="Self.WorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutSchedule">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutSchedule_WorkoutMaster">
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="1" />
+    <End Role="WorkoutSchedule" Type="Self.WorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutSchedule">
+        <PropertyRef Name="WorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutTemplateMapping_Template">
+    <End Role="Template" Type="Self.Template" Multiplicity="1" />
+    <End Role="WorkoutTemplateMapping" Type="Self.WorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Template">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutTemplateMapping">
+        <PropertyRef Name="TemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutTemplateMapping_WorkoutMaster">
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="1" />
+    <End Role="WorkoutTemplateMapping" Type="Self.WorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutTemplateMapping">
+        <PropertyRef Name="WorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUserMapping_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="0..1" />
+    <End Role="WorkoutUserMapping" Type="Self.WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUserMapping_User">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="WorkoutUserMapping" Type="Self.WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUserMapping_WorkoutMaster">
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="1" />
+    <End Role="WorkoutUserMapping" Type="Self.WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="WorkoutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_split_string_to_column" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="string" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="delimiter" Type="char" Mode="In" />
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="column_id" Type="int" Nullable="false" />
+          <Property Name="value" Type="nvarchar(max)" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
+  <Function Name="SP_proc_copy_site" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_From_Gym_Id" Type="int" Mode="In" />
+    <Parameter Name="P_ClientName" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_FirstName" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_LastName" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_EmailId" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_UserName" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_CopyAction" Type="nvarchar" Mode="In" />
+    <Parameter Name="P_PasswordSaltKey" Type="nvarchar(max)" Mode="In" />
+    <Parameter Name="P_NewPassword" Type="nvarchar(max)" Mode="In" />
+  </Function>
+  <Function Name="SP_Proc_Copy_Videos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="P_SourceUser" Type="int" Mode="In" />
+    <Parameter Name="P_DestinationUser" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SolciotyNewModelStoreContainer">
+    <EntitySet Name="BoxerTemplate" EntityType="Self.BoxerTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerTemplateVideoMapping" EntityType="Self.BoxerTemplateVideoMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerWorkoutCategory" EntityType="Self.BoxerWorkoutCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerWorkoutMaster" EntityType="Self.BoxerWorkoutMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerWorkoutSchedule" EntityType="Self.BoxerWorkoutSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerWorkoutTemplateMapping" EntityType="Self.BoxerWorkoutTemplateMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BoxerWorkoutUserMapping" EntityType="Self.BoxerWorkoutUserMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="City" EntityType="Self.City" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FitnessTag" EntityType="Self.FitnessTag" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gym" EntityType="Self.Gym" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GymLocationMapping" EntityType="Self.GymLocationMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GymUserMapping" EntityType="Self.GymUserMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageGallery" EntityType="Self.ImageGallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ImageTagMapping" EntityType="Self.ImageTagMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationSelectedBoxerWorkouts" EntityType="Self.LocationSelectedBoxerWorkouts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LocationSelectedWorkouts" EntityType="Self.LocationSelectedWorkouts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MailLog" EntityType="Self.MailLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MailTemplate" EntityType="Self.MailTemplate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RolePermissionMapping" EntityType="Self.RolePermissionMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Template" EntityType="Self.Template" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TemplateVideoMapping" EntityType="Self.TemplateVideoMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingPortal" EntityType="Self.TrainingPortal" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingPortalCategories" EntityType="Self.TrainingPortalCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingPortalSubCategories" EntityType="Self.TrainingPortalSubCategories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingPortalSubCategoryVideo" EntityType="Self.TrainingPortalSubCategoryVideo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TrainingPortalUserMapping" EntityType="Self.TrainingPortalUserMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserLocationMapping" EntityType="Self.UserLocationMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VideoTagMapping" EntityType="Self.VideoTagMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkoutCategory" EntityType="Self.WorkoutCategory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkoutMaster" EntityType="Self.WorkoutMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkoutSchedule" EntityType="Self.WorkoutSchedule" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkoutTemplateMapping" EntityType="Self.WorkoutTemplateMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="WorkoutUserMapping" EntityType="Self.WorkoutUserMapping" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BoxerTemplate_User" Association="Self.FK_BoxerTemplate_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerTemplate_User1" Association="Self.FK_BoxerTemplate_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerTemplateVideoMapping_BoxerTemplate" Association="Self.FK_BoxerTemplateVideoMapping_BoxerTemplate">
+      <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
+      <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerTemplateVideoMapping_Video" Association="Self.FK_BoxerTemplateVideoMapping_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutMaster_BoxerWorkoutCategory" Association="Self.FK_BoxerWorkoutMaster_BoxerWorkoutCategory">
+      <End Role="BoxerWorkoutCategory" EntitySet="BoxerWorkoutCategory" />
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutMaster_ImageGallery" Association="Self.FK_BoxerWorkoutMaster_ImageGallery">
+      <End Role="ImageGallery" EntitySet="ImageGallery" />
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutMaster_ImageGallery1" Association="Self.FK_BoxerWorkoutMaster_ImageGallery1">
+      <End Role="ImageGallery" EntitySet="ImageGallery" />
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutSchedule_BoxerWorkoutMaster" Association="Self.FK_BoxerWorkoutSchedule_BoxerWorkoutMaster">
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+      <End Role="BoxerWorkoutSchedule" EntitySet="BoxerWorkoutSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutSchedule_Location" Association="Self.FK_BoxerWorkoutSchedule_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="BoxerWorkoutSchedule" EntitySet="BoxerWorkoutSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutTemplateMapping_BoxerTemplate" Association="Self.FK_BoxerWorkoutTemplateMapping_BoxerTemplate">
+      <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
+      <End Role="BoxerWorkoutTemplateMapping" EntitySet="BoxerWorkoutTemplateMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutTemplateMapping_BoxerWorkoutMaster" Association="Self.FK_BoxerWorkoutTemplateMapping_BoxerWorkoutMaster">
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+      <End Role="BoxerWorkoutTemplateMapping" EntitySet="BoxerWorkoutTemplateMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutUserMapping_BoxerWorkoutMaster" Association="Self.FK_BoxerWorkoutUserMapping_BoxerWorkoutMaster">
+      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
+      <End Role="BoxerWorkoutUserMapping" EntitySet="BoxerWorkoutUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutUserMapping_Location" Association="Self.FK_BoxerWorkoutUserMapping_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="BoxerWorkoutUserMapping" EntitySet="BoxerWorkoutUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_BoxerWorkoutUserMapping_User" Association="Self.FK_BoxerWorkoutUserMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="BoxerWorkoutUserMapping" EntitySet="BoxerWorkoutUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_City_State" Association="Self.FK_City_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="City" EntitySet="City" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymLocationMapping_Gym" Association="Self.FK_GymLocationMapping_Gym">
+      <End Role="Gym" EntitySet="Gym" />
+      <End Role="GymLocationMapping" EntitySet="GymLocationMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymLocationMapping_Location" Association="Self.FK_GymLocationMapping_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="GymLocationMapping" EntitySet="GymLocationMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymUserMapping_Gym" Association="Self.FK_GymUserMapping_Gym">
+      <End Role="Gym" EntitySet="Gym" />
+      <End Role="GymUserMapping" EntitySet="GymUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymUserMapping_User" Association="Self.FK_GymUserMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="GymUserMapping" EntitySet="GymUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageGalary_BackCoverImageId" Association="Self.FK_ImageGalary_BackCoverImageId">
+      <End Role="ImageGallery" EntitySet="ImageGallery" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageGalary_FrontCoverImageId" Association="Self.FK_ImageGalary_FrontCoverImageId">
+      <End Role="ImageGallery" EntitySet="ImageGallery" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageTagMapping_FitnessTag" Association="Self.FK_ImageTagMapping_FitnessTag">
+      <End Role="FitnessTag" EntitySet="FitnessTag" />
+      <End Role="ImageTagMapping" EntitySet="ImageTagMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageTagMapping_ImageGallery" Association="Self.FK_ImageTagMapping_ImageGallery">
+      <End Role="ImageGallery" EntitySet="ImageGallery" />
+      <End Role="ImageTagMapping" EntitySet="ImageTagMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="Self.FK_Location_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="Location" EntitySet="Location" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationSelectedBoxerWorkouts_BoxerWorkoutSchedule" Association="Self.FK_LocationSelectedBoxerWorkouts_BoxerWorkoutSchedule">
+      <End Role="BoxerWorkoutSchedule" EntitySet="BoxerWorkoutSchedule" />
+      <End Role="LocationSelectedBoxerWorkouts" EntitySet="LocationSelectedBoxerWorkouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationSelectedWorkouts_WorkoutSchedule" Association="Self.FK_LocationSelectedWorkouts_WorkoutSchedule">
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedule" />
+      <End Role="LocationSelectedWorkouts" EntitySet="LocationSelectedWorkouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Template_User" Association="Self.FK_Template_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Template" EntitySet="Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Template_User1" Association="Self.FK_Template_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Template" EntitySet="Template" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemplateVideoMapping_Template" Association="Self.FK_TemplateVideoMapping_Template">
+      <End Role="Template" EntitySet="Template" />
+      <End Role="TemplateVideoMapping" EntitySet="TemplateVideoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemplateVideoMapping_Video" Association="Self.FK_TemplateVideoMapping_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="TemplateVideoMapping" EntitySet="TemplateVideoMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalCategories_TrainingPortal" Association="Self.FK_TrainingPortalCategories_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortal" />
+      <End Role="TrainingPortalCategories" EntitySet="TrainingPortalCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalSubCategories_TrainingPortal" Association="Self.FK_TrainingPortalSubCategories_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortal" />
+      <End Role="TrainingPortalSubCategories" EntitySet="TrainingPortalSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalSubCategories_TrainingPortalCategories" Association="Self.FK_TrainingPortalSubCategories_TrainingPortalCategories">
+      <End Role="TrainingPortalCategories" EntitySet="TrainingPortalCategories" />
+      <End Role="TrainingPortalSubCategories" EntitySet="TrainingPortalSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories" Association="Self.FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories">
+      <End Role="TrainingPortalSubCategories" EntitySet="TrainingPortalSubCategories" />
+      <End Role="TrainingPortalSubCategoryVideo" EntitySet="TrainingPortalSubCategoryVideo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalUserMapping_TrainingPortal" Association="Self.FK_TrainingPortalUserMapping_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortal" />
+      <End Role="TrainingPortalUserMapping" EntitySet="TrainingPortalUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalUserMapping_User" Association="Self.FK_TrainingPortalUserMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="TrainingPortalUserMapping" EntitySet="TrainingPortalUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_City" Association="Self.FK_User_City">
+      <End Role="City" EntitySet="City" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLocationMapping_Location" Association="Self.FK_UserLocationMapping_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="UserLocationMapping" EntitySet="UserLocationMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLocationMapping_User" Association="Self.FK_UserLocationMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserLocationMapping" EntitySet="UserLocationMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Role" Association="Self.FK_UserRoleMapping_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_User" Association="Self.FK_UserRoleMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Category" Association="Self.FK_Video_Category">
+      <End Role="Category" EntitySet="Category" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_User" Association="Self.FK_Video_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_User1" Association="Self.FK_Video_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTagMapping_FitnessTag" Association="Self.FK_VideoTagMapping_FitnessTag">
+      <End Role="FitnessTag" EntitySet="FitnessTag" />
+      <End Role="VideoTagMapping" EntitySet="VideoTagMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTagMapping_Video" Association="Self.FK_VideoTagMapping_Video">
+      <End Role="Video" EntitySet="Video" />
+      <End Role="VideoTagMapping" EntitySet="VideoTagMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutMaster_WorkoutCategory" Association="Self.FK_WorkoutMaster_WorkoutCategory">
+      <End Role="WorkoutCategory" EntitySet="WorkoutCategory" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutSchedule_Location" Association="Self.FK_WorkoutSchedule_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutSchedule_WorkoutMaster" Association="Self.FK_WorkoutSchedule_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutTemplateMapping_Template" Association="Self.FK_WorkoutTemplateMapping_Template">
+      <End Role="Template" EntitySet="Template" />
+      <End Role="WorkoutTemplateMapping" EntitySet="WorkoutTemplateMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutTemplateMapping_WorkoutMaster" Association="Self.FK_WorkoutTemplateMapping_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+      <End Role="WorkoutTemplateMapping" EntitySet="WorkoutTemplateMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUserMapping_Location" Association="Self.FK_WorkoutUserMapping_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUserMapping_User" Association="Self.FK_WorkoutUserMapping_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMapping" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUserMapping_WorkoutMaster" Association="Self.FK_WorkoutUserMapping_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

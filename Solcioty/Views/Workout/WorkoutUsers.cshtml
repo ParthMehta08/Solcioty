@@ -1,0 +1,143 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@using Models.Enums;
+@model List<ModelClientUser>
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Workout Users";
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/responsivedatatablecss")
+}
+
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Workouts);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <input type="hidden" id="WorkoutId" value="@ViewBag.WorkoutDetail.ID" />
+                <h4 class="page-title">@ViewBag.WorkoutDetail.WorkoutName Users</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <a href="@Url.Action("index","workout")" class="btn btn-purple waves-effect waves-light pull-right m-0">Back</a>
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+
+                        <tr>
+                            <th>User</th>
+                            <th>Role</th>
+                            <th>Location</th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (Model != null)
+                        {
+                            foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@item.FirstName @item.LastName</td>
+                                    <td>@item.RoleName</td>
+                                    <td>@item.LocationName</td>
+                                    <td class="text-center">
+                                        <input type="checkbox" class="workoutuser workoutlocationuser_@item.LocationId@item.UserId" name="@item.UserId"  userId="@item.UserId" locationId="@item.LocationId"/>
+                                    </td>
+                                </tr>
+
+                            }
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section beforeappjs
+{
+    @Scripts.Render("~/bundle/responsivedatatablejs");
+}
+@section footerscript
+{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".dt-buttons").css("display", "none");
+            GetWorkoutUserMappings();
+            initializeWorkoutUserClick();
+
+        });
+        var initializeWorkoutUserClick = function () {
+            $('.workoutuser').click(function () {
+                var workoutId = $('#WorkoutId').val();
+                var userId = $(this).attr('userId');
+                var locationId = $(this).attr('locationId');
+                var isChecked = $(this).prop('checked');
+
+                var requestData = {};
+                requestData.WorkoutId = workoutId;
+                requestData.UserId = userId;
+                requestData.LocationId = locationId;
+                requestData.IsChecked = isChecked;
+                $.ajax({
+                    type: "post",
+                    url: "/workout/saveworkoutuser", // Location of the service
+                    data: JSON.stringify(requestData), //Data sent to server
+                    contentType: "application/json", // content type sent to server
+                    success: function (data) {
+                        if (data.IsSuccess == true) {
+                            toastr.success("Detail saved successfully!");
+                        } else {
+                            toastr.error("Something went wrong!");
+                        }
+                    }
+                });
+
+            });
+        }
+        TableManageButtons.init();
+        $('#datatable-buttons').on('draw.dt', function () {
+            initializeWorkoutUserClick();
+
+            GetWorkoutUserMappings();
+        });
+        function GetWorkoutUserMappings() {
+            var workoutId = $('#WorkoutId').val();
+            $.ajax({
+                type: "GET",
+                url: "/workout/GetWorkoutUserMappings", // Location of the service
+                data: { WorkoutId: workoutId }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data) {
+                    if (data.Data != null) {
+                        $.each(data.Data, function (i, workoutMapping) {
+                            var elementClass = "workoutlocationuser_" + workoutMapping.LocationId + "" + workoutMapping.UserId;
+                            $('.' + elementClass).prop('checked', workoutMapping.IsChecked);
+                        });
+                    } else {
+                        toastr.error("something went wrong!");
+                    }
+                }
+            });
+        }
+
+    </script>
+}
+
+
+
+

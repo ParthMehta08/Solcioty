@@ -1,0 +1,412 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using Services;
+@using System.Web.Optimization;
+@model ModelGym
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Gym";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Client Detail</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+
+
+                @using (@Html.BeginForm("Add", "Gym", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="">
+                        <div class="row p-l-5 p-r-5">
+                            <div class="col-md-12">
+                                <label>Client <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.Name)</span>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary">
+                                        @{
+
+                                            var isChecked = Model != null && Model.IsActive ? "checked" : "";
+                                        }
+                                        <input type="checkbox" name="IsGymActiveString" id="IsGymActiveString" @isChecked>
+                                        <label class="activechk">Active</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 m-b-15">
+                        <label class="p-t-15 m-b-0">Owner Detail</label>
+                        @*<a href="javascript:void(0)" class="btn btn-purple waves-effect waves-light pull-right m-0" onclick="AddUser();">Add New</a>*@
+                    </div>
+                    <div class="ownerlist m-t-20">
+                        @if (Model.Owners.Count == 0)
+                        {
+                            Html.RenderPartial("_AddUser", new ModelUser() { });
+                        }
+                        else
+                        {
+                            Html.RenderPartial("_AddUser", Model.Owners.FirstOrDefault());
+                            //foreach (var owner in Model.Owners)
+                            //{
+                            //    Html.RenderPartial("_AddUser", owner);
+                            //}
+                        }
+                    </div>
+                    <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="savegym">Submit</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+        var AddUser = function () {
+
+            $.ajax({
+                url: "@Url.Action("Add","User")",
+                type: "get",
+                dataType: "html",
+                success: function (data) {
+                    $('.ownerlist').append(data);
+
+                    $(".numericOnly").keypress(function (e) {
+                        if (e.keyCode == 9) {
+                            return true;
+                        } 
+                       // if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+                        var regex = new RegExp("^[0-9\b]+$");
+                        var charString = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                        if (regex.test(charString)) {
+                            return true;
+                        }
+                        else {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+                    $('.deleteitem').click(function () {
+                        var adminId = parseInt($(this).attr('data-id'));
+
+                        if (adminId > 0) {
+                            removeAdmin(adminId);
+
+                        } else {
+                            $(this).closest('.userdetail').parent('div').remove();
+                        }
+
+                    });
+                    $('.useremail').change(function () {
+                        var useremail = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUserExist", "User")", // Location of the service
+                            data: { EmailId: useremail }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#savegym').prop('disabled', 'disabled');
+                                    toastr.error("Email already exist!");
+                                } else {
+                                    $('#savegym').prop('disabled', '');
+                                }
+                            }
+                        });
+
+                    })
+                    $('.username').change(function () {
+                        var username = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUsernameExist", "User")", // Location of the service
+                            data: { Username: username }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#savegym').prop('disabled', 'disabled');
+                                    toastr.error("Username already exist!");
+                                } else {
+                                    $('#savegym').prop('disabled', '');
+                                }
+                            }
+                        });
+
+                    })
+                     $('.statelist').change(function () {
+                        var statecontrol = $(this);
+                        var stateId = $(this).val();
+                        $.ajax({
+                            type: "GET",
+                            url: "@Url.Action("GetAllCityByStateCode","location")", // Location of the service
+                            data: { stateCode: stateId }, //Data sent to server
+                            contentType: "application/json", // content type sent to server
+                            success: function (result) {
+                                var citycontrol = statecontrol.closest('.citylist')
+                                if (result.Data != null && result.Data.length > 0) {
+                                    var htmlString = '';
+                                    $.each(result.Data, function (index, city) {
+                                        htmlString += '<option label="' + city.CityName + '" >"' + city.ID + '"</option>"';
+                                    });
+
+                                    statecontrol.closest('.userdetail').find('#CityId').html(htmlString);
+                                } else {
+                                    statecontrol.closest('.userdetail').find('#CityId').html('');
+                                }
+                            }
+                        });
+                    })
+                },
+                error: function () {
+                }
+            });
+
+        }
+
+        var removeAdmin = function (adminId) {
+            var gymId = $('#Id').val();
+            $.ajax({
+                type: "GET",
+                url: "@Url.Action("RemoveAdmin","Gym")", // Location of the service
+                data: { GymId:gymId, AdminId: adminId }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (result) {
+                    if (result.IsSuccess == true) {
+                        $('#' + adminId).remove();
+                        toastr.success("User removed successfully!")
+                    } else {
+                          if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                        }
+                    }
+                }
+            });
+        }
+
+        var saveGym = function () {
+
+
+
+            var requestData = {};
+            requestData.Id = $('#Id').val();
+            requestData.Name = $('#Name').val();
+            if (requestData.Name == "") {
+                toastr.error("Please fill out all required details!");
+                $('#savegym').prop('disabled', '');
+                return;
+            }
+            requestData.IsActiveString = $('#IsGymActiveString').prop('checked')==true?"on":"";
+            var Owners = [];
+            var isError = false;
+            var invalidEmail = false;
+            var isEmailUsed = false;
+            var isPasswordError = false;
+            $.each($('.userdetail'), function (index, userdetail) {
+                var user = $(userdetail);
+                var owner = {};
+                owner.UserId = user.find('#UserId').val();
+                owner.FirstName = user.find('#FirstName').val();
+                owner.LastName = user.find('#LastName').val();
+                owner.EmailId = user.find('#EmailId').val();
+                owner.Password = user.find('#Password').val();
+                owner.Username = user.find('#Username').val();
+                //owner.Phone = user.find('#Phone').val();
+                //owner.AddressLine1 = user.find('#AddressLine1').val();
+                //owner.AddressLine2 = user.find('#AddressLine2').val();
+                //owner.CityId = parseInt(user.find('#CityId').val());
+                //owner.CityName = user.find('#CityName').val();
+                //owner.StateCode = user.find('#StateCode').val();
+                //owner.ZipCode = user.find('#ZipCode').val();
+                owner.IsActiveString = user.find('#IsActiveString').prop('checked') == true ? "on" : "";
+                var emailaddressVal = $("#UserEmail").val();
+                $.each(Owners, function (index, ownerdetail) {
+                    if (owner.EmailId == ownerdetail.EmailId) {
+                        isEmailUsed = true;
+                    }
+                });
+                if (!emailReg.test(owner.EmailId)) {
+                    invalidEmail = true;
+                }
+                if (owner.FirstName == "" || owner.LastName == "" || owner.Phone == "" || owner.AddressLine1 == "" || owner.ZipCode == "" || owner.CityName == "") {
+                    isError = true;
+                }
+                if (owner.UserId <= 0 && owner.Password == "") {
+                    isPasswordError = true;
+                }
+                Owners.push(owner);
+
+            });
+            if (isPasswordError) {
+                toastr.error("Enter user password");
+                $('#savegym').prop('disabled', '');
+                return;
+            }
+            if (isEmailUsed) {
+
+                toastr.error("Enter unique email ids");
+                $('#savegym').prop('disabled', '');
+                return;
+            }
+            if (invalidEmail) {
+
+                toastr.error("Enter valid email id");
+                $('#savegym').prop('disabled', '');
+                return;
+            }
+            if (isError) {
+                toastr.error("Please fill out all required details!");
+                $('#savegym').prop('disabled', '');
+                return;
+
+            }
+            requestData.Owners = Owners;
+
+             $.ajax({
+                     type: "post",
+                     url: "@Url.Action("Add","Gym")", // Location of the service
+                     data: JSON.stringify(requestData), //Data sent to server
+                        contentType: "application/json", // content type sent to server
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                               // toastr.success("Saved successfully!")
+                                window.location.href = "@Url.Action("Gymlist","Gym")";
+                            }
+                            else {
+                                toastr.error("Something went wrong!")
+                                  if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                                     window.location.href = "@Url.Action("Unauthorized", "Account")"
+                                }
+                                $('#savegym').prop('disabled', '');
+                            }
+                        }
+                });
+        }
+
+
+        $(document).ready(function () {
+            $($('.deleteitem')[0]).hide();
+            $('#savegym').click(function () {
+                $(this).prop('disabled', 'disabled');
+                saveGym();
+            })
+
+            $('.deleteitem').click(function () {
+                var adminId = parseInt($(this).attr('data-id'));
+                if (adminId > 0) {
+                    removeAdmin(adminId);
+                } else {
+                    $('#' + $(this).parent('div')).remove();
+                }
+
+            });
+            $('.statelist').change(function () {
+                var statecontrol = $(this);
+                var stateId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetAllCityByStateCode","location")", // Location of the service
+                    data: { stateCode: stateId }, //Data sent to server
+                    contentType: "application/json", // content type sent to server
+                    success: function (result) {
+                        var citycontrol = statecontrol.closest('.citylist')
+                        if (result.Data != null && result.Data.length > 0) {
+                            var htmlString = '';
+                            $.each(result.Data, function (index, city) {
+                                htmlString += '<option label=' + city.CityName + ' >' + city.ID + '</option>';
+                            });
+
+                            statecontrol.closest('.userdetail').find('#CityId').html(htmlString);
+                        } else {
+                            statecontrol.closest('.userdetail').find('#CityId').html('');
+                        }
+                    }
+                });
+            })
+
+            $('.useremail').change(function () {
+                        var useremail = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUserExist", "User")", // Location of the service
+                            data: { EmailId: useremail }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#savegym').prop('disabled', 'disabled');
+                                    toastr.error("Email already exist!");
+                                } else {
+                                    $('#savegym').prop('disabled', '');
+                                }
+                            }
+                        });
+
+            })
+            $('.username').change(function () {
+                        var username = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUsernameExist", "User")", // Location of the service
+                            data: { EmailId: useremail }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#savegym').prop('disabled', 'disabled');
+                                    toastr.error("Username already exist!");
+                                } else {
+                                    $('#savegym').prop('disabled', '');
+                                }
+                            }
+                        });
+
+                    })
+            $(".numericOnly").keypress(function (e) {
+                //if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+                if (e.keyCode == 9) {
+                    return true;
+                } 
+                var regex = new RegExp("^[0-9\b]+$");
+                var charString = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                if (regex.test(charString)) {
+                    return true;
+                }
+                else {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

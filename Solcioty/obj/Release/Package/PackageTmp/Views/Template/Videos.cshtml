@@ -1,0 +1,419 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model ModelTemplate
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Videos";
+    int Rows = 0;
+}
+
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Videos);
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/responsivedatatablecss")
+    <script>
+        var videoLoadTo = "";
+    </script>
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Videos in @Model.TemplateName </h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+
+            @using (@Html.BeginForm("Videos", "Template", FormMethod.Post))
+            {
+
+                @Html.HiddenFor(m => m.ID)
+                <div class="card-box table-responsive">
+                    <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Save Changes</button>
+
+                    <h4>Basic</h4>
+                    <table id="datatable-buttonsBasic" class="table table-striped table-bordered emptyHeight">
+                        <tbody>
+                            <tr style="background-color:#@Model.PrimaryGradientColor">
+                                @if (Model.NumberOfBasicVideos == 1 && Model.NumberOfAlterVideos == 2)
+                                {
+                                    for (int i = 0; i < Model.NumberOfBasicVideos; i++)
+                                    {
+                                        <td style="height: 248px">
+
+                                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                            {
+                                                if (Model.BasicModelTemplateVideoMappingList[i].VideoID > 0)
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" onclick="ShowVideoTable('basic_@i');" data-target="#videoTable">Change Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a>
+                                                }
+                                                else
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" class="showvideo_basic_@i" onclick="ShowVideoTable('basic_@i');" data-target="#videoTable">Select Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10 deletevideo_basic_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a>
+                                                }
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">
+                                                        Reps
+                                                    </label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Reps, new { @class = "form-control", @maxlength = "20", @placeholder = "Reps" })
+
+                                                    </div>
+                                                </div>
+                                            }
+                                            @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].VideoID, new { @style = "display:none;", @id = "basic_" + i + "videoid" })
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].ID)
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].IsBasicVideo)
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].VideoPosition)
+                                            @if (Model.BasicModelTemplateVideoMappingList[i].VideoID > 0)
+                                            {
+                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_basic_@i">
+                                                    <video autoplay loop class="embed-responsive-item">
+                                                        @*<source src="@Url.Action("ShowVideo", "Video", new { ID = Model.BasicModelTemplateVideoMappingList[i].VideoID})">*@
+
+                                                        <source src="@Url.Content($"/AllVideos/{Model.BasicModelTemplateVideoMappingList[i].VideoID}/{Model.BasicModelTemplateVideoMappingList[i].FileName}")" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                            }
+                                            <div class="basic_@i">
+                                            </div>
+                                        </td>
+                                    }
+                                }
+                                else
+                                {
+                                    for (int i = 0; i < Model.NumberOfBasicVideos; i++)
+                                    {
+                                        <td style="height: 248px;">
+
+                                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                            {
+                                                if (Model.BasicModelTemplateVideoMappingList[i].VideoID > 0)
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" onclick="ShowVideoTable('basic_@i');" data-target="#videoTable">Change Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a>
+                                                }
+                                                else
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" class="showvideo_basic_@i" onclick="ShowVideoTable('basic_@i');" data-target="#videoTable">Select Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10 deletevideo_basic_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a>
+                                                }
+
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                    <div class="col-sm-9"> @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" }) </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Reps</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Reps, new { @class = "form-control", @maxlength = "20", @placeholder = "Reps" })
+                                                    </div>
+                                                </div>
+                                            }
+                                            @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].VideoID, new { @style = "display:none;", @id = "basic_" + i + "videoid" })
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].ID)
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].IsBasicVideo)
+                                            @Html.HiddenFor(m => m.BasicModelTemplateVideoMappingList[i].VideoPosition)
+                                            @if (Model.BasicModelTemplateVideoMappingList[i].VideoID > 0)
+                                            {
+                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_basic_@i">
+                                                    <video autoplay loop class="embed-responsive-item">
+                                                        @*<source src="@Url.Action("ShowVideo", "Video", new { ID = Model.BasicModelTemplateVideoMappingList[i].VideoID})">*@
+
+                                                        <source src="@Url.Content($"/AllVideos/{Model.BasicModelTemplateVideoMappingList[i].VideoID}/{Model.BasicModelTemplateVideoMappingList[i].FileName}")" type="video/mp4">
+                                                    </video>
+                                                </div>
+                                            }
+                                            <div class="basic_@i">
+                                            </div>
+                                        </td>
+                                    }
+
+                                }
+                            </tr>
+                        </tbody>
+                    </table>
+                    @if (Model.NumberOfBasicVideos == 1 && Model.NumberOfAlterVideos == 2)
+                    {
+                        <h4>Alter</h4>
+                        <table id="datatable-buttonsAlter" class="table table-striped table-bordered">
+                            <tbody>
+                                <tr style="background-color:#@Model.AlternateGradientColor">
+                                    @for (int i = 0; i < 1; i++)
+                                    {
+                                        <td style="height: 248px">
+                                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                            {
+                                                if (Model.AlterModelTemplateVideoMappingList[i].VideoID > 0)
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" onclick="ShowVideoTable('Alter_@i');" data-target="#videoTable">Change Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a>
+                                                }
+                                                else
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" class="showvideo_Alter_@i" onclick="ShowVideoTable('Alter_@i');" data-target="#videoTable">Select Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10 deletevideo_Alter_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a>
+                                                }
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Reps</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Reps, new { @class = "form-control", @maxlength = "20", @placeholder = "Reps" })
+                                                    </div>
+                                                </div>
+                                            }
+                                            @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].VideoID, new { @style = "display:none;", @id = "Alter_" + i + "videoid" })
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].ID)
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].IsBasicVideo)
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].VideoPosition)
+                                            @if (Model.AlterModelTemplateVideoMappingList[i].VideoID > 0)
+                                            {
+                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_Alter_@i">
+                                                    <video autoplay loop class="embed-responsive-item">
+                                                        @*<source src="@Url.Action("ShowVideo", "Video", new { ID = Model.AlterModelTemplateVideoMappingList[i].VideoID})">*@
+                                                        <source src="@Url.Content($"/AllVideos/{Model.AlterModelTemplateVideoMappingList[i].VideoID}/{Model.AlterModelTemplateVideoMappingList[i].FileName}")" type="video/mp4">
+
+                                                    </video>
+                                                </div>
+                                            }
+                                            <div class="Alter_@i">
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                    @if (Model.NumberOfBasicVideos != 1 && Model.NumberOfAlterVideos != 1)
+                    {
+                        <h4>Alter</h4>
+                        <table id="datatable-buttonsAlter" class="table table-striped table-bordered">
+                            <tbody>
+                                <tr style="background-color:#@Model.AlternateGradientColor">
+                                    @for (int i = 0; i < Model.NumberOfAlterVideos; i++)
+                                    {
+                                        <td style="height: 248px">
+                                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                            {
+                                                if (Model.AlterModelTemplateVideoMappingList[i].VideoID > 0)
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" onclick="ShowVideoTable('Alter_@i');" data-target="#videoTable">Change Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a>
+                                                }
+                                                else
+                                                {
+                                                    <a data-toggle="modal" href="javascript:void(0);" class="showvideo_Alter_@i" onclick="ShowVideoTable('Alter_@i');" data-target="#videoTable">Select Video</a>
+
+                                                    <a href="javascript:void(0);" class="m-l-10 deletevideo_Alter_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a>
+                                                }
+                                                <div class="form-group row">
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row">
+
+                                                    <label class="col-sm-3 col-form-label" style="padding-top:10px;">Reps</label>
+                                                    <div class="col-sm-9">
+                                                        @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Reps, new { @class = "form-control", @maxlength = "20", @placeholder = "Reps" })
+                                                    </div>
+                                                </div>
+                                            }
+                                            @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].VideoID, new { @style = "display:none;", @id = "Alter_" + i + "videoid" })
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].ID)
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].IsBasicVideo)
+                                            @Html.HiddenFor(m => m.AlterModelTemplateVideoMappingList[i].VideoPosition)
+                                            @if (Model.AlterModelTemplateVideoMappingList[i].VideoID > 0)
+                                            {
+                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_Alter_@i">
+                                                    <video autoplay loop class="embed-responsive-item">
+                                                        @*<source src="@Url.Action("ShowVideo", "Video", new { ID = Model.AlterModelTemplateVideoMappingList[i].VideoID})">*@
+                                                        <source src="@Url.Content($"/AllVideos/{Model.AlterModelTemplateVideoMappingList[i].VideoID}/{Model.AlterModelTemplateVideoMappingList[i].FileName}")" type="video/mp4">
+
+                                                    </video>
+                                                </div>
+                                            }
+                                            <div class="Alter_@i">
+                                            </div>
+                                        </td>
+                                    }
+                                </tr>
+                            </tbody>
+                        </table>
+                    }
+                </div>
+            }
+        </div>
+    </div>
+    <div class="row">
+        <!-- Modal to show video table  -->
+        <div class="modal fade" style="z-index: 9999;" id="videoTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:80%;" role="document">
+                <div class="modal-content p-t-0 p-b-0">
+                    @*<div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>*@
+
+                    <div class="modal-body p-0" style="display:inline-table;width:100%;">
+
+                        <div class="col-sm-12 p-0">
+                            <div class="card-box table-responsive">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <table id="datatable-buttons" class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Name</th>
+                                            <th>Active</th>
+                                            <th>Tags</th>
+                                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                            {
+                                                <th>Action</th>
+                                            }
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.VideosTable)
+                                        {
+                                            Rows++;
+                                            <tr>
+                                                <td>@Rows</td>
+                                                <td>@item.VideoName</td>
+
+                                                <td>@(item.IsActive == true ? "Yes" : "No" )</td>
+                                                <td>
+                                                    @item.VideoTagsMappingsNames
+                                                </td>
+                                                @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                                {
+                                                    <td>
+                                                        <a data-toggle="modal" href="javascript:void(0);" onclick="LoadVideoinModel(@item.ID);" data-target="#myModal" class="btn btn-purple waves-effect waves-light m-t-5">View</a>
+                                                        <a href="javascript:void(0);" onclick="SetVideoToPostion(@item.ID);" class="btn btn-purple waves-effect waves-light m-t-5">Select</a>
+                                                    </td>
+                                                }
+
+                                            </tr>
+                                        }
+                                    </tbody>
+
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <!-- Modal to show video -->
+        <div class="modal fade" style="z-index: 9999;" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" style="width:80%;" role="document">
+                <div class="modal-content">
+                    @*<div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>*@
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="modal-body VideoFrame p-t-0" style="width:100%;">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section beforeappjs
+{
+    @Scripts.Render("~/bundle/responsivedatatablejs");
+}
+@section footerscript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.modal').on('hidden.bs.modal', function (e) {
+                if ($('.modal').hasClass('in')) {
+                    $('body').addClass('modal-open');
+                }
+            });
+        })
+        function LoadVideoinModel(id) {
+            var url = "@Url.Action("ViewVideo", "Template")?ID=" + id;
+            $(".VideoFrame").load(url);
+        }
+        $(document).ready(function () {
+            $(".dt-buttons").css("display", "none");
+            $('.extra').hide()
+        });
+        TableManageButtons.init();
+        function ShowVideoTable(divid) {
+            videoLoadTo = divid;
+        }
+        function SetVideoToPostion(videoid) {
+            debugger
+            //to do
+            var url = "@Url.Action("ViewVideo", "Template")?ID=" + videoid + "&OnlyVideo=true";
+            $("." + videoLoadTo).load(url, function () {
+                $('.extra').hide()
+            });
+            $("#" + videoLoadTo + "videoid").val(videoid);
+            $(".oldvideo_" + videoLoadTo).css("display", "none");
+            $(".showvideo_" + videoLoadTo).text("Change Video");
+            $(".deletevideo_" + videoLoadTo).css("display", "");
+            $('.close').trigger('click');
+            toastr.success('video selected successfully!')
+
+        }
+        function DeleteVideoToPostion(videoid, div) {
+            var result = confirm("Are you sure want to delete?");
+            if (result) {
+                $("." + div).find('.partialvideodiv').remove()
+                $("#" + div + "videoid").val(videoid);
+                $(".oldvideo_" + div).css("display", "none");
+                $(".showvideo_" + videoLoadTo).text("Select Video");
+                $(".deletevideo_" + videoLoadTo).css("display", "none");
+                toastr.success('video removed successfully!')
+            }
+
+        }
+    </script>
+}
+
+

@@ -1,0 +1,121 @@
+﻿@using Models;
+@model TemplateDetail
+@{
+
+    var deleteclass = Model.IsSelected ? "workouttemplatetile-delete" : string.Empty;
+}
+<div class="col-md-4 col-sm-6 workouttemplatetile card-box workouttemplatetile-selected" template-id="@Model.TemplateId" data-map="@Model.WorkoutTemplateMapId">
+    <div class="col-md-12">
+        <h6>@Model.TemplateName</h6><span class="deleteitem @deleteclass"></span>
+        <div class="card-box table-responsive pd-5">
+            <h6>Basic</h6>
+            <table id="datatable-buttonsBasic" class="table table-striped table-bordered table-responsive" ">
+                <tbody>
+                    <tr>
+                        @for (int i = 0; i < Model.NumberOfBasicVideos; i++)
+                        {
+                            <td>
+                                @if (i < Model.BasicVideos.Count && Model.BasicVideos[i].VideoId > 0)
+                                {
+                                    <div align="center">
+                                        <video autoplay loop class="embed-responsive-item">
+                                            <source src="@Url.Action("ShowVideo", "Video", new { ID = Model.BasicVideos[i].VideoId })">
+                                        </video>
+                                    </div>
+                                }
+                            </td>
+                        }
+                    </tr>
+
+                </tbody>
+            </table>
+            @if (Model.NumberOfBasicVideos != 1 && Model.NumberOfAlternateVideos != 1)
+            {
+                <h6>Alter</h6>
+                <table id="datatable-buttonsAlter" class="table table-striped table-bordered table-responsive">
+                    <tbody>
+
+                        <tr>
+                            @for (int i = 0; i < Model.NumberOfAlternateVideos; i++)
+                            {
+                                <td>
+                                    @if (i < Model.AlternateVideos.Count && Model.AlternateVideos[i].VideoId > 0)
+                                    {
+                                        <div align="center" class="">
+                                            <video autoplay loop class="embed-responsive-item">
+                                                <source src="@Url.Action("ShowVideo", "Video", new { ID = Model.AlternateVideos[i].VideoId })">
+                                            </video>
+                                        </div>
+                                    }
+                                </td>
+                            }
+                        </tr>
+                    </tbody>
+                </table>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section footerscript
+{
+    <script type="text/javascript">
+    $(document).ready(function () {
+        @*$('.workouttemplatetile').click(function (event) {
+            var selectedTile = $(this);
+            var workoutTemplateMapId = parseInt($(this).attr('data-map'));
+            if ($(event.target).hasClass('workouttemplatetile-delete') == true) {
+                var requestData = {};
+                requestData.WorkoutTemplateMapId = workoutTemplateMapId;
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("DeleteTemplate","Workout")",
+                    data: JSON.stringify(requestData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (resultData) {
+                        if (resultData.IsSuccess) {
+                            selectedTile.remove();
+                            UpdateDisplayOrders();
+                        } else {
+                            alert("something went wrong!")
+                        }
+                    }
+                });
+            } else {
+                var templateId = parseInt($(this).attr('template-id'));
+                var workoutId = parseInt($('.page-title').attr('data-id'));
+                var isActive = $(this).hasClass('workouttemplatetile-selected')
+                var requestData = {};
+                requestData.WorkoutId = workoutId;
+                requestData.TemplateId = templateId;
+                requestData.WorkoutTemplateMapId = workoutTemplateMapId;
+                requestData.IsActive = !isActive;
+                $.ajax({
+                    type: 'POST',
+                    url: "@Url.Action("MapTemplate","Workout")",
+                    data: JSON.stringify(requestData),
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (resultData) {
+                        if (resultData.IsSuccess) {
+                            selectedTile.attr('data-map', resultData.Id)
+                            selectedTile.toggleClass('workouttemplatetile-selected');
+                            selectedTile.find('.deleteicon').toggleClass('workouttemplatetile-delete');
+                            UpdateDisplayOrders();
+                        } else {
+                            alert("something went wrong!")
+                        }
+                    }
+                });
+            }
+
+            event.stopPropagation();
+
+        });*@
+    });
+
+
+    </script>
+}

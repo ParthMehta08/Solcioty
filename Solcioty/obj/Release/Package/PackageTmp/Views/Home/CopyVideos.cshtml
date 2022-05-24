@@ -1,0 +1,81 @@
+﻿@using Models
+@model CopyVideosModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Copy Videos</title>
+</head>
+<body>
+    @{
+        if (string.IsNullOrWhiteSpace(Model.Message))
+        {
+            if (string.IsNullOrWhiteSpace(Model.modelVideos.Select(x => x.Message).FirstOrDefault()))
+            {
+                <table width="100%" border="1">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Video Title</th>
+                            <th>Video Attachment</th>
+                            <th>Content Type</th>
+                            <th>Result</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.modelVideos)
+                        {
+                            <tr>
+                                <td>@item.NewId</td>
+                                <td>@item.VideoTitle</td>
+                                <td>@item.VideoAttachment</td>
+                                <td>@item.ContentType</td>
+                                <td>
+                                    @{
+                                        string OutMessage = string.Empty;
+                                        string videoPath = Server.MapPath(System.Web.Configuration.WebConfigurationManager.AppSettings["AllVideos"].ToString().Trim());
+                                        if (System.IO.Directory.Exists(videoPath + item.OldId))
+                                        {
+                                            if (!System.IO.Directory.Exists(videoPath + item.NewId))
+                                            {
+                                                System.IO.Directory.CreateDirectory(videoPath + item.NewId);
+                                            }
+                                            string[] filePaths = Directory.GetFiles(videoPath + item.OldId);
+
+                                            foreach (var file in filePaths)
+                                            {
+                                                string fileName = System.IO.Path.GetFileName(file);
+                                                string destFile = System.IO.Path.Combine(videoPath+"/"+item.NewId, fileName);
+                                                System.IO.File.Copy(file, destFile, true);
+                                            }
+                                            OutMessage = "Success";
+                                        }
+                                        else
+                                        {
+                                            OutMessage = "Folder not found";
+                                        }
+                                    }
+                                    @OutMessage
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div>@Model.modelVideos.Select(x => x.Message).FirstOrDefault()</div>
+            }
+        }
+        else
+        {
+            <div>@Model.Message</div>
+        }
+    }
+</body>
+</html>

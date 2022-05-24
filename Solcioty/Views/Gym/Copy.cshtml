@@ -1,0 +1,153 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using Services;
+@using System.Web.Optimization;
+@model ModelCopyGym
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Copy";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Client Detail</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+
+                @using (Ajax.BeginForm("Copy", "Gym", new AjaxOptions { HttpMethod = "POST", OnSuccess = "OnSuccess", OnFailure = "OnFailure", OnBegin = "OnBegin" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="">
+                        <div class="row p-l-5 p-r-5">
+                            <div class="col-md-12">
+                                <label>Client <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.Name)</span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-md-12 m-b-15">
+                        <label class="p-t-15 m-b-0">Owner Detail</label>
+                    </div>
+                    <div class="ownerlist m-t-20">
+                        <div class="row p-l-5 p-r-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>First Name <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.FirstName)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Last Name <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.LastName)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-l-5 p-r-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Email <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control useremail", @placeholder = "Email" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.EmailId)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Username <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.UserName, new { @class = "form-control username", @placeholder = "Username" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.UserName)</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row p-l-5 p-r-5">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Password <span class="required">*</span></label>
+                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.Password)</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Copy Actions <span class="required">*</span></label>
+                                    @Html.DropDownListFor(m => m.CopyAction, Model.CopyActions, new { @class = "form-control", multiple = "multiple" })
+                                    <span style="color:red">@Html.ValidationMessageFor(m => m.CopyAction)</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light m-left-5" id="btn-submit">
+                        <i class="fa fa-spinner fa-spin" style="margin-right:5px;display:none;"></i>Submit
+                    </button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function OnBegin() {
+        $('#btn-submit').attr('disabled', 'disabled');
+        $('#btn-submit i').show();
+    }
+    function OnSuccess(data) {
+        $('#btn-submit i').hide();
+        alert(data.Message);
+        if (data.Response) {
+            window.location.href = '/gym/gymlist';
+        }
+        else {
+            $('#btn-submit').removeAttr('disabled');
+        }
+    }
+    function OnFailure(data) {
+        $('#btn-submit').removeAttr('disabled');
+        $('#btn-submit i').hide();
+        alert("Ajax Failer");
+    }
+
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $($('.deleteitem')[0]).hide();
+            $('#savegym').click(function () {
+                $(this).prop('disabled', 'disabled');
+                // saveGym();
+            });
+            $("#CopyAction").select2();
+            $("#CopyAction").on("select2:select", function (e) {
+                var values = [];
+                $(e.currentTarget).find("option:selected").each(function (i, selected) {
+                    values[i] = $(selected).val();
+                });
+                if ($.inArray("1", values) !== -1) {
+                    $('#CopyAction').val(["1"]).trigger('change');
+                }
+            });
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.min.js"></script>
+    <link href="~/Content/plugins/select2/css/select2.min.css" rel="stylesheet" />
+    <script src="~/Content/plugins/select2/js/select2.min.js"></script>
+}

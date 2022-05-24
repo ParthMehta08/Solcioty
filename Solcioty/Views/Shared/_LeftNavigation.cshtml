@@ -1,0 +1,516 @@
+﻿@using Models;
+@using Services;
+
+@{
+    var userData = Session["UserData"] as UserData;
+    var videoPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Videos);
+    var imagePermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Images);
+    var branchPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Branch);
+    //var branchWorkoutSchedulePermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Branch_Workout_Schedule);
+    var clientPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Client);
+    var permissionsPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Permissions);
+    var rolesPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Roles);
+    var tagsPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Tags);
+    var templatesPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Templates);
+    var userPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.User);
+    var workoutsPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Workouts);
+    var workoutSchedulePermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Workouts_Schedule);
+    var trainingPortalPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.TrainingPortal);
+
+    var categoryPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Category);
+    var categories = new List<ModelCategory>();
+    var workoutCategories = new List<ModelWorkoutCategory>();
+    var dbContext = new DataAccessLayer.SolciotyNewEntities();
+    if (userData.RoleCode == RoleTypes.SuperAdmin)
+    {
+        categories = dbContext.Categories.Where(x => x.IsActive == true && x.IsDeleted != true).Select(x => new ModelCategory
+        {
+            Id = x.Id,
+            Name = x.Name
+        }).ToList();
+        workoutCategories = dbContext.WorkoutCategories.Where(x => x.IsActive == true && x.IsDeleted != true).Select(x => new ModelWorkoutCategory
+        {
+            Id = x.Id,
+            Name = x.Name
+        }).ToList();
+    }
+    else
+    {
+        categories = dbContext.Categories.Where(x => x.IsActive == true && x.CreatedBy == userData.ClientOwnerId && x.IsDeleted != true).Select(x => new ModelCategory
+        {
+            Id = x.Id,
+            Name = x.Name
+        }).ToList();
+
+        workoutCategories = dbContext.WorkoutCategories.Where(x => x.IsActive == true && x.CreatedBy == userData.ClientOwnerId && x.IsDeleted != true).Select(x => new ModelWorkoutCategory
+        {
+            Id = x.Id,
+            Name = x.Name
+        }).ToList();
+    }
+
+}
+
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <ul>
+                <li class="menu-title logo">Welcome, @userData.FirstName @userData.LastName</li>
+                @if ((userData.RoleCode == RoleTypes.SuperAdmin || userData.RoleCode == RoleTypes.ClientAdmin || userData.RoleCode == RoleTypes.BranchAdmin) && (clientPermissionType != Models.Enums.PermissionType.None || rolesPermissionType != Models.Enums.PermissionType.None || permissionsPermissionType == Models.Enums.PermissionType.None || userPermissionType != Models.Enums.PermissionType.None))
+                {
+                    if (clientPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="menu-title">Clients</li>
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i><span> Clients </span> </a>
+                            <ul class="list-unstyled">
+                                @if (clientPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("gymlist", "gym")">Manage</a></li>
+                                }
+                                else if (clientPermissionType == Models.Enums.PermissionType.Read)
+                                {
+                                    <li><a href="@Url.Action("gymlist","gym")">List</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (userData.RoleCode == RoleTypes.ClientAdmin)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i><span> Locations </span> </a>
+                            <ul class="list-unstyled">
+                                @if (branchPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("branch", "gym",new { ID =userData.ClientId })">Manage</a></li>
+                                }
+                                else if (branchPermissionType == Models.Enums.PermissionType.Read)
+                                {
+                                    <li><a href="@Url.Action("branch","gym",new { ID =userData.ClientId })">List</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (userData.RoleCode == RoleTypes.BranchAdmin)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-users"></i><span> Users </span> </a>
+                            <ul class="list-unstyled">
+                                @if (userPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("ManageBranch", "gym",new { ID =userData.BranchId })">Manage</a></li>
+                                }
+                                else if (userPermissionType == Models.Enums.PermissionType.Read)
+                                {
+                                    <li><a href="@Url.Action("ManageBranch","gym",new { ID =userData.BranchId })">List</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (rolesPermissionType != Models.Enums.PermissionType.None || permissionsPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-cogs"></i><span>Access Management</span> </a>
+                            <ul class="list-unstyled">
+                                @if (rolesPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("userroles", "user")">Manage Roles</a></li>
+                                }
+                                else if (rolesPermissionType == Models.Enums.PermissionType.Read)
+                                {
+                                    <li><a href="@Url.Action("userroles","user")">Roles</a></li>
+                                } @*@if (permissionsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                        {
+                            <li><a href="@Url.Action("permissions", "user")">Manage Permissions</a></li>
+                        }
+                        else if (permissionsPermissionType == Models.Enums.PermissionType.Read)
+                        {
+                            <li><a href="@Url.Action("permissions","user")">Permissions</a></li>
+                        }*@
+                            </ul>
+                        </li>
+                    }
+
+                }
+
+                @if (videoPermissionType != Models.Enums.PermissionType.None || tagsPermissionType != Models.Enums.PermissionType.None)
+                {
+                    <li class="menu-title">Video Gallery</li>
+                    if (tagsPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-tags"></i><span> Tags </span> </a>
+                            <ul class="list-unstyled">
+                                @if (tagsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("Index", "Tag")">Manage</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index","Tag")">List</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (videoPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-video-camera"></i><span> Videos </span> </a>
+                            <ul class="list-unstyled">
+                                <li><a href="@Url.Action("Index", "Video")">All</a></li>
+                                @foreach (var category in categories)
+                                {
+                                    <li><a href="@Url.Action("Index", "Video",new { categoryId=category.Id})">@category.Name</a></li>
+                                }
+                                @*@if (videoPermissionType == Models.Enums.PermissionType.ReadWrite)
+                        {
+                            <li><a href="@Url.Action("Index", "Video")">Manage</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index", "Video")">List</a></li>
+                        }*@
+                            </ul>
+                        </li>
+                    }
+                    if (imagePermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-image"></i><span> Image Gallery </span> </a>
+                            <ul class="list-unstyled">
+                                @if (videoPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <li><a href="@Url.Action("Index", "Image")">Manage</a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="@Url.Action("Index", "Image")">List</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
+
+                } @*@if (categoryPermissionType != Models.Enums.PermissionType.None)
+        {
+            <li class="menu-title">Categories</li>
+            if (categoryPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+            {
+                <li class="has_sub">
+                    <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-tags"></i><span> Categories </span> </a>
+                    <ul class="list-unstyled">
+                        @if (categoryPermissionType == Models.Enums.PermissionType.ReadWrite)
+                        {
+                            <li><a href="@Url.Action("Index", "Category")">Manage</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="@Url.Action("Index","Category")">List</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+        }*@
+                @if (userData.WorkOutType == 1)
+                {
+                    if (workoutsPermissionType != Models.Enums.PermissionType.None || templatesPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="menu-title">Normal Workout</li>
+                        if (templatesPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> Blocks </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (templatesPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("Index", "Template")">Manage</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index", "Template")">List</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        if (workoutsPermissionType != Models.Enums.PermissionType.None)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-bicycle"></i><span> Workouts </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (workoutsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {@*<li><a href="@Url.Action("Index", "Workout")">Manage</a></li>*@
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);" class="waves-effect"><span> Manage </span> </a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="@Url.Action("Index", "Workout")">All</a></li>
+                                            @foreach (var category in workoutCategories)
+                                            {
+                                                <li><a href="@Url.Action("Index", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                { @*<li><a href="@Url.Action("Index", "Workout")">List</a></li>*@
+                                <li class="has_sub">
+                                    <a href="javascript:void(0);" class="waves-effect"><span> List </span> </a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="@Url.Action("Index", "Workout")">All</a></li>
+                                        @foreach (var category in workoutCategories)
+                                        {
+                                            <li><a href="@Url.Action("Index", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                                    @if (userData.RoleCode == RoleTypes.ClientAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="#" onclick="CheckClientLocations()">Schedule</a></li>
+                                    }
+                                    else if (userData.RoleCode == RoleTypes.BranchAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("WorkoutSelection", "Workout")">Select</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+
+                }
+                else if (userData.WorkOutType == 2)
+                {
+                    if (workoutsPermissionType != Models.Enums.PermissionType.None || templatesPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="menu-title">Boxer  Workout</li>
+                        if (templatesPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> Blocks </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (templatesPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("BoxerBlock", "Template")">Manage</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("BoxerBlock", "Template")">List</a></li>
+                                    }
+                                </ul>
+                            </li>
+
+                        }
+                        if (workoutsPermissionType != Models.Enums.PermissionType.None)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-bicycle"></i><span> Workouts </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (workoutsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li class="has_sub">
+                                            <a href="javascript:void(0);" class="waves-effect"><span> Manage </span> </a>
+                                            <ul class="list-unstyled">
+                                                <li><a href="@Url.Action("IndexBoxer", "Workout")">All</a></li>
+                                                @foreach (var category in workoutCategories)
+                                                {
+                                                    <li><a href="@Url.Action("IndexBoxer", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+
+                                    }
+                                    else
+                                    { @*<li><a href="@Url.Action("Index", "Workout")">List</a></li>*@
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);" class="waves-effect"><span> List </span> </a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="@Url.Action("IndexBoxer", "Workout")">All</a></li>
+                                            @foreach (var category in workoutCategories)
+                                            {
+                                                <li><a href="@Url.Action("IndexBoxer", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                    @if (userData.RoleCode == RoleTypes.ClientAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="#" onclick="CheckClientLocationsBoxer()">Schedule</a></li>
+
+                                    }
+                                    else if (userData.RoleCode == RoleTypes.BranchAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("BoxerWorkoutSelection", "Workout")">Select</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+
+                }
+                else
+                {
+                    if (workoutsPermissionType != Models.Enums.PermissionType.None || templatesPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="menu-title">Normal Workout</li>
+                        if (templatesPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> Blocks </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (templatesPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("Index", "Template")">Manage</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index", "Template")">List</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                        if (workoutsPermissionType != Models.Enums.PermissionType.None)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-bicycle"></i><span> Workouts </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (workoutsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {@*<li><a href="@Url.Action("Index", "Workout")">Manage</a></li>*@
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);" class="waves-effect"><span> Manage </span> </a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="@Url.Action("Index", "Workout")">All</a></li>
+                                            @foreach (var category in workoutCategories)
+                                            {
+                                                <li><a href="@Url.Action("Index", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                else
+                                { @*<li><a href="@Url.Action("Index", "Workout")">List</a></li>*@
+                                <li class="has_sub">
+                                    <a href="javascript:void(0);" class="waves-effect"><span> List </span> </a>
+                                    <ul class="list-unstyled">
+                                        <li><a href="@Url.Action("Index", "Workout")">All</a></li>
+                                        @foreach (var category in workoutCategories)
+                                        {
+                                            <li><a href="@Url.Action("Index", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                                    @if (userData.RoleCode == RoleTypes.ClientAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="#" onclick="CheckClientLocations()">Schedule</a></li>
+                                    }
+                                    else if (userData.RoleCode == RoleTypes.BranchAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("WorkoutSelection", "Workout")">Select</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+
+
+                    @*Bankim*@
+                    if (workoutsPermissionType != Models.Enums.PermissionType.None || templatesPermissionType != Models.Enums.PermissionType.None)
+                    {
+                        <li class="menu-title">Boxer  Workout</li>
+                        if (templatesPermissionType != Models.Enums.PermissionType.None && userData.RoleCode != RoleTypes.BranchAdmin)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> Blocks </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (templatesPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("BoxerBlock", "Template")">Manage</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("BoxerBlock", "Template")">List</a></li>
+                                    }
+                                </ul>
+                            </li>
+
+                        }
+                        if (workoutsPermissionType != Models.Enums.PermissionType.None)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-bicycle"></i><span> Workouts </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (workoutsPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li class="has_sub">
+                                            <a href="javascript:void(0);" class="waves-effect"><span> Manage </span> </a>
+                                            <ul class="list-unstyled">
+                                                <li><a href="@Url.Action("IndexBoxer", "Workout")">All</a></li>
+                                                @foreach (var category in workoutCategories)
+                                                {
+                                                    <li><a href="@Url.Action("IndexBoxer", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                                }
+                                            </ul>
+                                        </li>
+
+                                    }
+                                    else
+                                    { @*<li><a href="@Url.Action("Index", "Workout")">List</a></li>*@
+                                    <li class="has_sub">
+                                        <a href="javascript:void(0);" class="waves-effect"><span> List </span> </a>
+                                        <ul class="list-unstyled">
+                                            <li><a href="@Url.Action("IndexBoxer", "Workout")">All</a></li>
+                                            @foreach (var category in workoutCategories)
+                                            {
+                                                <li><a href="@Url.Action("IndexBoxer", "Workout",new { categoryId=category.Id})">@category.Name</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                }
+                                    @if (userData.RoleCode == RoleTypes.ClientAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="#" onclick="CheckClientLocationsBoxer()">Schedule</a></li>
+
+                                    }
+                                    else if (userData.RoleCode == RoleTypes.BranchAdmin && workoutSchedulePermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("BoxerWorkoutSelection", "Workout")">Select</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                    @*Bankim*@
+
+                    if (trainingPortalPermissionType != Models.Enums.PermissionType.None)
+                    {
+
+
+                        <li class="menu-title">Training Portal</li>
+                        if (trainingPortalPermissionType != Models.Enums.PermissionType.None && userData.RoleCode == RoleTypes.ClientAdmin)
+                        {
+                            <li class="has_sub">
+                                <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> Training Portal </span> </a>
+                                <ul class="list-unstyled">
+                                    @if (trainingPortalPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                    {
+                                        <li><a href="@Url.Action("Index", "Training")">Manage</a></li>
+                                    }
+                                    else
+                                    {
+                                        <li><a href="@Url.Action("Index", "Training")">List</a></li>
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    } @*<li class=""><a href="@Url.Action("Logout", "Account")" class="waves-effect"><i class="fa fa-sign-out"></i>Logout</a></li>*@
+                }
+
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+        <div class="clearfix"></div>
+    </div>
+    <!-- Sidebar -left -->
+
+</div>

@@ -1,0 +1,47 @@
+﻿@using Models;
+@model ModelVideo
+<style>
+    .video_name {
+        width: 105%;
+        background: #f5f5f5;
+        border-top: solid 1px #999;
+       
+        border-bottom: solid 1px #999;
+    }
+    .commonpadding {
+        padding-left: 2.2%;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .m-l_2_5 {
+        margin-left: -2.5%;
+    }
+    
+</style>
+<div class="partialvideodiv">
+    @*@if (Convert.ToBoolean(ViewBag.SmallSize) == true)
+        {
+            <video autoplay="" muted="" loop="" width="100" height="100">
+                <source src="@Url.Action("ShowVideo", "Video", new { ID = Model.ID})">
+            </video>
+        }
+        else
+        {
+            <video autoplay="" muted="" loop="" width="520" height="240">
+                <source src="@Url.Action("ShowVideo", "Video", new { ID = Model.ID})">
+            </video>
+        }*@
+    <div align="center" class="embed-responsive embed-responsive-16by9">
+        <video autoplay loop class="embed-responsive-item">
+            @*<source src="@Url.Action("ShowVideo", "Video", new { ID = Model.ID})">*@
+            <source src="@Url.Content($"/AllVideos/{Model.ID}/{Model.FullName}")" type="video/mp4">
+            
+        </video>
+    </div>
+    <h3 class="video_name commonpadding m-l_2_5 extra" >Name: @Model.VideoName</h3>
+
+    <h3 class="commonpadding m-l_2_5 extra">Description</h3>
+    <div class="extra">
+        @Html.Raw(Model.FullDescription)
+    </div>
+</div>

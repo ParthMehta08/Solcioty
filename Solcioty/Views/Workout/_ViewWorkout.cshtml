@@ -1,0 +1,1559 @@
+﻿@using System.Web.Optimization;
+@using Models
+@using Solcioty.utilities;
+@model ModelHomePage
+@{
+    var lastIndex = Model.WorkoutInfo.Templates != null ? Model.WorkoutInfo.Templates.Count + 1 : 1;
+    var isFutureWorkout = Model.WorkoutInfo != null && Model.WorkoutInfo.IsFutureWorkout ? Model.WorkoutInfo.IsFutureWorkout : false;
+    var grayIndicator = "";
+    if (isFutureWorkout)
+    {
+        grayIndicator = "grayIndicator";
+    }
+
+    string strs = "";
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @*<link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+
+        @Styles.Render("~/bundle/jqueryui")*@
+}
+
+@*<link href="~/Content/assets/css/style2.css" rel="stylesheet" />
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">*@
+<div class="slider-main">
+    @*<div class="slider-main-logo"><img src="~/Content/assets/images/hiit-logo.png" /></div>*@
+    <div class="slider-main-logo"><img src="~/ClientLogos/@Model.ClientConfiguration.ClientId/@Model.ClientConfiguration.BackgroundImageName" /></div>
+    @*<div class="slider-main-logo"><img src="~/AllImages/test.jpg" /></div>*@
+    <div class="slider-main-inner">
+
+        <div class="top-header-section clearfix" style="border-top:#@Model.ClientConfiguration.HeaderSecondaryColor 5px solid;border-bottom: #@Model.ClientConfiguration.HeaderSecondaryColor 5px solid">
+            <div class="col-lg-3 head-logo">
+                @*<div class="main-logo"><img src="~/ClientLogos/1/@Model.ClientConfiguration.BackgroundImageName"/></div>*@
+                <div class="logo-header-column lname">
+                    <img src="~/ClientLogos/@Model.ClientConfiguration.ClientId/@Model.ClientConfiguration.LogoName" />
+                </div>
+                @*<span class="border-line" style="position: absolute; display: block; width: 100%; height: 100%; top: 0; right: -45px; background: transparent; transform-origin: top right; -ms-transform: skew(-26deg, 0deg); -webkit-transform: skew(-26deg, 0deg);transform: skew(-26deg, 0deg); border-right: #@Model.ClientConfiguration.HeaderSecondaryColor 20px solid;"></span>*@
+            </div>
+            <div class="col-lg-3 color-main">
+                <div class="color-1" style="background: #@Model.ClientConfiguration.HeaderPrimaryColor;width: calc(100% + 100px);height: 60px;position: absolute;left: 45px;"></div>
+                <div class="color-2" style="position: absolute;top: 3px;left: 29px;background: -webkit-linear-gradient(100deg, #@Model.ClientConfiguration.HeaderPrimaryColor 101%,#@Model.ClientConfiguration.HeaderPrimaryColor 100%); transform: rotate(-65deg);width: 98px;height: 117px;"></div>
+                <div class="inner-col" style="color:#@Model.ClientConfiguration.HeaderTextColor;">
+                    <div class="timeid"></div>
+                </div>
+
+
+            </div>
+            @*<div class="col-lg-2">
+                    <div class="inner-col1"></div>
+                </div>*@
+            <div class="col-lg-4 title-box">
+                <div class="inner-coldsfsdf" style="position: absolute; top: 0; background: #@Model.ClientConfiguration.HeaderPrimaryColor; width: calc(100% + 100px);height: 60px;left: -1px;"></div>
+
+            </div>
+            <div class="title-block" style="color:#@Model.ClientConfiguration.HeaderTextColor;background-color: #@Model.ClientConfiguration.HeaderSecondaryColor;border-top: #@Model.ClientConfiguration.HeaderSecondaryColor 5px solid;border-bottom: #@Model.ClientConfiguration.HeaderSecondaryColor 5px solid;height:101px;"><h1><div class="block1"></div><span><div class="block2"></div></span></h1> </div>
+            <div class="col-lg-3 color-main-two" style="background: #@Model.ClientConfiguration.HeaderPrimaryColor;">
+                <div class="inner-col" style="color:#@Model.ClientConfiguration.HeaderTextColor;"> <div class="goalid"></div> </div>
+                <div class="signout">
+                    <a href="@Url.Action("logout","account")" style="background-color:#@Model.ClientConfiguration.HeaderPrimaryColor;border:2px solid #@Model.ClientConfiguration.HeaderSecondaryColor">Sign Out</a>
+                    @*<a href="@Url.Action("logout","account")" style="background-color:#@ViewBag.SignoutColor;color:#@ViewBag.SignoutFontColor">Sign Out</a>*@
+                </div>
+            </div>
+
+        </div>
+
+        <div class="slider">
+            <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="false">
+                <ol class="carousel-indicatorsnone" style="display:none ;">
+
+                    <div class="border-Arrow" id="arr">  </div>
+                    <div class="left-Arrow">
+                        <li data-target="#myCarousel" data-slide-to="0" id="display-centerid" class="@grayIndicator active"></li>
+                    </div>
+
+                    @*@if (Model.WorkoutInfo.Templates != null)
+                        {
+                            for (int i = 1; i < Model.WorkoutInfo.Templates.Count + 1; i++)
+                            {
+                                <li data-target="#myCarousel" class="@grayIndicator" data-slide-to="@i"></li>
+                            }
+                        }*@
+                    <div class="right-Arrow">
+                        <li data-target="#myCarousel" class="@grayIndicator" id="display-centerid" data-slide-to="@lastIndex"></li>
+                    </div>
+                    <div class="border-Arrow-right">  </div>
+
+                </ol>
+
+                <!-- Indicators -->
+                <!--<a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                  <span class="glyphicon glyphicon-chevron-left"></span>
+                  <span class="sr-only">Previous</span>
+                </a>-->
+                <!--<a class="right carousel-control" href="#myCarousel" data-slide="next">
+                  <span class="glyphicon glyphicon-chevron-right"></span>
+                  <span class="sr-only">Next</span>
+                </a>-->
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner">
+                    <div class="item">
+                        @*@if (isFutureWorkout)
+                            {
+                                <div class="watermarkdiv">
+                                    <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                </div>
+                                <div class="overlay"></div>
+                            }*@
+                        <div class="common-cover1">
+                            @if (!string.IsNullOrEmpty(Model.WorkoutInfo.FrontCoverImageName))
+                            {
+                                <img src="/AllImages/@Model.WorkoutInfo.FrontCoverImageId/@Model.WorkoutInfo.FrontCoverImageName" class="imgfullscreen" />
+                            }
+                            else
+                            {
+                                <img src="/AllImages/welcome.jpg" class="imgfullscreen" />
+                            }
+                        </div>
+
+                    </div>
+                    @if (Model.WorkoutInfo.Templates != null)
+                    {
+
+                        foreach (var template in Model.WorkoutInfo.Templates)
+                        {
+                            //if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                            //{
+                            if (template.NumberOfBasicVideos == 1 && template.NumberOfAlternateVideos == 1)
+                            {
+                                if (template.BasicVideos.Count > 0)
+                                {
+
+                                    <div class="item item-21">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 112%; width: 100%; float: left; padding-bottom: 0px;">
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                <div class="video1">
+                                                    @if (isFutureWorkout)
+                                                    {
+                                                        <div class="overlay"></div>
+                                                    }
+                                                    <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[0].Note </div>
+                                                    <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls videoHeight">
+                                                        @try
+                                                        {
+                                                            if (template.BasicVideos.Count > 0)
+                                                            {
+                                                                <source src="@Url.Content($"/AllVideos/{template.BasicVideos[0].VideoId}/{template.BasicVideos[0].VideoFile}")" type="video/mp4">
+                                                            }
+
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            //continue;
+                                                        }
+
+                                                    </video>
+                                                    <div class="reps double-line1" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                        <label class="@Extension.LimitedDisplayClass(template.BasicVideos[0].DisplayNote, 5)"></label>
+                                                        @try
+                                                        {
+                                                            if (template.BasicVideos.Count > 0)
+                                                            {
+                                                                @Html.Raw(template.BasicVideos[0].Reps)
+                                                            }
+                                                        }
+                                                        catch (Exception)
+                                                        {
+                                                            //continue;
+                                                        }
+                                                    </div>
+
+                                                </div>
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            if (template.NumberOfBasicVideos == 1 && template.NumberOfAlternateVideos == 2)
+                            {
+                                if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                                {
+                                    <div class="item item-1">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video1">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note </div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @*@if (template.IsFooterText == true)
+                                                    {
+                                                        <div style="text-align:center;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                    }*@
+                                            </div>
+                                            @*<div class="sidebar2" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor)">*@
+                                            @*<div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(Model.ClientConfiguration.AlternateBackground) ? template.AlternateGradientColor : Model.ClientConfiguration.AlternateBackground) 65%,transparent);">*@
+                                            <div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.AlternateText) ? Model.ClientConfiguration.AlternateText : template.AlternateText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar2watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < 1; i++)
+                                                {
+                                                    <div class="video1">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.AlternateVideos[i].Note </div>
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.AlternateVideos[i].VideoId}/{template.AlternateVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+
+                                                        </video>
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.AlternateVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+
+                            if (template.NumberOfBasicVideos == 2 && template.NumberOfAlternateVideos == 1)
+                            {
+                                if (template.BasicVideos.Count > 0)
+                                {
+                                    <div class="item item-22">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+
+                                            <div class="Line" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 112%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video2">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note </div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+
+                                                        </video>
+                                                        <div class="reps double-line1" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(@template.BasicVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 2 && template.NumberOfAlternateVideos == 2)
+                            {
+                                if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                                {
+                                    <div class="item item-2">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video2">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+                                                        <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @*@if (template.IsFooterText == true)
+                                                    {
+                                                        <div style="text-align:center;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                    }*@
+                                            </div>
+                                            @*<div class="sidebar2" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor)">*@
+                                            @*<div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor) 65%,transparent);">*@
+                                            <div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.AlternateText) ? Model.ClientConfiguration.AlternateText : template.AlternateText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar2watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfAlternateVideos; i++)
+                                                {
+                                                    <div class="video2">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.AlternateVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.AlternateVideos[i].VideoId}/{template.AlternateVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+
+                                                        </video>
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.AlternateVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 3 && template.NumberOfAlternateVideos == 1)
+                            {
+                                if (template.BasicVideos.Count > 0)
+                                {
+                                    <div class="item item-33">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+
+                                            <div class="Line" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 112%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video3">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        <div class="reps double-line1" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 3)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 3 && template.NumberOfAlternateVideos == 3)
+                            {
+                                if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                                {
+                                    <div class="item item-3">
+                                        <div class="slider-two-innter clearfix">
+                                            @* <div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6);height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video3">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        if (i < template.BasicVideos.Count)
+                                                                        {
+                                                                            @Html.Raw(template.BasicVideos[i].Reps)
+                                                                        }
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @*@if (template.IsFooterText == true)
+                                                    {
+                                                        <div style="text-align:center;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                    }*@
+                                            </div>
+
+                                            @*<div class="sidebar2" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor)">*@
+                                            @*<div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(Model.ClientConfiguration.AlternateBackground) ? template.AlternateGradientColor : Model.ClientConfiguration.AlternateBackground) 65%,transparent);">*@
+                                            <div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.AlternateText) ? Model.ClientConfiguration.AlternateText : template.AlternateText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+                                                @*<div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 50%; width: 100%; float: left; padding-bottom: 0px;">*@
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar2watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfAlternateVideos; i++)
+                                                {
+                                                    <div class="video3">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.AlternateVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls-3 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.AlternateVideos[i].VideoId}/{template.AlternateVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        @*<div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                                @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 3)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.AlternateVideos[i].DisplayNote)
+
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+                                                            </div>*@
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.AlternateVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 4 && template.NumberOfAlternateVideos == 1)
+                            {
+                                if (template.BasicVideos.Count > 0)
+                                {
+                                    <div class="item item-44">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 110%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video4">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+                                                        <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        @*<div class="reps single-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                                @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(@template.BasicVideos[i].DisplayNote,4)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.BasicVideos[i].DisplayNote)
+
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+
+                                                            </div>*@
+                                                        <div class="reps double-line1" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 4 && template.NumberOfAlternateVideos == 4)
+                            {
+                                if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                                {
+                                    <div class="item item-4">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                @*<h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(Model.ClientConfiguration.PrimaryFontColor) ?  template.PrimaryColor: Model.ClientConfiguration.PrimaryFontColor)">*@
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video4">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+
+                                                        @*<div style="padding: 0 0.2%;width:99.6%;height:90%;background:#ffffff;">*@
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls-4 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        @*</div>*@
+                                                        @*<div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                                @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote,4)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.BasicVideos[i].DisplayNote)
+
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+
+                                                            </div>*@
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @*@if (template.IsFooterText == true)
+                                                    {
+                                                        <div style="text-align:center;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                    }*@
+                                            </div>
+                                            @*<div class="sidebar2" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor)">*@
+                                            <div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.AlternateText) ? Model.ClientConfiguration.AlternateText : template.AlternateText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar2watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+
+                                                @for (int i = 0; i < template.NumberOfAlternateVideos; i++)
+                                                {
+                                                    <div class="video4">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        @*<div style="padding: 0 0.2%;width:99.6%;height:90%;background:#ffffff;">*@
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.AlternateVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding: 0 0.2%;" autoplay loop muted="" class="vscls-4 videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.AlternateVideos[i].VideoId}/{template.AlternateVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                //continue;
+                                                            }
+                                                        </video>
+                                                        @*</div>*@
+                                                        @*<div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                                @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote,4)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.AlternateVideos[i].DisplayNote)
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+
+
+
+                                                            </div>*@
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.AlternateVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            }
+                            if (template.NumberOfBasicVideos == 5 && template.NumberOfAlternateVideos == 1)
+                            {
+                                if (template.BasicVideos.Count > 0)
+                                {
+                                    <div class="item item-55">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 112%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video5">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0;color:black">@template.BasicVideos[i].Note</div>
+
+                                                        <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls videoHeight">
+                                                            @try
+                                                            {
+                                                                if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                }
+
+                                                            }
+                                                            catch (Exception)
+                                                            {
+                                                                // continue;
+                                                            }
+                                                        </video>
+
+                                                        @*<div class="reps single-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                                @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote,5)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.BasicVideos[i].DisplayNote)
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //   continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+                                                            </div>*@
+                                                        <div class="reps double-line1" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            if (template.NumberOfBasicVideos == 5 && template.NumberOfAlternateVideos == 5)
+                            {
+                                if (template.BasicVideos.Count > 0 && template.AlternateVideos.Count > 0)
+                                {
+                                    <div class="item item-5">
+                                        <div class="slider-two-innter clearfix">
+                                            @*<div class="sidebar1" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryGradientColor)">*@
+                                            <div class="sidebar1" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.PrimaryText) ? Model.ClientConfiguration.PrimaryText : template.PrimaryText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.PrimaryGradientColor) ? Model.ClientConfiguration.PrimaryGradientBackground : template.PrimaryGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar1watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+                                                @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                {
+                                                    <div class="video5">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="padding: 0 0.2%;width:99.6%;height:90%;background:#ffffff;" class="videoHeight">
+                                                            <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0; color:black">@template.BasicVideos[i].Note</div>
+
+                                                            <video width="90%" style="padding:0 0.2%;" autoplay loop muted="" class="vscls">
+                                                                @try
+                                                                {
+                                                                    if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                    {
+                                                                        <source src="@Url.Content($"/AllVideos/{template.BasicVideos[i].VideoId}/{template.BasicVideos[i].VideoFile}")" type="video/mp4">
+                                                                    }
+
+                                                                }
+                                                                catch (Exception)
+                                                                {
+                                                                    //continue;
+                                                                }
+                                                            </video>
+                                                        </div>
+
+                                                        @*<div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                                @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote,5)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.BasicVideos[i].DisplayNote)
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+
+                                                            </div>*@
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryColor) ? Model.ClientConfiguration.PrimaryFontColor : template.PrimaryColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.PrimaryBackgroundColor) ? Model.ClientConfiguration.PrimaryBackground : template.PrimaryBackgroundColor)">
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.BasicVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.BasicVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+
+                                            </div>
+                                            @*<div class="sidebar2" style="background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateGradientColor)">*@
+                                            <div class="sidebar2" style="background: -webkit-linear-gradient(-45deg, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor) 65%,transparent);">
+                                                <h3 class="alternatetext" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor)">
+                                                    @Html.Raw(string.IsNullOrEmpty(template.AlternateText) ? Model.ClientConfiguration.AlternateText : template.AlternateText)
+                                                </h3>
+                                            </div>
+                                            <div class="Line1" style="background:linear-gradient(to right, #@Html.Raw(string.IsNullOrEmpty(template.AlternateGradientColor) ? Model.ClientConfiguration.AlternateGradientBackground : template.AlternateGradientColor), #e6e6e6); height: 49%; width: 100%; float: left; padding-bottom: 0px;">
+
+                                                @if (isFutureWorkout)
+                                                {
+                                                    <div class="watermarkdiv sidebar2watermarkdiv">
+                                                        <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                                    </div>
+                                                }
+
+
+                                                @for (int i = 0; i < template.NumberOfAlternateVideos; i++)
+                                                {
+                                                    <div class="video5">
+                                                        @if (isFutureWorkout)
+                                                        {
+                                                            <div class="overlay"></div>
+                                                        }
+                                                        <div style="padding: 0 0.2%;width:99.6%;height:90%;background:#ffffff;" class="videoHeight">
+                                                            <div style="float:left;margin-left:4px; position: absolute; top: 0; left:0; color:black">@template.AlternateVideos[i].Note</div>
+                                                            <video width="90%" style="padding:0 0.2%;" autoplay loop muted="">
+                                                                @try
+                                                                {
+                                                                    if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                    {
+                                                                        <source src="@Url.Content($"/AllVideos/{template.AlternateVideos[i].VideoId}/{template.AlternateVideos[i].VideoFile}")" type="video/mp4">
+                                                                    }
+                                                                }
+                                                                catch (Exception)
+                                                                {
+                                                                    //continue;
+                                                                }
+                                                            </video>
+                                                        </div>
+                                                        @*<div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+
+                                                                @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                                {
+                                                                    <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                        @try
+                                                                        {
+                                                                            @Html.Raw(template.AlternateVideos[i].DisplayNote)
+                                                                        }
+                                                                        catch (Exception)
+                                                                        {
+                                                                            //continue;
+                                                                        }
+                                                                    </label>
+                                                                }
+
+                                                            </div>*@
+                                                        <div class="reps double-line" style="color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateColor) ? Model.ClientConfiguration.AlternateFontColor : template.AlternateColor);background-color:#@Html.Raw(string.IsNullOrEmpty(template.AlternateBackgroundColor) ? Model.ClientConfiguration.AlternateBackground : template.AlternateBackgroundColor)">
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos.Count > 0)
+                                                            {
+                                                                <label class="@Extension.LimitedDisplayClass(template.AlternateVideos[i].DisplayNote, 5)">
+                                                                    @try
+                                                                    {
+                                                                        @Html.Raw(template.AlternateVideos[i].Reps)
+                                                                    }
+                                                                    catch (Exception)
+                                                                    {
+                                                                        //continue;
+                                                                    }
+                                                                </label>
+                                                            }
+
+                                                        </div>
+                                                    </div>
+                                                }
+                                                @if (template.IsFooterText == true)
+                                                {
+                                                    <div class="footer-five" style="text-align:center;margin-top:10px;float: left; width: 100%;color:#@template.FooterTextColor"> @template.FooterText</div>
+
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                            ////}
+                        }
+                    }
+                    <div class="item">
+                        @*@if (isFutureWorkout)
+                            {
+                                <div class="watermarkdiv">
+                                    <p class="watermarkdivtext singlewatermarktext">PRACTICE</p>
+                                </div>
+                                <div class="overlay"></div>
+                            }*@
+                        <div class="common-cover1">
+                            @if (!string.IsNullOrEmpty(Model.WorkoutInfo.BackCoverImageName))
+                            {
+                                <img src="/AllImages/@Model.WorkoutInfo.BackCoverImageId/@Model.WorkoutInfo.BackCoverImageName" class="imgfullscreen" />
+                            }
+                            else
+                            {
+                                <img src="/AllImages/thankyou.jpg" class="imgfullscreen" />
+                            }
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .left-Arrow {
+        width: 200px;
+        height: 150px;
+        position: absolute;
+        top: -39%;
+        left: -315%;
+        clip: rect(auto, 212px, auto, 151px);
+        transform: rotate(-180deg);
+    }
+
+        .left-Arrow::after {
+            content: "";
+              position: absolute;
+              top: 20px;
+              bottom: 12px;
+              left: 10px;
+              right: 10px;
+              background: -webkit-linear-gradient(-45deg, #@Model.ClientConfiguration.HeaderSecondaryColor 75%,#fff 100%);
+              transform: rotate(-45deg);
+              border: #fff 3px solid;
+              border-radius: 3px;
+        }
+
+    .right-Arrow {
+        width: 161px;
+        height: 198px;
+        position: absolute;
+        top: 29px;
+        left: -273%;
+        clip: rect(auto, 210px, auto, 138px);
+        transform: rotate(-360deg);
+        margin-left: 165px;
+        margin-top: -63px;
+    }
+
+        .right-Arrow::after {
+            content: "";
+            position: absolute;
+            top: 10px;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: -webkit-linear-gradient(-45deg, #@Model.ClientConfiguration.HeaderSecondaryColor 76%,#fff 100%);
+            transform: rotate(-45deg);
+            border: #fff 3px solid;
+            border-radius: 3px;
+        }
+
+    .border-Arrow {
+        width: 193px;
+        height: 161px;
+        position: absolute;
+        top: -34%;
+        left: -308%;
+        clip: rect(auto, 212px, auto, 151px);
+        transform: rotate(-180deg);
+    }
+
+        .border-Arrow::after {
+            content: "";
+            position: absolute;
+            top: 11px;
+            bottom: 13px;
+            left: 21px;
+            right: 6px;
+            /*background: -webkit-linear-gradient(-45deg, #de5c5a 80%,#fff);*/
+            background: -webkit-linear-gradient(-45deg, #de5c5a 80%,#fff);
+            transform: rotate(-45deg);
+            border: #@Model.ClientConfiguration.HeaderSecondaryColor 3px solid;
+            border-radius: 3px;
+        }
+
+    .border-Arrow-right {
+        width: 193px;
+        height: 158px;
+        position: absolute;
+        top: -33%;
+        left: -289%;
+        clip: rect(auto, 212px, auto, 151px);
+        transform: rotate(-360deg);
+        margin-left: 166px;
+        margin-top: 24px;
+    }
+
+        .border-Arrow-right::after {
+            content: "";
+            position: absolute;
+            top: 11px;
+            bottom: 13px;
+            left: 21px;
+            right: 6px;
+            /*background: -webkit-linear-gradient(-45deg, #de5c5a 80%,#fff);*/
+            transform: rotate(-45deg);
+            border: #@Model.ClientConfiguration.HeaderSecondaryColor 3px solid;
+            border-radius: 3px;
+        }
+
+    .header {
+    width: 100%;
+    height: 0px;
+    border-bottom: 0px
+    }
+    .logo1 {
+    display: none;
+    }
+    .date1.text-center {
+    display: none;
+    }
+</style>
+@section footerscript
+{
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+
+    @*<script src="~/Content/assets/js/bootstrap.min.js"></script>*@
+
+}
+@section beforeappjs
+{
+
+    @*  @Scripts.Render("~/bundle/jquery")
+        @Scripts.Render("~/bundle/jqueryui")
+          @Scripts.Render("~/bundle/bootstrapjs")*@
+
+}
+<script src="~/scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        $('.lname').click(function () {
+               if ($('.carousel-indicators li').length > 0) {
+              //  $('.header-indecator').toggle();
+                $('.signout').toggle();
+                //  $('.changepassword').toggle();
+            } else {
+               // $('.header-indecator').hide();
+                $('.signout').show();
+                //$('.changepassword').show();
+            }
+            //$('.signout').toggle();
+            //$('.changepassword').toggle();
+        });
+
+        $('.logo1').click(function () {
+            alert("logo1");
+
+            //if ($('.carousel-indicators li').length > 0) {
+            //    $('.header-indecator').toggle();
+            //    $('.signout').toggle();
+            //    //  $('.changepassword').toggle();
+            //} else {
+            //    $('.header-indecator').hide();
+            //    $('.signout').show();
+            //    //$('.changepassword').show();
+            //}
+            ////$('.signout').toggle();
+            ////$('.changepassword').toggle();
+        });
+        //var currentIndex = $('div.active').index();
+        //$("#currentSlide").html(currentIndex);
+        //alert("pageload event fired!");
+
+        //$(".slider-main").change(function () {
+        //    alert("pageload event fired!");
+        //});
+
+
+        //$(".left").click(function () {
+        //    var currentIndex = $('div.active').index() - 1;
+        //    $("#currentSlide").html(currentIndex);
+
+        //   alert($('#myCarousel').index('#myCarousel .item'))
+        //});
+        //$(".right").click(function () {
+        //    var currentIndex = $('div.active').index() + 1;
+        //    $("#currentSlide").html(currentIndex);
+
+        //    alert($('#myCarousel').index('#myCarousel .item'))
+
+        //});
+
+        var i = 10;
+
+
+        var template = @Html.Raw(Json.Encode(Model.WorkoutInfo.Templates))
+           // console.log(template);
+        $(".left").click(function () {
+
+            var currentIndex = $('div.active').index() - 1;
+
+                $(".timeid").text("");
+                $(".goalid").text("");
+                $(".block1").text("");
+                $(".block2").text("");
+
+                if (template.length >= currentIndex && currentIndex != -1 && currentIndex != 0) {
+                $(".timeid").text(template[currentIndex - 1].TimeText);
+
+                $(".goalid").text(template[currentIndex - 1].GoalText);
+
+                    $(".block1").text(template[currentIndex - 1].BlockLineOneText);
+                    $(".block2").text(template[currentIndex - 1].BlockLineTwoText);
+
+            }
+           @*var currentIndex = $('div.active').index() - 1;
+            var ind = @SlideIndex;*@
+
+            @*@SlideIndex = parseInt(currentIndex);*@
+            @*var goal = "@Model.WorkoutInfo.Templates[' " ' +   + ' " '].GoalText";*@
+            //$(".goalid").text(goal);
+        });
+        $(".right").click(function () {
+            var currentIndex = $('div.active').index() + 1;
+            $(".timeid").text("");
+            $(".goalid").text("");
+            $(".block1").text("");
+            $(".block2").text("");
+            if (template.length >= currentIndex && currentIndex != -1 && currentIndex != 0) {
+                $(".timeid").text(template[currentIndex - 1].TimeText);
+                $(".goalid").text(template[currentIndex - 1].GoalText);
+                $(".block1").text(template[currentIndex - 1].BlockLineOneText);
+                $(".block2").text(template[currentIndex - 1].BlockLineTwoText);
+
+            }
+            $("#SliderCount").html(currentIndex);
+        });
+
+    });
+
+</script>

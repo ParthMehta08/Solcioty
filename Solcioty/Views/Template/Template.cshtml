@@ -1,0 +1,457 @@
+﻿@{ Layout = null; }
+@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model BoxerTemplateModel
+<doctype html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Workout</title>
+        <link rel="stylesheet" href="~/Content/assets/css/BoxerCss/style.css">
+        <link rel="stylesheet" href="https://use.typekit.net/rjm5wct.css">
+    </head>
+    <body>
+        <div id="wrapper">
+            <header class="header">
+                <div class="logo">
+                    <img src="~/Content/assets/images/Boxertemplate/logo.png" />
+                </div>
+                <div class="header-center-title">
+                    @Model.TemplateName
+                </div>
+
+                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:50">
+
+                    <div class="header-right-timmer">
+                        <span>Time</span>
+                        <h2 id="demo"></h2>
+                        <span>REMAINING</span>
+                    </div>
+
+                </div>
+
+
+            </header>
+            @*2 X 1 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 2 && Model.NumberOfAlterVideos == 1)
+            {
+                <div class="middle-section">
+                    @foreach (var item in Model.boxerWorkoutModelLists.Take(1))
+                    {
+                        <div class="two-by-one">
+                            <div class="col">
+                                <div class="img-col">
+                                    @if (item.PDFName.Contains(".pdf"))
+                                    {
+                                        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> 
+                                    }
+                                    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+                                    {
+                                         <img src="~/AllImages/@item.ID/@item.PDFName" /> 
+                                    }
+                                    else if (item.PDFName.Contains(".mp4"))
+                                    {
+                                        <video controls>
+                                        <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">  
+                                        </video> 
+                                    }
+                                    else if (item.PDFName.Contains(".txt"))
+                                    {
+                                        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> 
+                                    }
+                                    else
+                                    {
+                                        <img src="/Content/assets/images/Boxertemplate/1.png">}
+                                                </div>
+                                                <div class="extra-large-text">
+                                                    @item.WorkoutName
+                                                </div>                                        
+                                            </div>
+                                          </div>
+                                      }
+                        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 2 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 2 && Model.NumberOfAlterVideos == 2)
+            {
+        <div class="middle-section">
+            <div class="two-by-two">
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(2))
+                {
+
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="small-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 3 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 3 && Model.NumberOfAlterVideos == 3)
+            {
+        <div class="middle-section">
+            <div class="two-by-one">
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(3))
+                {
+
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="small-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 4 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 4 && Model.NumberOfAlterVideos == 4)
+            {
+        <div class="middle-section">
+            <div class="two-by-four">
+
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(4))
+                {
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="small-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 5 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 5 && Model.NumberOfAlterVideos == 5)
+            {
+        <div class="middle-section">
+            <div class="two-by-five">
+
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(5))
+                {
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+                            else if (item.PDFName.Contains(".txt"))
+                            {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+                            else
+                            {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="small-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 6 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 6 && Model.NumberOfAlterVideos == 6)
+            {
+        <div class="middle-section">
+            <div class="two-by-six">
+
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(6))
+                {
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="extra-large-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 7 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 7 && Model.NumberOfAlterVideos == 7)
+            {
+        <div class="middle-section">
+            <div class="two-by-seven">
+
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(7))
+                {
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="extra-large-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 8 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 8 && Model.NumberOfAlterVideos == 8)
+            {
+        <div class="middle-section">
+            <div class="two-by-eight">
+
+                @foreach (var item in Model.boxerWorkoutModelLists.Take(8))
+                {
+        <div class="col">
+            <div class="img-col">
+                @if (item.PDFName.Contains(".pdf"))
+                {
+        <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+    else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+    {
+        <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+    else if (item.PDFName.Contains(".mp4"))
+    {
+        <video controls>
+            <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+        </video> }
+    else if (item.PDFName.Contains(".txt"))
+    {
+        <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+    else
+    {
+        <img src="/Content/assets/images/Boxertemplate/1.png">}
+            </div>
+            <div class="extra-large-text">
+                @item.WorkoutName
+            </div>
+        </div>}
+            </div>
+
+        </div>
+                    }
+            @*End*@
+
+
+            @*2 X 9 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 9 && Model.NumberOfAlterVideos == 9)
+            {
+                <div class="middle-section">
+                    <div class="two-by-nine">
+                    @foreach (var item in Model.boxerWorkoutModelLists.Take(9))
+                    {
+                        <div class="col">
+                            <div class="img-col">
+                                @if (item.PDFName.Contains(".pdf"))
+                                {
+                    <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+                else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+                {
+                    <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+                else if (item.PDFName.Contains(".mp4"))
+                {
+                    <video controls>
+                        <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+                    </video> }
+                                        else if (item.PDFName.Contains(".txt"))
+                                        {
+                    <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+                                        else
+                                        {
+                    <img src="/Content/assets/images/Boxertemplate/1.png">}
+                            </div>
+                            <div class="extra-large-text">
+                                @item.WorkoutName
+                            </div>
+                        </div>
+
+                        }
+                    </div>
+                        </div>
+             }
+            @*End*@
+
+
+            @*2 X 10 render ------------------*@
+            @if (Model.NumberOfBasicVideos == 10 && Model.NumberOfAlterVideos == 10)
+            {
+                <div class="middle-section">
+                    <div class="ten-col-section bottom-section">
+                        @foreach (var item in Model.boxerWorkoutModelLists.Take(10))
+                        {
+
+                    <div class="col">
+                        <div class="img-col">
+                            @if (item.PDFName.Contains(".pdf"))
+                            {
+                    <iframe style="width: 100%; height: 100%; border: none;" src="~/AllPDFS/@item.ID/@item.PDFName"></iframe> }
+                else if (item.PDFName.Contains(".jpeg") || item.PDFName.Contains(".png") || item.PDFName.Contains(".jpg") || item.PDFName.Contains(".gif"))
+                {
+                    <img src="~/AllImages/@item.ID/@item.PDFName" /> }
+                else if (item.PDFName.Contains(".mp4"))
+                {
+                    <video controls>
+                        <source src="~/AllVideos/@item.ID/@item.PDFName" type="video/mp4">
+                    </video> }
+                                        else if (item.PDFName.Contains(".txt"))
+                                        {
+                    <iframe src="~/AllTextes/@item.ID/@item.PDFName"></iframe> }
+                                        else
+                                        {
+                    <img src="/Content/assets/images/Boxertemplate/1.png">}
+                        </div>
+                        <div class="extra-large-text">
+                            @item.WorkoutName
+                        </div>
+                    </div>}
+                    </div>
+                        </div>
+                    }
+            @*End*@
+        </div>
+
+        <script>
+            // Set the date we're counting down to
+            var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
+
+            // Update the count down every 1 second
+            var x = setInterval(function () {
+
+                // Get today's date and time
+                var now = new Date().getTime();
+
+                // Find the distance between now and the count down date
+                var distance = countDownDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                // Output the result in an element with id="demo"
+                document.getElementById("demo").innerHTML = minutes + ":" + seconds;
+
+                // If the count down is over, write some text
+                if (distance < 0) {
+                    clearInterval(x);
+                    document.getElementById("demo").innerHTML = "EXPIRED";
+                }
+            }, 1000);
+        </script>
+    </body>
+
+</html>

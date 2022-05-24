@@ -1,0 +1,266 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using System.Web.Optimization;
+@model ModelImage
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+    string isChecked = "";
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/bootstrapcss")
+    @Styles.Render("~/bundle/jqueryfiler")
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Image</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+
+
+                @using (@Html.BeginForm("Add", "Image", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label>Title <span class="required">*</span></label>
+                            @Html.TextBoxFor(m => m.ImageTitle, new { @class = "form-control", @placeholder = "Name", @required = "required" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.ImageTitle)</span>
+                        </div>
+
+                        <div class="col-sm-6">
+                            <div class="form-group">
+                                <label>Tags</label>
+                                @*<select multiple data-role="tagsinput" name="VideoTagsMappingsNames" id="VideoTagsMappingsNames"></select>*@
+                                @*<input type="text" name="VideoTagsMappingsNames" id="VideoTagsMappingsNames" />*@
+                                @Html.EditorFor(model => model.ImageTagsMappingsNames, new { htmlAttributes = new { @class = "form-control" } })
+                                @*@Html.DropDownListFor(m => m.VideoTagsMappingsNames, new SelectList(Model.tagsDictionary, "Key", "Value"), new { @id = "VideoTagsMappingsNames", @multiple = "multiple" })
+                                    @Html.TextBoxFor(m => m.VideoTagsMappings, new { @id = "VideoTagsMappings", @style = "display:none;" })*@
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="checkbox checkbox-primary">
+                                @{
+
+                                    isChecked = Model.IsActive ? "checked" : "";
+                                }
+                                <input type="checkbox" name="IsActiveString" @isChecked>
+                                <label class="activechk">Active</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group m-t-10">
+                        <label>Description</label>
+                        <textarea id="elm1" name="SmallDescription"></textarea>
+                    </div>
+                    <input type="file" name="ImageFile" accept="image/jpg,image/jpeg,image/png,image/svg" id="ImageFile" />
+
+                    if (Model.Id > 0)
+                    {
+                        <div align="center" id="existimage" class="embed-responsive embed-responsive-16by9 p-b-0 imagethumbnail">
+                            <img class="embed-responsive-item " src="@Url.Content("/AllImages/"+Model.Id+"/"+Model.ImageName)">
+                        </div>
+                    }
+                    <div class="row" id="preview">
+                        <img id="myimage" class="imagethumbnail" src="">
+                    </div>
+
+                    <button type="submit" class="btn btn-purple waves-effect waves-light m-t-10" onclick="javascript: setTagsAndWorkout();">Submit</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#multiple-checkboxes').multiselect();
+    //});
+</script>
+@section beforeappjs
+{
+
+    @*@Scripts.Render("~/bundle/bootstrapjs");*@
+    @Scripts.Render("~/bundle/jqueryfiler");
+    <script src="~/Content/assets/js/typeahead.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var tagnames = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                prefetch: {
+                    url: '@Url.Action("getalltags","tag")',
+                    filter: function (list) {
+                        return $.map(list.data, function (tagname) {
+                            return { name: tagname };
+                        });
+                    }
+                }
+            });
+            tagnames.clearPrefetchCache();
+            tagnames.initialize(true);
+
+            $('#ImageTagsMappingsNames').tagsinput({
+                typeaheadjs: {
+                    name: 'tagnames',
+                    displayKey: 'name',
+                    valueKey: 'name',
+                    source: tagnames.ttAdapter()
+                }
+            });
+
+        });
+        //get tags and workout types
+        function setTagsAndWorkout() {
+            var selected = $("#ImageTagsMappingsNames option:selected");
+            var message = "";
+            selected.each(function () {
+                message += $(this).val() + ",";
+            });
+            $('#ImageTagsMappings').val(message);
+        }
+    </script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Editor
+            $('#preview').hide();
+            if ($("#elm1").length > 0) {
+                tinymce.init({
+                    selector: "textarea#elm1",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+                    style_formats: [
+                        { title: 'Bold text', inline: 'b' },
+                        { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                        { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                        { title: 'Example 1', inline: 'span', classes: 'example1' },
+                        { title: 'Example 2', inline: 'span', classes: 'example2' },
+                        { title: 'Table styles' },
+                        { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+                    ]
+                });
+                var tinyMCEContent =@Html.Raw(JsonConvert.SerializeObject(this.Model.SmallDescription));
+                $('#elm1').html(tinyMCEContent);
+            }
+
+
+            $('#ImageFile').filer({
+                limit: 1,
+                maxSize: null,
+                extensions: null,
+                changeInput: '<div class="jFiler-input-dragDrop">'+
+                        '<div class="jFiler-input-inner">'+
+
+                            '<div class="jFiler-input-icon">'+
+                                '<i class="icon-jfi-cloud-up-o "></i>'+
+                            '</div>'+
+
+                            '<div class="fa fa-upload display-block">'+
+                                '<h3>Drag & Drop files here</h3>'+
+                                '<span style="display:inline-block;margin: 15px 0">or</span>'+
+                        '</div>'+
+
+                        '<a class="jFiler-input-choose-btn blue">Browse Files</a> </div </div>',
+                showThumbs: false,
+                appendTo: null,
+                theme: "default",
+                dragDrop: {
+                    dragEnter: function () {
+                    },
+                    dragLeave: null,
+                    drop: function (file) {
+                        var imageFile = file[0];
+                        if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg")) {
+                            $('#existimage').hide();
+                            $('#preview').hide();
+                            var fileURL = URL.createObjectURL(videoFile)
+                            $('#myimage').attr('src', fileURL);
+                            $('#ImageFile')[0].files = file;
+                            $('#preview').show();
+                        } else {
+                            toastr.error("Only Image allowed!")
+                        }
+                    },
+                },
+                addMore: false,
+                clipBoardPaste: true,
+                excludeName: null,
+                beforeShow: function () { return true },
+                onSelect: function () { },
+                afterShow: function () { },
+                onRemove: function () { },
+                onEmpty: function () { },
+                captions: {
+                    button: "Choose Files",
+                    feedback: "Choose files To Upload",
+                    feedback2: "files were chosen",
+                    drop: "Drop file here to Upload",
+                    removeConfirmation: "Are you sure you want to remove this file?",
+                    errors: {
+                        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+                        filesType: "Only Images are allowed to be uploaded.",
+                        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+                        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+                    }
+                }
+            });
+
+            $('#ImageFile').change(function () {
+                var imageFile = $(this)[0].files[0];
+                if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg"))
+                {
+                    $('#existimage').hide();
+                    $('#preview').hide();
+                    var fileURL = URL.createObjectURL(imageFile)
+                    $('#myimage').attr('src', fileURL);
+                    $('#preview').show();
+                } else {
+                    toastr.error("Only Image allowed!")
+                }
+            });
+
+        });
+    </script>
+
+}
+@section footerscript
+{
+    @if (TempData["OperationType"] == "success")
+    {
+        <script type="text/javascript">
+        toastr.success("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+    @if (TempData["OperationType"] == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

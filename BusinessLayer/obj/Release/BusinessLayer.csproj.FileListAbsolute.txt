@@ -1,0 +1,163 @@
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\BusinessLayer.dll.config
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\BusinessLayer.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\BusinessLayer.pdb
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\DataAccessLayer.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\EntityFramework.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Models.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Services.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.Mvc.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.Razor.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\DataAccessLayer.pdb
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Models.pdb
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Services.pdb
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\Services.dll.config
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\EntityFramework.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.Mvc.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.Razor.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+E:\Work\Solcioty\trunk\src\BusinessLayer\obj\Release\BusinessLayer.csprojAssemblyReference.cache
+E:\Work\Solcioty\trunk\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+E:\Work\Solcioty\trunk\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+E:\Work\Solcioty\trunk\src\BusinessLayer\obj\Release\BusinessLayer.dll
+E:\Work\Solcioty\trunk\src\BusinessLayer\obj\Release\BusinessLayer.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\BusinessLayer.dll.config
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\BusinessLayer.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\BusinessLayer.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\DataAccessLayer.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\EntityFramework.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Models.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Services.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Helpers.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Mvc.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Razor.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\DataAccessLayer.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Models.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Services.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\Services.dll.config
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\EntityFramework.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Helpers.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Mvc.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.Razor.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+F:\Work\Solcioty\src\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+F:\Work\Solcioty\src\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+F:\Work\Solcioty\src\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+F:\Work\Solcioty\src\src\BusinessLayer\obj\Release\BusinessLayer.dll
+F:\Work\Solcioty\src\src\BusinessLayer\obj\Release\BusinessLayer.pdb
+F:\Work\Solcioty\src\src\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\BusinessLayer.dll.config
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\BusinessLayer.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\BusinessLayer.pdb
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\DataAccessLayer.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\EntityFramework.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Models.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Services.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Helpers.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Mvc.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Razor.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\DataAccessLayer.pdb
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Models.pdb
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Services.pdb
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\Services.dll.config
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\EntityFramework.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Helpers.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Mvc.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.Razor.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\obj\Release\BusinessLayer.dll
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\obj\Release\BusinessLayer.pdb
+F:\Work\Solcioty\Jaimik\src\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+F:\Project\Solcioty\BusinessLayer\bin\Release\BusinessLayer.dll.config
+F:\Project\Solcioty\BusinessLayer\bin\Release\BusinessLayer.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\BusinessLayer.pdb
+F:\Project\Solcioty\BusinessLayer\bin\Release\DataAccessLayer.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\EntityFramework.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\Models.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\Services.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Helpers.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Mvc.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Razor.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+F:\Project\Solcioty\BusinessLayer\bin\Release\DataAccessLayer.pdb
+F:\Project\Solcioty\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+F:\Project\Solcioty\BusinessLayer\bin\Release\Models.pdb
+F:\Project\Solcioty\BusinessLayer\bin\Release\Services.pdb
+F:\Project\Solcioty\BusinessLayer\bin\Release\Services.dll.config
+F:\Project\Solcioty\BusinessLayer\bin\Release\EntityFramework.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Helpers.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Mvc.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.Razor.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+F:\Project\Solcioty\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+F:\Project\Solcioty\BusinessLayer\obj\Release\BusinessLayer.csprojResolveAssemblyReference.cache
+F:\Project\Solcioty\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+F:\Project\Solcioty\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+F:\Project\Solcioty\BusinessLayer\obj\Release\BusinessLayer.dll
+F:\Project\Solcioty\BusinessLayer\obj\Release\BusinessLayer.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\BusinessLayer.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\BusinessLayer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\BusinessLayer.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\DataAccessLayer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\EntityFramework.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Models.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Services.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Helpers.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Mvc.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Razor.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\DataAccessLayer.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Models.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Services.pdb
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\Services.dll.config
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\EntityFramework.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Helpers.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Mvc.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.Razor.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.csproj.AssemblyReference.cache
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.dll
+D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.pdb

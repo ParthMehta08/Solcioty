@@ -1,0 +1,195 @@
+﻿
+@using Models;
+@model ModelBoxerWorkoutBulkSchedule
+<div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="">
+
+                    @using (@Html.BeginForm("ScheduleBoxerWorkout", "Workout", FormMethod.Post))
+                    {
+                        @*@Html.HiddenFor(m => m.WorkoutScheduleId)
+                            @Html.HiddenFor(m => m.WorkoutId)
+                            @Html.HiddenFor(m => m.LocationId)*@
+                        <div class="col-md-6">
+                            <label>Boxer Workout <span class="required">*</span></label>
+                            @Html.DropDownListFor(m => m.BoxerWorkoutId,
+                 new SelectList(Model.BoxerWorkoutList, "ID", "WorkoutName"), new { @class = "form-control workoutlist" }
+                 )
+                        </div>
+                        <div class="col-md-6">
+                            <label>Date <span class="required">*</span></label>
+                            @Html.HiddenFor(m => m.ScheduledDate)
+                            @Html.TextBoxFor(m => m.DisplayDate, new { @class = "form-control" })
+                        </div>
+                        @*<div class="col-md-12">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary">
+                                        @{
+
+                                            var isChecked = Model != null && Model.IsActive ? "checked" : "";
+                                        }
+                                        <input type="checkbox" name="IsActiveString" id="IsActiveString" @isChecked>
+                                        <label class="activechk">Active</label>
+                                    </div>
+                                </div>
+
+                            </div>*@
+
+
+                    }
+                </div>
+                <div>
+                    <div class="row m-0">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary selectallchk">
+                                    <input type="checkbox" name="IsAllSelectString" class="" id="IsAllSelectString">
+                                    <label class="activechk">Select All</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary activeallchk">
+                                    <input type="checkbox" name="IsAllActiveString" class="" id="IsAllActiveString">
+                                    <label class="activechk">Active All</label>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    @foreach (var location in Model.BulkScheduledBoxerWorkout)
+                    {
+                        <div class="row m-0">
+                            <div class="col-md-6">
+                                <div class="form-group m-0">
+                                    <div class="checkbox checkbox-primary m-0">
+                                        <input type="checkbox" name="selectlocation_@location.LocationId" class="chkselect" location-id="@location.LocationId" id="selectlocation_@location.LocationId">
+                                        <label class="activechk">@location.LocationName</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group m-0">
+                                    <div class="checkbox checkbox-primary m-0">
+                                        <input type="checkbox" name="activatelocation_@location.LocationId" class="chkactive" location-id="@location.LocationId" id="activatelocation_@location.LocationId">
+                                        <label class="activechk">@location.LocationName</label>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                    <br />
+
+                    <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="saveworkoutbulkschedule">Submit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            if ($('#BoxerWorkoutId').val() == "0") {
+                $($("[name=BoxerWorkoutId]")[1]).val($($("[name=BoxerWorkoutId]")[1]).find("option:first").val());
+            }
+            $('.selectallchk').click(function () {
+
+                if ($('#IsAllSelectString').prop("checked")) {
+                    $('.chkselect').prop('checked', true);
+                } else {
+                    $('.chkselect').prop('checked', false);
+                }
+            });
+            $('.activeallchk').click(function () {
+
+                if ($('#IsAllActiveString').prop("checked")) {
+                    $('.chkactive').prop('checked', true);
+                } else {
+                    $('.chkactive').prop('checked', false);
+                }
+            });
+
+            $('.activechk').click(function () {
+                var isActiveControl = $(this).prev();
+                if ($(isActiveControl).prop('checked') == true) {
+                    $(isActiveControl).prop('checked', false);
+                } else {
+                    $(isActiveControl).prop('checked', true);
+                }
+            });
+            $('.workoutlist').change(function () {
+                var value = $(this).val();
+                $("#WorkoutId").val(value);
+            });
+            $('#DisplayDate').datepicker({
+                dateFormat: 'mm/dd/yyyy',
+                startDate: new Date(),
+                autoclose: true,
+                onSelect: function (dateText, inst) {
+                    var date = $(this).val();
+                    $("#ScheduledDate").val(date);
+
+                }
+            }).on("changeDate", function (e) {
+                $("#ScheduledDate").val(e.date.toDateString());
+            });
+
+            //if ($('#WorkoutScheduleId').val() > 0) {
+            //    $('.workoutlist').prop('disabled', 'disabled');
+            //    $('#ScheduledDate').val(new Date($('#DisplayDate').val().replace('-', '/').replace('-', '/').replace('-', '/')).toDateString());
+            //} else {
+            //    $('.workoutlist').prop('disabled', '');
+            //    $("#ScheduledDate").val(new Date().toDateString());
+            //}
+            $('.workoutlist').prop('disabled', '');
+            $("#ScheduledDate").val(new Date().toDateString());
+
+            $('#saveworkoutbulkschedule').click(function () {
+                debugger;
+                var requestData = {};
+                requestData.BoxerWorkoutId = parseInt($('#BoxerWorkoutId').val());
+                var BoxerWorkoutId = parseInt($('#BoxerWorkoutId').val());
+                requestData.ScheduledDate = new Date($("#ScheduledDate").val()).toDateString();
+
+                requestData.BulkScheduledSelectedBoxerWorkout = [];
+                requestData.BulkScheduledActiveBoxerWorkout = [];
+                $.each($('.chkselect'), function (i, chk) {
+                   
+                    if ($(chk).prop('checked')) {
+                        var bulkScheduleBoxerWorkout = {};
+                        bulkScheduleBoxerWorkout.BoxerWorkoutId = BoxerWorkoutId;
+                        bulkScheduleBoxerWorkout.LocationId = parseInt($(chk).attr('location-id'));
+                        bulkScheduleBoxerWorkout.IsSelected = true;
+                        requestData.BulkScheduledSelectedBoxerWorkout.push(bulkScheduleBoxerWorkout);
+                    }                   
+                });
+
+                $.each($('.chkactive'), function (i, chk) {                    
+                    if ($(chk).prop('checked')) {
+                        var bulkScheduleBoxerWorkout = {};
+                        bulkScheduleBoxerWorkout.IsActive = true;
+                        bulkScheduleBoxerWorkout.BoxerWorkoutId = BoxerWorkoutId;
+                        bulkScheduleBoxerWorkout.LocationId = parseInt($(chk).attr('location-id'));
+                        requestData.BulkScheduledActiveBoxerWorkout.push(bulkScheduleBoxerWorkout);
+                    }
+                });
+                SaveWorkoutBulkSchedule(requestData);
+            })
+
+        });
+
+
+
+    </script>
+    @section footerscript
+{
+        @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>*@
+    }
+
+
+
+

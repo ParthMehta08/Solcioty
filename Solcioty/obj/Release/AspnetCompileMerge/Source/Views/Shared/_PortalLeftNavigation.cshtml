@@ -1,0 +1,38 @@
+﻿
+@using Models;
+@using Services;
+@model List<ModelTrainingPortalCategory>
+@{
+    var userData = Session["UserData"] as UserData;
+    var trainingPortalPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.TrainingPortal);
+}
+
+<div class="left side-menu">
+    <div class="sidebar-inner slimscrollleft">
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <ul>
+                <li class="menu-title logo">Welcome, @userData.FirstName @userData.LastName</li>
+                @if (trainingPortalPermissionType != Models.Enums.PermissionType.None)
+                {
+                    foreach (var category in Model)
+                    {
+                        <li class="has_sub">
+                            <a href="javascript:void(0);" class="waves-effect"><i class="fa fa-columns"></i><span> @category.Name </span> </a>
+                            <ul class="list-unstyled">
+                                @foreach (var subCategory in category.TrainingPortalSubCategories)
+                                {
+                                    <li><a href="javascript:void(0);" subcategoryid="@subCategory.Id">@subCategory.Name</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }                  
+                }
+            </ul>
+        </div>
+        <!-- Sidebar -->
+        <div class="clearfix"></div>
+    </div>
+    <!-- Sidebar -left -->
+
+</div>

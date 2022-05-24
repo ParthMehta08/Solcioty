@@ -1,0 +1,141 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using Services;
+@using System.Web.Optimization;
+@model ModelTrainingPortalSubCategoryVideo
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Training Portal Sub Category Video";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">@ViewBag.SubCategoryDetail.Name - Video Detail</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+
+
+                @using (@Html.BeginForm("AddPortalSubCategoryVideo", "Training", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.PortalSubCategoryId)
+                    <div class="">
+                        <div class="row p-l-5 p-r-5">
+                            <div class="m-t-10  col-md-12">
+                                <label>Name <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.Name)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <label>Description<span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.Description, new { @class = "form-control", @placeholder = "Description" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.Description)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <label>Video Script<span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.VideoPath, new { @class = "form-control", @placeholder = "Video Script" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.VideoPath)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary">
+                                        @{
+
+                                            var isChecked = Model != null && Model.IsActive ? "checked" : "";
+                                        }
+                                        <input type="checkbox" name="IsPortalSubCategoryVideoActiveString" id="IsPortalSubCategoryVideoActiveString" @isChecked>
+                                        <label class="activechk">Active</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="savetrainingportalsubcategoryvideo">Submit</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+        var savetrainingportalsubcategoryvideo = function () {
+            var requestData = {};
+            requestData.Id = $('#Id').val();
+            requestData.PortalSubCategoryId = $('#PortalSubCategoryId').val();
+            requestData.Description = $('#Description').val();
+            requestData.VideoPath = $('#VideoPath').val();
+            requestData.Name = $('#Name').val();
+            if (requestData.Name == "") {
+                toastr.error("Please enter video name");
+                $('#savetrainingportalsubcategoryvideo').prop('disabled', '');
+                return;
+            }
+            if (requestData.Description == "") {
+                toastr.error("Please enter description");
+                $('#savetrainingportalsubcategoryvideo').prop('disabled', '');
+                return;
+            }
+            if (requestData.VideoPath == "") {
+                toastr.error("Please enter video script");
+                $('#savetrainingportalsubcategoryvideo').prop('disabled', '');
+                return;
+            }
+            requestData.IsActiveString = $('#IsPortalSubCategoryVideoActiveString').prop('checked')==true?"on":"";
+            var isError = false;
+
+             $.ajax({
+                     type: "post",
+                     url: "@Url.Action("AddPortalSubCategoryVideo","Training")", // Location of the service
+                     data: JSON.stringify(requestData), //Data sent to server
+                        contentType: "application/json", // content type sent to server
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                               // toastr.success("Saved successfully!")
+                                window.location.href = "@Url.Action("SubCategorieVideos", "Training",new { id=Model.PortalSubCategoryId })";
+                            }
+                            else {
+                                toastr.error("Something went wrong!")
+                                  if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                                     window.location.href = "@Url.Action("Unauthorized", "Account")"
+                                }
+                                $('#savetrainingportalsubcategoryvideo').prop('disabled', '');
+                            }
+                        }
+                });
+        }
+
+
+        $(document).ready(function () {
+            $('#savetrainingportalsubcategoryvideo').click(function () {
+                $(this).prop('disabled', 'disabled');
+                savetrainingportalsubcategoryvideo();
+            })
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

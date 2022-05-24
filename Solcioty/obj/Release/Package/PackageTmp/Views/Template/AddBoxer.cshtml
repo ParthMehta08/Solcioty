@@ -1,0 +1,256 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using System.Web.Optimization;
+@model ModelBoxerTemplate
+
+@{ Layout = "~/Views/Shared/_Layout.cshtml";
+                ViewBag.Title = "Index"; }
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Boxer Block</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                @if (ViewBag.OperationType == "success")
+                {
+    <div class="alert alert-success alert-dismissible fade in" role="alert">
+        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Success! </strong>@ViewBag.OperationMessage
+    </div>}
+                @if (ViewBag.OperationType == "fail")
+                {
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong>Fail! </strong>@ViewBag.OperationMessage
+    </div>}
+
+                @using (@Html.BeginForm("AddBoxer", "Template", FormMethod.Post))
+                {
+    @Html.HiddenFor(m => m.ID)
+                    <div class="row">
+                        <div class="form-group col-md-6">
+                            <label>Title <span class="required">*</span></label>
+                            @Html.TextBoxFor(m => m.TemplateName, new { @class = "form-control", @placeholder = "Title", @required = "required" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.TemplateName)</span>
+                        </div>
+                        <div class="form-group col-md-6">
+                            @Html.HiddenFor(m => m.NumberOfBasicVideos, new { @class = "form-control", @min = "1", @max = "6" })
+                            @Html.HiddenFor(m => m.NumberOfAlterVideos, new { @class = "form-control", @min = "1", @max = "6" })
+                            <label>Template Type (Column X Rows)</label>
+
+                            <select class="form-control" id="templateType">
+                                <option value="1.1">Single</option>
+                                <option value="1.2">1 X 2</option>
+                                <option value="2.1">2 X 1</option>
+                                <option selected value="2.2">2 X 2</option>
+                                <option value="3.1">3 X 1</option>
+                                <option value="3.3">3 X 2</option>
+                                <option value="4.1">4 X 1</option>
+                                <option value="4.4">4 X 2</option>
+                                <option value="5.1">5 X 1</option>
+                                <option value="5.5">5 X 2</option>
+                                <option value="6.1">6 X 1</option>
+                                <option value="6.6">6 X 2</option>
+                                <option value="7.1">7 X 1</option>
+                                <option value="7.7">7 X 2</option>
+                                <option value="8.1">8 X 1</option>
+                                <option value="8.8">8 X 2</option>
+                                <option value="9.1">9 X 1</option>
+                                <option value="9.9">9 X 2</option>
+                                <option value="10.1">10 X 1</option>
+                                <option value="10.10">10 X 2</option>
+                            </select>
+                        </div>
+                    </div>
+
+                                    <div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label>Primary Text</label>
+                                            @Html.TextBoxFor(m => m.PrimaryText, new { @class = "form-control", @maxlength = "10" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Alternate Text</label>
+                                            @Html.TextBoxFor(m => m.AlternateText, new { @class = "form-control", @maxlength = "10" })
+                                        </div>
+                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>Time Text</label>
+                                                            @Html.TextBoxFor(m => m.TimeText, new { @class = "form-control", @maxlength = "20" })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Block Line One Text</label>
+                                                            @Html.TextBoxFor(m => m.BlockLineOneText, new { @class = "form-control", @maxlength = "10" })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Block Line Two Text</label>
+                                                            @Html.TextBoxFor(m => m.BlockLineTwoText, new { @class = "form-control", @maxlength = "10" })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            <label>Goal Text</label>
+                                                            @Html.TextBoxFor(m => m.GoalText, new { @class = "form-control", @maxlength = "20" })
+                                                        </div>
+                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label>Footer Text</label>
+                                                                            @Html.CheckBoxFor(m => m.IsFooterText, new { @class = "form-control", @maxlength = "40", @style = "height : 15px;margin-top:-22px;" })
+                                                                        </div>
+                                                                    </div>
+                                                                                    <div class="row">
+                                                                                        <div class="form-group col-md-6">
+                                                                                            <label>Footer Text Color</label>
+                                                                                            @Html.TextBoxFor(m => m.FooterTextColor, new { @class = "form-control jscolor {required:false}" })
+                                                                                        </div>
+                                                                                        <div class="form-group col-md-6">
+                                                                                            <label>Footer Text</label>
+                                                                                            @Html.TextBoxFor(m => m.FooterText, new { @class = "form-control", @maxlength = "300" })
+                                                                                            @Html.Label("lbl", "too many characters are input.", new { id = "lblid" })
+                                                                                        </div>
+                                                                                    </div>
+                                                                                                    <div class="row">
+                                                                                                        <div class="form-group col-md-4">
+                                                                                                            <label>Primary Background Color</label>
+                                                                                                            @Html.TextBoxFor(m => m.PrimaryBackgroundColor, new { @class = "form-control  jscolor {required:false}" })
+                                                                                                        </div>
+                                                                                                        <div class="form-group col-md-4">
+                                                                                                            <label>Primary Gradient Color</label>
+                                                                                                            @Html.TextBoxFor(m => m.PrimaryGradientColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                                                        </div>
+                                                                                                        <div class="form-group col-md-4">
+                                                                                                            <label>Primary Font Color</label>
+                                                                                                            @Html.TextBoxFor(m => m.PrimaryColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                                                        </div>
+
+                                                                                                    </div>
+                                                                                                                    <div class="row">
+                                                                                                                        <div class="form-group col-md-4">
+                                                                                                                            <label>Alternate Background Color</label>
+                                                                                                                            @Html.TextBoxFor(m => m.AlternateBackgroundColor, new { @class = "form-control  jscolor {required:false}" })
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group col-md-4">
+                                                                                                                            <label>Alternate Gradient Color</label>
+                                                                                                                            @Html.TextBoxFor(m => m.AlternateGradientColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                                                                        </div>
+                                                                                                                        <div class="form-group col-md-4">
+                                                                                                                            <label>Alternate Font Color</label>
+                                                                                                                            @Html.TextBoxFor(m => m.AlternateColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                                                                        </div>
+
+                                                                                                                    </div> @*<div class="col-sm-6">
+                                                                                                                                            <div class="form-group">
+                                                                                                                                                <label>Number of basic videos</label>
+                                                                                                                                                @Html.HiddenFor(m => m.NumberOfBasicVideos, new { @class = "form-control", @min = "1", @max = "6" })
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+
+                                                                                                                                        <div class="col-sm-6">
+                                                                                                                                            <div class="form-group">
+                                                                                                                                                <label>Number of Alter videos</label>
+                                                                                                                                                @Html.HiddenFor(m => m.NumberOfAlterVideos, new { @class = "form-control", @min = "1", @max = "6" })
+                                                                                                                                            </div>
+                                                                                                                                        </div>*@ @*<div class="form-group">
+                                                                                                                                            <label>Description</label>
+                                                                                                                                            <textarea id="elm1" name="TemplateDescription"></textarea>
+                                                                                                                                        </div>*@
+                                                                                                                                                        <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>}
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">//$(document).ready(function () {
+    //    $('#multiple-checkboxes').multiselect();
+    //});</script>
+@section beforeappjs
+{
+    <script src="~/Content/assets/js/jscolor.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Editor
+            var templateType = $('#NumberOfBasicVideos').val() + '.' + $('#NumberOfAlterVideos').val();
+            if (templateType != null && templateType != undefined && templateType != "0.0") {
+                $('#templateType').val(templateType);
+            } else {
+                $('#NumberOfBasicVideos').val(2);
+                $('#NumberOfAlterVideos').val(2);
+            }
+            $('#templateType').change(function () {
+                var tempType = $(this).val();
+                $('#NumberOfBasicVideos').val(tempType.substring(0,1));
+                $('#NumberOfAlterVideos').val(tempType.substring(2));
+            });
+            $("#lblid").hide();
+            $("#FooterText").keypress(function (e) {
+                var strText = $(this).val();
+                var txtLength = strText.length;
+                if (parseInt(txtLength) >= 40){
+                    $("#lblid").show();
+                    $("#lblid").css('color', 'red');
+                }
+            });
+
+            var el = document.getElementById('FooterText');
+            el.addEventListener('keydown', function (event) {
+                const key = event.key;
+                if (key === "Backspace" || key === "Delete") {
+                var strText = $("#FooterText").val();
+                    var txtLength = strText.length;
+                    if (parseInt(txtLength) <= 41) {
+                        $("#lblid").hide();
+                }
+                }
+            });
+
+
+            @*if ($("#elm1").length > 0) {
+                tinymce.init({
+                    selector: "textarea#elm1",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+                    style_formats: [
+                        { title: 'Bold text', inline: 'b' },
+                        { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                        { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                        { title: 'Example 1', inline: 'span', classes: 'example1' },
+                        { title: 'Example 2', inline: 'span', classes: 'example2' },
+                        { title: 'Table styles' },
+                        { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+                    ]
+                });
+                var tinyMCEContent =@Html.Raw(JsonConvert.SerializeObject(this.Model.TemplateDescription));
+                $('#elm1').html(tinyMCEContent);
+            }*@
+
+        });
+    </script>
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

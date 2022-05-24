@@ -1,0 +1,252 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@model WorkoutDetailModel
+@{
+    ViewBag.Title = "Add Workout Template Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int Rows = 0;
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title" data-id="@Model.WorkoutId">@Model.WorkoutName Blocks</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                @if (ViewBag.OperationType == "success")
+                {
+                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Success! </strong>@ViewBag.OperationMessage
+                    </div>
+                }
+                @if (ViewBag.OperationType == "fail")
+                {
+                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                        <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                        <strong>Fail! </strong>@ViewBag.OperationMessage
+                    </div>
+                }
+
+
+                @if (Model.Templates != null && Model.Templates.Count > 0)
+                {
+                    <div class="container">
+                        <div class="row" id="workouttemplates">
+                            @foreach (var template in Model.Templates)
+                            {
+                                var classname = template.IsSelected ? "workouttemplatetile-selected" : string.Empty;
+                                var deleteclass = template.IsSelected ? "workouttemplatetile-delete" : string.Empty;
+                                <div class="col-md-4 col-sm-6 workouttemplatetile card-box @classname" template-id="@template.TemplateId" data-map="@template.WorkoutTemplateMapId">
+                                    <h6>@template.TemplateName</h6><span class="deleteitem @deleteclass"></span>
+                                    <div class="card-box table-responsive pd-5">
+                                        <h6>Basic</h6>
+                                        <table id="datatable-buttonsBasic" class="table table-striped table-bordered">
+                                            <tbody>
+                                                <tr>
+                                                    @*@for (int i = 0; i < Model.BasicModelTemplateVideoMappingList.Count(); i++)*@
+                                                    @for (int i = 0; i < template.NumberOfBasicVideos; i++)
+                                                    {
+                                                        <td>
+                                                            @if (i < template.BasicVideos.Count && template.BasicVideos[i].VideoId > 0)
+                                                            {
+                                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_basic_@i">
+                                                                    <video autoplay loop class="embed-responsive-item">
+                                                                        <source src="@Url.Action("ShowVideo", "Video", new { ID = template.BasicVideos[i].VideoId })">
+                                                                    </video>
+                                                                </div>
+                                                            }
+                                                        </td>
+                                                    }
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+                                        <h6>Alter</h6>
+                                        <table id="datatable-buttonsAlter" class="table table-striped table-bordered">
+                                            <tbody>
+
+                                                <tr>
+                                                    @*@for (int i = 0; i < Model.AlterModelTemplateVideoMappingList.Count(); i++)*@
+                                                    @for (int i = 0; i < template.NumberOfAlternateVideos; i++)
+                                                    {
+                                                        <td>
+                                                            @if (i < template.AlternateVideos.Count && template.AlternateVideos[i].VideoId > 0)
+                                                            {
+                                                                <div align="center" class="embed-responsive embed-responsive-16by9 oldvideo_Alter_@i">
+                                                                    <video autoplay loop class="embed-responsive-item">
+                                                                        <source src="@Url.Action("ShowVideo", "Video", new { ID = template.AlternateVideos[i].VideoId })">
+                                                                    </video>
+                                                                </div>
+                                                            }
+                                                        </td>
+                                                    }
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Blocks </h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Basic Videos</th>
+                            <th>Alter Videos</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.TemplateList)
+                        {
+                            Rows++;
+                            <tr>
+                                <td>@Rows</td>
+                                <td>@item.TemplateName</td>
+                                <td>
+                                    @item.NumberOfBasicVideos
+                                </td>
+                                <td>
+                                    @item.NumberOfAlterVideos
+                                </td>
+                                <td>
+                                    <a class="btn btn-purple waves-effect waves-light" onclick="SelectTemplate(@item.ID);">Select</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section footerscript
+{
+    <script type="text/javascript">
+
+
+        var SelectTemplate = function (templateId) {
+            debugger;
+        }
+        $(document).ready(function () {
+            $('.workouttemplatetile').click(function () {
+                var selectedTile = $(this);
+                var workoutTemplateMapId = parseInt($(this).attr('data-map'));
+                if ($(event.target).hasClass('workouttemplatetile-delete') == true) {
+                    var requestData = {};
+                    requestData.WorkoutTemplateMapId = workoutTemplateMapId;
+                    $.ajax({
+                        type: 'POST',
+                        url: "@Url.Action("DeleteTemplate","Workout")",
+                        data: JSON.stringify(requestData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (resultData) {
+                            if (resultData.IsSuccess) {
+                                selectedTile.remove();
+                                UpdateDisplayOrders();
+                            } else {
+                                alert("something went wrong!")
+                            }
+                        }
+                    });
+                } else {
+                    var templateId = parseInt($(this).attr('template-id'));
+                    var workoutId = parseInt($('.page-title').attr('data-id'));
+                    var isActive = $(this).hasClass('workouttemplatetile-selected')
+                    var requestData = {};
+                    requestData.WorkoutId = workoutId;
+                    requestData.TemplateId = templateId;
+                    requestData.WorkoutTemplateMapId = workoutTemplateMapId;
+                    requestData.IsActive = !isActive;
+                    $.ajax({
+                        type: 'POST',
+                        url: "@Url.Action("MapTemplate","Workout")",
+                        data: JSON.stringify(requestData),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (resultData) {
+                            if (resultData.IsSuccess) {
+                                selectedTile.attr('data-map', resultData.Id)
+                                selectedTile.toggleClass('workouttemplatetile-selected');
+                                selectedTile.find('.deleteicon').toggleClass('workouttemplatetile-delete');
+                                UpdateDisplayOrders();
+                            } else {
+                                alert("something went wrong!")
+                            }
+                        }
+                    });
+                }
+
+            });
+
+            $("#workouttemplates").sortable({
+                update: function (event, ui) {
+                    UpdateDisplayOrders();
+                }
+            });
+
+            UpdateDisplayOrders = function () {
+                var orderdata = [];
+                $('.workouttemplatetile').each(function (index, tile) {
+                    var datamap = $(tile).attr('data-map');
+                    if (datamap > 0) {
+                        var data = {};
+                        data.WorkoutTemplateMapId = datamap;
+                        data.DisplayOrder = index + 1;
+                        orderdata.push(data);
+                    }
+                })
+                if (orderdata.length > 0) {
+                    $.ajax({
+                        type: 'POST',
+                        url: "@Url.Action("SetDisplayOrder","Workout")",
+                        data: JSON.stringify(orderdata),
+                        contentType: "application/json",
+                        dataType: "json",
+                        success: function (resultData) {
+                            if (resultData.IsSuccess == false) {
+                                alert("something went wrong!")
+                            }
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}

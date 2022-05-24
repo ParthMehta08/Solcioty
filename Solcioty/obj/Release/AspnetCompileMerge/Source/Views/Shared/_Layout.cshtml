@@ -1,0 +1,281 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@{
+    var userData = Session["UserData"] as UserData;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App title -->
+    <title>@ViewBag.Title</title>
+
+
+    @RenderSection("beforeappcss", false)
+    <!-- App css -->
+    @Styles.Render("~/bundle/bootstrapcss")
+    @Styles.Render("~/bundle/corecss")
+    @Styles.Render("~/bundle/components")
+    @Styles.Render("~/bundle/icons")
+    @Styles.Render("~/bundle/pages")
+    @Styles.Render("~/bundle/menu")
+    @Styles.Render("~/bundle/responsive")
+    @Styles.Render("~/bundle/switcherycss")
+    @*@Styles.Render("~/bundle/jqueryui")*@
+    @Styles.Render("~/bundle/toastrcss")
+    @Styles.Render("~/bundle/datepicker")
+    <link href="~/Content/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+
+
+
+</head>
+
+
+<body class="fixed-left">
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <!-- Top Bar Start -->
+        @*<div class="topbar">
+                <div class="topbar-left">
+
+                    @{
+                            var userData = Session["UserData"] as UserData;
+                        }
+                        <a href="javascript:void(0)" class="logo"><span>@userData.FirstName @userData.LastName </span></a>
+                </div>
+
+
+            </div>*@
+        <!-- Top Bar End -->
+        <!-- ========== Left Sidebar Start ========== -->
+        @Html.Partial("_LeftNavigation")
+        @*<ul class="navbar-right">
+                <li class="dropdown">
+                    <a href="" class="dropdown-toggle no-after peers fxw-nw ai-c lh-1" data-toggle="dropdown" aria-expanded="false">
+                        <div class="peer mR-10"><img class="w-2r bdrs-50p" src="https://randomuser.me/api/portraits/men/10.jpg" alt="">
+                        </div>
+                        <div class="peer"><span class="fsz-sm c-grey-900">John Doe</span></div>
+                    </a>
+                </li>
+            </ul>*@
+
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+
+
+                <div class="dropdown pull-right user-icon-top">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @*<li><a href="#">Profile</a></li>*@
+                        @if (userData.RoleCode == RoleTypes.ClientAdmin)
+                        {
+                            <li><a href="@Url.Action("configuration","gym")">Configurations</a></li>
+
+                        }
+                        <li><a href="@Url.Action("changepassword","account")">Change Password</a></li>
+                        <li><a href="@Url.Action("logout","account")">Logout</a></li>
+                    </ul>
+                </div>
+                @if (userData.AdminLocations != null && userData.AdminLocations.Count() > 1)
+                {
+                    <div class="dropdown pull-right user-icon-top m-t-2">
+                        <select class="form-control" id="adminlocations">
+                            @foreach (var item in userData.AdminLocations)
+                            {
+                                if (userData.BranchId == item.ID)
+                                {
+
+                                    <option value="@item.ID" selected>@item.LocationName</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.ID">@item.LocationName</option>
+
+                                }
+                            }
+                        </select>
+                    </div>
+                }
+
+                @RenderBody()
+
+            </div> <!-- content -->
+
+            <footer class="footer text-right">
+                © 2018
+            </footer>
+
+        </div>
+
+
+        <!-- ============================================================== -->
+        <!-- End Right content here -->
+        <!-- ============================================================== -->
+        <!-- Right Sidebar -->
+        <div class="side-bar right-bar">
+            <a href="javascript:void(0);" class="right-bar-toggle">
+                <i class="mdi mdi-close-circle-outline"></i>
+            </a>
+            <h4 class="">Settings</h4>
+            <div class="setting-list nicescroll">
+                <div class="row m-t-20">
+                    <div class="col-xs-8">
+                        <h5 class="m-0">Notifications</h5>
+                        <p class="text-muted m-b-0"><small>Do you need them?</small></p>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small" />
+                    </div>
+                </div>
+
+                <div class="row m-t-20">
+                    <div class="col-xs-8">
+                        <h5 class="m-0">API Access</h5>
+                        <p class="m-b-0 text-muted"><small>Enable/Disable access</small></p>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small" />
+                    </div>
+                </div>
+
+                <div class="row m-t-20">
+                    <div class="col-xs-8">
+                        <h5 class="m-0">Auto Updates</h5>
+                        <p class="m-b-0 text-muted"><small>Keep up to date</small></p>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small" />
+                    </div>
+                </div>
+
+                <div class="row m-t-20">
+                    <div class="col-xs-8">
+                        <h5 class="m-0">Online Status</h5>
+                        <p class="m-b-0 text-muted"><small>Show your status to all</small></p>
+                    </div>
+                    <div class="col-xs-4 text-right">
+                        <input type="checkbox" checked data-plugin="switchery" data-color="#7fc1fc" data-size="small" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- /Right-bar -->
+
+    </div>
+    <!-- END wrapper -->
+    <!-- jQuery  -->
+    @Scripts.Render("~/bundle/jquery")
+    <script src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+    @*@Scripts.Render("~/bundle/jqueryui")*@
+    @Scripts.Render("~/bundle/bootstrapjs")
+    @Scripts.Render("~/bundle/detect")
+    @Scripts.Render("~/bundle/fastclick")
+    @Scripts.Render("~/bundle/blockUI")
+    @Scripts.Render("~/bundle/waves")
+    @Scripts.Render("~/bundle/slimscroll")
+    @Scripts.Render("~/bundle/scrollTo")
+    @Scripts.Render("~/bundle/switcheryjs")
+    @Scripts.Render("~/bundle/toastrjs")
+    @Scripts.Render("~/bundle/datepicker")
+    @Scripts.Render("~/bundle/momentjs")
+    <script>
+
+        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        var resizefunc = [];
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "600",
+            "hideDuration": "2500",
+            "timeOut": "6000",
+            "extendedTimeOut": "2500",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+        $('.activechk').click(function() {
+            var isActiveControl = $(this).prev();
+            if ($(isActiveControl).prop('checked') == true) {
+                $(isActiveControl).prop('checked', false);
+            } else {
+                $(isActiveControl).prop('checked', true);
+            }
+        });
+
+        $('#adminlocations').change(function () {
+           $.ajax({
+                url: '@Url.Action("SetAdminCurrentLocation", "Account")',
+                type: "get",
+               dataType: "JSON",
+               data: {LocationId:$(this).val()},
+                contentType: "application/json",
+               success: function (result) {
+                   debugger;
+                   if (window.location.href.toLowerCase().indexOf("managebranch") > 0) {
+                       window.location.href = "/gym/managebranch/" + $('#adminlocations').val();
+                   } else {
+                       window.location.reload();
+                   }
+                }
+            });
+        });
+
+        var CheckClientLocations = function () {
+             $.ajax({
+                url: '@Url.Action("GetAllBranchByClient", "Gym")',
+                type: "get",
+                dataType: "JSON",
+                contentType: "application/json",
+                 success: function (result) {
+                     if (result.Locations != null && result.Locations.length == 0) {
+                         //$('#scheduleworkout a').css('pointer-events', 'none')
+                         //$('#calendar').parent().hide();\
+                         toastr.error("Please add active location first to schedule a workout.");
+                     } else {
+                         window.location.href = "@Url.Action("Workoutschedule","Workout")";
+                     }
+                }
+            });
+        }
+    </script>
+
+    @RenderSection("beforeappjs", false)
+    <!-- App js -->
+    @Scripts.Render("~/bundle/modernizr")
+    @Scripts.Render("~/bundle/corejs")
+    @Scripts.Render("~/bundle/jqueryapp")
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+    @Scripts.Render("~/bundles/Script-calendar")
+
+    @RenderSection("footerscript", false)
+</body>
+</html>

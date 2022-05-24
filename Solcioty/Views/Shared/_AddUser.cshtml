@@ -1,0 +1,170 @@
+﻿@using Models;
+@model ModelUser
+<div id="@Model.UserId">
+
+    <div class="container userdetail">
+
+        @*<span class="deleteitem gymuser-delete" data-id="@Model.UserId"></span>*@
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="">
+
+                    @using (@Html.BeginForm())
+                    {
+                        @Html.HiddenFor(m => m.UserId)
+                        <div class="col-md-6">
+                            <label>First Name <span class="required">*</span></label>
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.FirstName)</span>
+                        </div>
+                        <div class="col-md-6">
+                            <label>Last Name <span class="required">*</span></label>
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.LastName)</span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Email</label>
+                                @Html.TextBoxFor(m => m.EmailId, new { @class = "form-control useremail", @placeholder = "Email" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Username <span class="required">*</span></label>
+                                @if (Model.UserId > 0)
+                                {
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username", @readonly = "readonly" })
+                                }
+                                else
+                                {
+                                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control username", @placeholder = "Username" })
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-6 password">
+                            <div class="form-group">
+                                <label>Password <span class="required">*</span></label>
+
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Workout Type <span class="required">*</span></label>                                
+                                @Html.DropDownListFor(m => m.WorkOutType, (IEnumerable<SelectListItem>)ViewBag.WorkoutBag, "Select Type", new { @class = "form-control" ,@name = "WorkOutType" })
+
+                            </div>
+                        </div>
+                        @*<div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Phone <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control numericOnly", @placeholder = "Phone" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address Line1 <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.AddressLine1, new { @class = "form-control", @placeholder = "Address Line1" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label>Address Line2</label>
+                                    @Html.TextBoxFor(m => m.AddressLine2, new { @class = "form-control", @placeholder = "Address Line2" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label>State <span class="required">*</span></label>
+                                @Html.DropDownListFor(m => m.StateCode,
+                                                 new SelectList(Model.StateList, "Abbreviation", "StateName"), new { @class = "form-control statelist" }
+                                             )
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>City <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.CityName, new { @class = "form-control", @placeholder = "City" })
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label>Zipcode <span class="required">*</span></label>
+                                    @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control numericOnly", @placeholder = "Zip code" })
+                                </div>
+                            </div>*@
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary">
+                                    @{
+
+                                        var isChecked = Model.IsActive ? "checked" : "";
+                                    }
+                                    <input type="checkbox" name="IsActiveString" id="IsActiveString" @isChecked>
+                                    <label class="activechk">Active</label>
+                                </div>
+                            </div>
+
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+    //$(document).ready(function () {
+    //    $('#multiple-checkboxes').multiselect();
+    //});
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.activechk').click(function () {
+                var isActiveControl = $(this).prev();
+                if ($(isActiveControl).prop('checked') == true) {
+                    $(isActiveControl).prop('checked', false);
+                } else {
+
+                    $(isActiveControl).prop('checked', true);
+                }
+            });
+
+            @*$('.statelist').change(function () {
+                var statecontrol = $(this);
+                var stateId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetAllCityByStateCode","location")", // Location of the service
+                    data: { stateCode: stateId }, //Data sent to server
+                    contentType: "application/json", // content type sent to server
+                    success: function (result) {
+                        var citycontrol = statecontrol.closest('.citylist')
+                        if (result.Data != null && result.Data.length > 0) {
+                            var htmlString = '';
+                            $.each(result.Data, function (index, city) {
+                                htmlString += '<option label=' + city.CityName + ' value=' + city.ID + ' >' + city.CityName + '</option>';
+                            });
+
+                            $(citycontrol).html(htmlString);
+                        } else {
+                            $(citycontrol).html('');
+                        }
+                    }
+                });
+            })*@
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

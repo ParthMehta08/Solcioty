@@ -1,0 +1,529 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model ModelBranch
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Manage Branch";
+    int Rows = 0;
+
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/responsivedatatablecss")
+}
+
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Branch);
+
+    var userPermissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.User);
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box b-0">
+                @Html.HiddenFor(m => m.GymId)
+                @Html.HiddenFor(m => m.Id)
+                <h4 class="page-title">Client: @Model.GymName</h4>
+                <div class="clearfix"></div>
+            </div>
+            <div class="page-title-box">
+                <h4 class="page-title">Branch: @Model.BranchName</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                @if (userPermissionType == Models.Enums.PermissionType.ReadWrite)
+                {
+                    <a data-toggle="modal" href="javascript:void(0);" class="btn btn-purple waves-effect waves-light pull-right m-0 adduser" onclick="AddUser()" data-target="#userTable">New User</a>
+                    if (userData.RoleCode == RoleTypes.ClientAdmin)
+                    {
+                        <a data-toggle="modal" href="javascript:void(0);" class="btn btn-purple waves-effect waves-light pull-right m-r-10 existinguser" onclick="ExistingUser()">Assign Existing User</a>
+                    }
+
+                }
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Role</th>
+                            <th style="width:15%;">User</th>
+                            <th>Username</th>
+                            @*<th style="width:15%;">Address Line1</th>
+                            <th style="width:15%;">Address Line2</th>
+                            <th>Phone</th>
+                            <th>City</th>
+                            <th>Zipcode</th>*@
+                            @if (userPermissionType == Models.Enums.PermissionType.ReadWrite)
+                            {
+                                <th>Action</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.UserList)
+                        {
+                            if (item.UserId == userData.UserId) { continue; }
+                            Rows++;
+                            <tr>
+                                <td>@Rows</td>
+                                <td>@item.RoleName</td>
+                                <td>@item.FirstName @item.LastName</td>
+                                <td>@item.Username</td>
+                                @*<td>
+                                    @item.AddressLine1
+                                </td>
+                                <td>
+                                    @item.AddressLine2
+                                </td>
+                                <td>
+                                    @item.Phone
+                                </td>
+                                <td>
+                                    @item.CityName
+                                </td>
+
+                                <td>
+                                    @item.ZipCode
+                                </td>*@
+
+                                @if (userPermissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <td>
+                                        @if (userData.RoleCode == RoleTypes.ClientAdmin || ( userData.RoleCode == RoleTypes.BranchAdmin && item.RoleName != "Location Admin"))
+                                        {
+
+                                            <a class="btn editicon waves-effect waves-light m-t-5" onclick="GetUserDetail(this,@Model.Id,@item.UserId);">Edit</a>
+                                            <a class="btn deleteicon waves-effect waves-light m-t-5" onclick="deleteRow(this,@Model.Id,@item.UserId);">Delete</a>
+                                        }
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@if (userPermissionType == Models.Enums.PermissionType.ReadWrite)
+{
+
+    <div class="modal fade" id="userTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    User Detail
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="display:inline-table;">
+                    <div class="col-sm-12">
+                        <label>Role</label>
+                        <select class="form-control" id="RoleId">
+                            @if (userData.RoleCode == RoleTypes.ClientAdmin)
+                            {
+
+                                <option value="3">Location Admin</option>
+                            }
+                            <option value="4" selected>Location Instructor</option>
+                        </select>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="card-box table-responsive userarea">
+                        </div>
+
+                        <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="saveuser">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="modal fade" id="existingUserTable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    User Detail
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="display:inline-table;">
+                    <div class="col-sm-12">
+                        <label>Branch Admin</label>
+                        <select class="form-control" id="adminList"></select>
+                    </div>
+                    <div class="col-sm-12 m-t-10">
+                        <button type="button" class="btn btn-purple waves-effect waves-light" id="mapuser">Submit</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+}
+@section beforeappjs
+{
+    @Scripts.Render("~/bundle/responsivedatatablejs");
+}
+@section footerscript
+{
+
+    <script type="text/javascript">
+        var userDetail;
+        $(document).ready(function () {
+            $(".dt-buttons").css("display", "none");
+            $('.close').on('click', function () {
+                userDetail = null;
+            })
+
+        });
+
+        var AddUser = function () {
+
+            $.ajax({
+                url: "@Url.Action("Add","User")",
+                type: "get",
+                dataType: "html",
+                success: function (data) {
+                    $('.userarea').html(data);
+                    var formData = $('form')[0];
+                    $('.userarea').find('.deleteicon').hide();
+                    $('.activechk').click(function () {
+                        var isActiveControl = $(this).prev();
+                        if ($(isActiveControl).prop('checked') == true) {
+                            $(isActiveControl).prop('checked', false);
+                        } else {
+
+                            $(isActiveControl).prop('checked', true);
+                        }
+                    });
+                    $('.useremail').change(function () {
+                        var useremail = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUserExist", "User")", // Location of the service
+                            data: { EmailId: useremail }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#saveuser').prop('disabled', 'disabled');
+                                    toastr.error("Email already exist!");
+                                } else {
+                                    $('#saveuser').prop('disabled', '');
+                                }
+                            }
+                        });
+
+                    });
+                    $('.username').change(function () {
+                        var username = $(this).val();
+                        $.ajax({
+                            type: "get",
+                            url: "@Url.Action("CheckUsernameExist", "User")", // Location of the service
+                            data: { Username: username }, //Data sent to server
+                            contentType: 'application/json; charset=utf-8',
+                            dataType: 'json',
+                            success: function (data) {
+                                if (data.IsExist == true) {
+                                    $('#saveuser').prop('disabled', 'disabled');
+                                    toastr.error("Username already exist!");
+                                } else {
+                                    $('#saveuser').prop('disabled', '');
+                                }
+                            }
+                        });
+
+                    })
+                     @*$('.statelist').change(function () {
+                        var statecontrol = $(this);
+                        var stateId = $(this).val();
+                        $.ajax({
+                            type: "GET",
+                            url: "@Url.Action("GetAllCityByStateCode","location")", // Location of the service
+                            data: { stateCode: stateId }, //Data sent to server
+                            contentType: "application/json", // content type sent to server
+                            success: function (result) {
+                                var citycontrol = statecontrol.closest('.citylist')
+                                if (result.Data != null && result.Data.length > 0) {
+                                    var htmlString = '';
+                                    $.each(result.Data, function (index, city) {
+                                        htmlString += '<option label=' + city.CityName + ' value=' + city.ID + ' >' + city.CityName + '</option>';
+                                    });
+
+                                    statecontrol.closest('.userdetail').find('#CityId').html(htmlString);
+                                    formData.CityId.value = userDetail.CityId;
+                                } else {
+                                    statecontrol.closest('.userdetail').find('#CityId').html('');
+                                }
+                            }
+                        });
+                    });*@
+                    if (userDetail != null || userDetail != undefined) {
+                        $('#Username').prop('readonly', 'readonly');
+                        formData.FirstName.value = userDetail.FirstName ;
+                        formData.LastName.value = userDetail.LastName ;
+                        formData.EmailId.value = userDetail.EmailId;
+                        formData.Username.value = userDetail.Username;
+                        formData.Password.value = userDetail.Password;
+                        //formData.Phone.value = userDetail.Phone;
+                        //formData.StateCode.value = userDetail.StateCode;
+                        //$('.statelist').trigger('change');
+                        //formData.AddressLine1.value = userDetail.AddressLine1 ;
+                        //formData.AddressLine2.value = userDetail.AddressLine2;
+                        //formData.ZipCode.value = userDetail.ZipCode;
+                        //formData.CityName.value = userDetail.CityName;
+                        $('#IsActiveString')[0].checked = userDetail.IsActiveString == "on" ? true : false;
+                        $('#RoleId').val(userDetail.RoleId);
+                        $('#UserId').val(userDetail.UserId);
+                        //if (userDetail.UserId > 0) {
+                        //    $('.password').hide();
+                        //}
+                    }
+                    $(".numericOnly").keypress(function (e) {
+                        if (e.keyCode == 9) {
+                            return true;
+                        }
+                        //if (String.fromCharCode(e.keyCode).match(/[^0-9]/g)) return false;
+                        var regex = new RegExp("^[0-9\b]+$");
+                        var charString = String.fromCharCode(!e.charCode ? e.which : e.charCode);
+                        if (regex.test(charString)) {
+                            return true;
+                        }
+                        else {
+                            e.preventDefault();
+                            return false;
+                        }
+                    });
+
+                },
+                error: function () {
+                }
+            });
+
+        }
+
+        var ExistingUser = function () {
+            var gymId = $('#GymId').val();
+            $.ajax({
+            type: "get",
+            url: "@Url.Action("GetClientBranchAdmin","Gym")", // Location of the service
+            data: { ClientId: gymId }, //Data sent to server
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (data) {
+                if (data.Data != null) {
+                    if (data.Data.length == 0) {
+                       // $('.close').trigger('click');
+                        toastr.error("Existing user not found!");
+                        return;
+                    }
+                    $('#existingUserTable').modal();
+                    var htmlString = '';
+                    $.each(data.Data, function (i, admin) {
+                        htmlString += '<option value=' + admin.Id + '>' + admin.Name + '</option>';
+                    })
+                    $('#adminList').html(htmlString);
+                } else {
+                    if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                        window.location.href = "@Url.Action("Unauthorized", "Account")"
+                    }
+                    toastr.error("Something went wrong!");
+                }
+            }
+            });
+        }
+
+        $('#saveuser').click(function () {
+
+            var requestData = {};
+            requestData.Id = $('#Id').val();
+            requestData.GymId = $('#GymId').val();
+            var userData = {};
+            var formData = $('form')[0];
+            userData.FirstName = formData.FirstName.value;
+            userData.LastName = formData.LastName.value;
+            userData.EmailId = formData.EmailId.value;
+            userData.Password = formData.Password.value;
+            userData.Username = formData.Username.value;
+           // userData.Phone = formData.Phone.value;
+            //userData.CityId = parseInt(formData.CityId.value);
+            //userData.StateCode =formData.StateCode.value;
+            //userData.CityName = formData.CityName.value;
+            //userData.AddressLine1 = formData.AddressLine1.value;
+            //userData.AddressLine2 = formData.AddressLine2.value;
+            //userData.ZipCode = formData.ZipCode.value;
+            userData.IsActiveString = $('#IsActiveString').prop('checked') == true ? "on" : "";
+            userData.RoleId = $('#RoleId').val();
+            userData.UserId = $('#UserId').val();
+            requestData.UserList = [];
+            requestData.UserList.push(userData);
+
+            if (userData.UserId == 0) {
+                $.ajax({
+                    type: "get",
+                    url: "@Url.Action("CheckUserExist", "User")", // Location of the service
+                    data: { EmailId: userData.EmailId }, //Data sent to server
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsExist == true) {
+
+                            toastr.error("Email already exist!");
+                        } else {
+                            if (!emailReg.test(userData.EmailId)) {
+                                toastr.error("Enter valid email id!");
+                                return;
+                            }
+                            if (userData.FirstName == "" || userData.LastName == "" || userData.Username == "" || userData.Password == "") {
+                                toastr.error("Please fill out all required details!");
+                                return;
+                            }
+
+                            $('#saveuser').prop('disabled', 'disabled');
+                            saveuser(requestData);
+                        }
+                    }
+                });
+
+                $.ajax({
+                    type: "get",
+                    url: "@Url.Action("CheckUsernameExist", "User")", // Location of the service
+                    data: { Username: userData.Username }, //Data sent to server
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    success: function (data) {
+                        if (data.IsExist == true) {
+
+                            toastr.error("Username already exist!");
+                        } else {
+                            if (userData.FirstName == "" || userData.LastName == "" || userData.Password =="" || userData.Password == "") {
+                                toastr.error("Please fill out all required details!");
+                                return;
+                            }
+                            $('#saveuser').prop('disabled', 'disabled');
+                            saveuser(requestData);
+                        }
+                    }
+                });
+  
+            } else {
+                $('#saveuser').prop('disabled', 'disabled');
+                saveuser(requestData);
+            }
+
+
+        })
+        $('#mapuser').click(function () {
+            var requestData = {};
+            requestData.Id = $('#Id').val();
+            requestData.GymId = $('#GymId').val();
+            var userData = {};
+            userData.RoleId = 3;
+            userData.UserId = $('#adminList').val();
+            requestData.UserList = [];
+            requestData.UserList.push(userData);
+            saveuser(requestData);
+
+        });
+        var saveuser = function (requestData) {
+            $.ajax({
+                type: "post",
+                url: "@Url.Action("SaveBranchUserDetail","Gym")", // Location of the service
+                data: JSON.stringify(requestData), //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data) {
+                    if (data.IsSuccess == true) {
+                        $('.close').trigger('click');
+                        //toastr.success("User saved successfully!");
+                        window.location.reload();
+                    } else {
+                         if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                        }
+                        $('#saveuser').prop('disabled', '');
+                        toastr.error("Something went wrong!");
+                    }
+                }
+            });
+        }
+
+        TableManageButtons.init();
+
+        function deleteRow(r, branchId, userId) {
+            var result = confirm("Are you sure want to delete?");
+            if (result) {
+                 $.ajax({
+                type: "GET",
+                url: "/gym/DeleteBranchUser", // Location of the service
+                data: { BranchId: branchId,UserId:userId }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data) {
+                    if (data.IsSuccess == true) {
+                        var i = r.parentNode.parentNode.rowIndex;
+                        document.getElementById("datatable-buttons").deleteRow(i);
+                        toastr.success("User deleted successfully!");
+                    } else {
+                        if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                        }
+                        toastr.error("Something went wrong!");
+                    }
+                }
+            });
+            }
+
+        }
+
+        function GetUserDetail(r, branchId, userId) {
+            $.ajax({
+                type: "GET",
+                url: "/gym/GetBranchUserDetail", // Location of the service
+                data: { BranchId: branchId, UserId: userId }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data) {
+                    if (data.IsSuccess == true && data.Data != null) {
+                        userDetail = data.Data;
+                        $('.adduser').trigger('click');
+                    } else {
+                          if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                          }
+                        toastr.error("something went wrong!");
+                    }
+                }
+            });
+        }
+
+
+    </script>
+    @if (TempData["OperationType"] == "success")
+    {
+        <script type="text/javascript">
+        toastr.success("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+    @if (TempData["OperationType"] == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+}
+
+
+
+

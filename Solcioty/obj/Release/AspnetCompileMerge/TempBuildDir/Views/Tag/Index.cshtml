@@ -1,0 +1,146 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model ModelFitnessTag
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Tags";
+    int Rows = 0;
+    string isChecked = "";
+}
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Tags);
+}
+@section beforeappcss{
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/responsivedatatablecss")
+}
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Tags </h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->                 @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+    {
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="card-box">
+
+                    @using (@Html.BeginForm("Index", "Tag", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(m => m.ID)
+                        <div class="form-group">
+                            <label>Tag <span class="required">*</span></label>
+                            @Html.TextBoxFor(m => m.TagName, new { @class = "form-control", @placeholder = "Name", @required = "required" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.TagName)</span>
+                        </div>
+                        <div class="checkbox checkbox-primary">
+                            @{
+
+                                isChecked = Model.IsActive ? "checked" : "";
+                            }
+                            <input type="checkbox" name="IsActiveString" @isChecked>
+                            <label class="activechk">Active</label>
+                        </div>
+                        <button type="submit" class="btn btn-purple waves-effect waves-light">Submit</button>
+                    }
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Active</th>
+                            @if (userData.RoleCode == RoleTypes.SuperAdmin)
+                            {
+
+                                <th>Client</th>
+                            }
+                            @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                            {
+                                <th width="20%">Action</th>
+                            }
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model.FitnessTagList)
+                        {
+                            Rows++;
+                            <tr>
+                                <td>@Rows</td>
+                                <td>@item.TagName</td>
+
+                                <td>@(item.IsActive == true ? "Yes" : "No" )</td>
+                                @if (userData.RoleCode == RoleTypes.SuperAdmin)
+                                {
+
+                                    <td>@item.ClientName</td>
+                                }
+                                @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <td>
+                                        <a href="~/Tag/Edit/@item.ID" class="btn editicon waves-effect waves-light">Edit</a>
+                                        <a href="~/Tag/Delete/@item.ID" class="btn deleteicon waves-effect waves-light" onclick="return confirm('Are you sure you want to delete?');">Delete</a>
+                                    </td>
+                                }
+
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section beforeappjs
+{
+
+    @Scripts.Render("~/bundle/responsivedatatablejs")
+}
+@section footerscript
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".dt-buttons").css("display", "none");
+
+
+        });
+        TableManageButtons.init();
+
+    </script>
+    @if (ViewBag.OperationType == "success")
+    {
+        <script type="text/javascript">
+        toastr.success("@ViewBag.OperationMessage.ToString()")
+        </script>
+    }
+    @if (ViewBag.OperationType == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@ViewBag.OperationMessage.ToString()")
+        </script>
+    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+

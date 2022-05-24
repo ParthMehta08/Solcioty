@@ -1,0 +1,507 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model ModelTrainingPortal
+@{
+    var userData = Session["UserData"] as UserData;
+    
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="assets/images/favicon.ico">
+    <!-- App title -->
+    <title>@ViewBag.Title</title>
+
+
+    <!-- App css -->
+    @Styles.Render("~/bundle/bootstrapcss")
+    @Styles.Render("~/bundle/corecss")
+    @Styles.Render("~/bundle/components")
+    @Styles.Render("~/bundle/icons")
+    @Styles.Render("~/bundle/pages")
+    @Styles.Render("~/bundle/menu")
+    @Styles.Render("~/bundle/responsive")
+    @Styles.Render("~/bundle/switcherycss")
+    @*@Styles.Render("~/bundle/jqueryui")*@
+    @Styles.Render("~/bundle/toastrcss")
+    @Styles.Render("~/bundle/datepicker")
+    <link href="~/Content/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <!-- HTML5 Shiv and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        /* width */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        /* Track */
+        ::-webkit-scrollbar-track {
+            box-shadow: inset 0 0 5px #72706f;
+            border-radius: 10px;
+            background: #72706f;
+        }
+
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            padding:5px;
+            background: #d9d8d6;
+            border-radius: 15px;
+        }
+
+            /* Handle on hover */
+            ::-webkit-scrollbar-thumb:hover {
+                background: #d9d8d6;
+            }
+        .side-menu {
+            width:285px;
+        }
+        #sidebar-menu > ul > li > a {
+            padding: 22px 20px;
+        }
+        .menu-title {
+            text-align: left;
+            padding: 22px 20px !important;
+        }
+        #sidebar-menu > ul > li > a {
+            color: #f3f3f3;
+            text-align: left;
+        }
+        #sidebar-menu ul ul a {
+        text-align:left;
+        }
+        .content-page {
+            margin-left: 285px;
+            margin-top: 0px;
+            overflow: hidden;
+        }
+        .categoryheader {
+            background: #36404e;
+            height: 85px;
+            margin-left: 5px;
+            margin-right: 0px;
+            
+        }
+        .categoryname {
+            color: #f3f3f3;
+            font-size: 2.5em;
+        }
+        .content-page .content {
+          padding:0px;
+        }
+        .page-title-box .page-title {
+            padding: 0px;
+            margin-bottom: 0;
+            float: left;
+            margin-left: 10px;
+        }
+        .page-title-box {
+            border: none;
+            margin-left: 25px;
+            padding: 0px;
+            margin-bottom: 0px !important;
+            padding-bottom: 0px !important;
+            margin-top:-9px !important;
+        }
+        .user-icon-top {
+          margin-top:21px;
+        }
+        .subcategoryname {
+            padding: 25px 25px 25px 25px;
+            font-size: 2.0em;
+            margin-bottom: 0;
+            margin-top: 0;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-align:left;
+        }
+        .subcategoryvideo {
+            border-radius: 0px;
+            border: solid 1px #e6e6e5;
+            background: #f3f3f1;
+            margin: 0px 25px;
+            height: 75vh;
+        }
+            .subcategoryvideo::-webkit-scrollbar {
+                display: none;
+            } 
+        .videobox {
+            margin: 30px 0px 20px 0px;
+            border: solid 1px #f3f3f1;
+            /*min-height: 300px;*/
+        }
+        .video {
+            text-align:center;
+            height: 56%;
+        }
+            .video video {
+                width:99.6%;
+                padding:0 0.2%;
+                height:100% !important;
+            }
+            .video iframe {
+                border:none !important;
+                width: 100%;
+                padding: 0%;
+                height: 100% !important;
+            }
+            .video .video-js {
+                height: 285px;
+                width: 100%;
+            }
+        .videotitle {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #fff;
+            background: #ce3c32;
+            margin: auto;
+            text-transform: uppercase;
+            vertical-align: middle;
+            min-height: 50px;
+            line-height: 50px;
+            text-align: center;
+        }
+        .videodesc {
+            background: #fff;
+            margin: auto;
+            text-transform: capitalize;
+            vertical-align: middle;
+            min-height: 70px;
+            line-height: 70px;
+            text-align: center;
+            color: #525151;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        .footer {
+            left:0px;
+            position: relative;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+
+<body class="fixed-left">
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <div class="left side-menu">
+            <div class="sidebar-inner slimscrollleft">
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <ul>
+                        <li>
+                            <div class="logo1 sidebarlogo">
+                                @if (ViewBag.ClientAlternateLogo != null && !string.IsNullOrEmpty(ViewBag.ClientAlternateLogo))
+                                {
+                                    <a href="#"><img src="~/ClientLogos/@ViewBag.ClientAlternateLogo" class="img-responsive"></a>
+                                }
+                                else if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+                                {
+                                    <a href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+                                }
+                                else
+                                {
+                                    <a href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+                                }
+                                <label class="closeicon" />
+                            </div>
+                        </li>
+                        <li class="menu-title logo">Welcome, @userData.FirstName @userData.LastName</li>
+                        @if (Model.TrainingPortalCategories!=null && Model.TrainingPortalCategories.Count>0)
+                        {
+                            foreach (var category in Model.TrainingPortalCategories)
+                            {
+                                <li class="has_sub">
+                                    <a href="javascript:void(0);" class="waves-effect">@Html.Raw(category.IconString)<span id="cat_@category.Id"> @category.Name </span> </a>
+                                    <ul class="list-unstyled">
+                                        @foreach (var subCategory in category.TrainingPortalSubCategories)
+                                        {
+                                            <li><a href="javascript:void(0);" class="subcategory subcat_@subCategory.Id cat_@category.Id" subcategoryid="@subCategory.Id" categoryid="@category.Id">@subCategory.Name</a></li>
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <!-- Sidebar -->
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <div class="content-page">
+            <!-- Start content -->
+            <div class="content">
+                <div class="mobileheader headerborder">
+                    <div class="logo1">
+                        @*@if (ViewBag.ClientAlternateLogo != null && !string.IsNullOrEmpty(ViewBag.ClientAlternateLogo))
+                        {
+                            <a class="logoimage" href="#"><img src="~/ClientLogos/@ViewBag.ClientAlternateLogo" class="img-responsive"></a>
+                        }
+                        else*@ 
+                        @if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+                        {
+                            <a class="logoimage" href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+                        }
+                        else
+                        {
+                            <a class="logoimage" href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+                        }
+                        <a class="signout" href="@Url.Action("logout","account")">SignOut</a>
+                    </div>
+                    @*<div class="mobilelogout">
+                        <a href="@Url.Action("logout","account")">Logout</a>
+                    </div>*@
+                </div>
+                <div class="dropdown pull-right user-icon-top deskheader">
+                    <button class="openbtn">☰</button>
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+
+                        <i class="fa fa-user"></i>
+                    </button>
+                    <ul class="dropdown-menu">
+                        @*<li><a href="#">Profile</a></li>*@
+                        @if (userData.RoleCode == RoleTypes.ClientAdmin)
+                        {
+                            <li><a href="@Url.Action("configuration","gym")">Configurations</a></li>
+
+                        }
+                        <li><a href="@Url.Action("changepassword","account")">Change Password</a></li>
+                        <li><a href="@Url.Action("logout","account")">Logout</a></li>
+                    </ul>
+                </div>
+
+
+                <div class="container p-0 p-r-0">
+                    <div class="row categoryheader deskheader">
+                        <div class="col-xs-12">
+                            <div class="page-title-box">
+                                <h4 class="page-title categoryname"></h4>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mobileheader mobileheaderbg">
+                        <button class="openbtn">☰</button>
+                        <label>Search:</label>
+                        <input type="text" placeholder="" id="searchvideo" />
+                    </div>
+                    <div class="row ">
+
+                        <div class="col-sm-12">
+                            <div class="col-sm-6">
+                                <h4 class="page-title subcategoryname deskheader"></h4>
+                            </div>
+                           
+                            <div class="deskheader col-sm-6">
+                                <label class="searchlabel">Search:</label>
+                                <input type="text" placeholder="" id="searchvideodesk" />
+                            </div>
+                            
+                            <div class="clearfix"></div>
+                            <div class="card-box table-responsive subcategoryvideo">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div> <!-- content -->
+
+            <footer class="footer text-right">
+                © 2018
+            </footer>
+
+        </div>
+
+
+    </div>
+    <!-- END wrapper -->
+    <!-- jQuery  -->
+    @Scripts.Render("~/bundle/jquery")
+    <script src="~/Content/plugins/jquery-ui/jquery-ui.min.js"></script>
+    @*@Scripts.Render("~/bundle/jqueryui")*@
+    @Scripts.Render("~/bundle/bootstrapjs")
+    @Scripts.Render("~/bundle/detect")
+    @Scripts.Render("~/bundle/fastclick")
+    @Scripts.Render("~/bundle/blockUI")
+    @Scripts.Render("~/bundle/waves")
+    @Scripts.Render("~/bundle/slimscroll")
+    @Scripts.Render("~/bundle/scrollTo")
+    @Scripts.Render("~/bundle/switcheryjs")
+    @Scripts.Render("~/bundle/toastrjs")
+    @Scripts.Render("~/bundle/datepicker")
+    @Scripts.Render("~/bundle/momentjs")
+    <script>
+
+        var emailReg = /^([\w-\.]+@@([\w-]+\.)+[\w-]{2,4})?$/;
+        var resizefunc = [];
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "600",
+            "hideDuration": "2500",
+            "timeOut": "6000",
+            "extendedTimeOut": "2500",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+
+        $(document).ready(function () {
+            $('.signout').click(function () {
+                window.location.href='@Url.Action("logout", "account")';
+            })
+            $('.subcategory').click(function () {
+                var subCatId = $(this).attr('subcategoryid');
+                GetSubCategoryVideos(subCatId)
+            });
+            $('.subcategory:first').closest('ul').show();
+            $('.subcategory:first').trigger('click')
+        })
+        function GetSubCategoryVideos(subCategoryId) {
+            $('.subcategoryvideo').html('');
+            var categoryId = $('.subcat_' + subCategoryId).attr('categoryid');
+            $('.categoryname').html($('#cat_' + categoryId).text());
+            $('.subcategoryname').html($('.subcat_' + subCategoryId).text());
+            $.ajax({
+                type: "GET",
+                url: "/training/GetSubCategoryVideoList", // Location of the service
+                data: { Id: subCategoryId }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data) {
+                    if (data.Data != null) {
+                        var htmlString = "";
+                        $.each(data.Data, function (i, subCategoryVideo) {
+                            htmlString += '<div class="col-sm-6 col-md-4 subcategoryvideobox">';
+                            htmlString += '<div class="videobox">';
+                            htmlString += '<div class="video">' + subCategoryVideo.VideoPath+'</div>';
+                            htmlString += '<div class="videotitle" style="background-color:#@ViewBag.VideoTitleBackgroundColor !important;color:#@ViewBag.VideoTitleColor !important">' + subCategoryVideo.Name +'</div>';
+                            htmlString += '<div class="videodesc">' + subCategoryVideo.Description +'</div>';
+                            htmlString += '</div>';
+                            htmlString += '</div>';
+                        });
+                        if (htmlString != "") {
+                            $('.subcategoryvideo').html(htmlString);
+
+                            setTimeout(function () {
+                                // Create array for player IDs
+                                var players = [];
+                                try {
+                                    if (videojs != undefined) {
+                                        // +++  Determine the available player IDs +++//
+                                        for (x = 0; x < Object.keys(videojs.players).length; x++) {
+                                            // Assign the player name to setPlayer
+                                            var setPlayer = Object.keys(videojs.players)[x];
+                                            // Define the ready event for the player
+                                            videojs.getPlayer(setPlayer).ready(function () {
+                                                // Assign this player to a variable
+                                                myPlayer = this;
+                                                // Assign and event listener for play event
+                                                myPlayer.on("play", onPlay);
+                                                // Push the player to the players array
+                                                players.push(myPlayer);
+                                            });
+                                        }
+
+                                        // +++ Handle all players' play event +++//
+                                        function onPlay(e) {
+                                            // Determine which player the event is coming from
+                                            var id = e.target.id;
+                                            // Loop through the array of players
+                                            for (var i = 0; i < players.length; i++) {
+                                                // Get the player(s) that did not trigger the play event
+                                                if (players[i].id() != id) {
+                                                    // Pause the other player(s)
+                                                    videojs.getPlayer(players[i].id()).pause();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                catch (e) {
+                                }
+                                
+                            }, 2000)
+
+                            $('#searchvideo').change(function () {
+                                var searchText = $(this).val();
+                                searchVideos(searchText);
+                            });
+                            $('#searchvideo').on("keyup", function () {
+                                var searchText = $(this).val();
+                                searchVideos(searchText);
+                            });
+
+                            $('#searchvideodesk').change(function () {
+                                var searchText = $(this).val();
+                                searchVideos(searchText);
+                            });
+                            $('#searchvideodesk').on("keyup",function () {
+                                var searchText = $(this).val();
+                                searchVideos(searchText);
+                            });
+                        }
+                    } else {
+                        toastr.error("something went wrong!");
+                    }
+                }
+            });
+        }
+        var searchVideos = function (searchText) {
+            $('.subcategoryvideobox').hide();
+            $.each($('.videotitle'), function (index, videotitle) {
+                if ($(videotitle).html().toLowerCase().indexOf(searchText.toLowerCase()) > -1) {
+                    $(videotitle).closest('.subcategoryvideobox').show();
+                }
+            });
+        }
+        $('.openbtn').click(function () {
+            $('.side-menu').toggleClass("left");
+            $('.waves-effect').unbind().click(function () {
+                $(this).next().toggle();
+            });
+            $('.subcategory').click(function () {
+                $(this).closest('ul').toggle();
+                $('.side-menu').addClass("left");
+            });
+            $('.closeicon').click(function () {
+                $('.side-menu').addClass("left");
+            });
+        })
+
+    </script>
+
+    <!-- App js -->
+    @Scripts.Render("~/bundle/modernizr")
+    @Scripts.Render("~/bundle/corejs")
+    @Scripts.Render("~/bundle/jqueryapp")
+
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/qtip2/3.0.3/jquery.qtip.min.js"></script>
+
+    <!-- Full Calendar -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js"></script>
+    @Scripts.Render("~/bundles/Script-calendar")
+
+</body>
+</html>

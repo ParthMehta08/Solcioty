@@ -1,0 +1,239 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using System.Web.Optimization;
+@model  ModelWorkout
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Index";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">Workout</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+                @*@if (TempData["OperationType"] == "success")
+                    {
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
+                            <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Success! </strong>@TempData["OperationMessage"]
+                        </div>
+                    }
+                    @if (TempData["OperationType"] == "fail")
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Fail! </strong>@TempData["OperationMessage"]
+                        </div>
+                    }*@
+
+                @using (@Html.BeginForm("Add", "Workout", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                {
+                    @Html.HiddenFor(m => m.ID)
+                    <div class="form-group">
+                        <label>Title <span class="required">*</span></label>
+                        @Html.TextBoxFor(m => m.WorkoutName, new { @class = "form-control", @placeholder = "Title", @required = "required" })
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.WorkoutName)</span>
+                    </div>
+
+
+
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="elm1" name="WorkoutDescription"></textarea>
+                    </div>
+                    <div>
+                        <label>Workout PDF</label>
+                        <input type="file" name="WorkoutPDF" accept="application/pdf" id="WorkoutPDF" />
+                        <div class="filepreview">
+
+                            <label>Uploaded File:</label>
+                            <label class="filename">@Model.PDFName</label>
+                        </div>
+                    </div>
+                    <div class="form-group p-b-10">
+                        <div class="col-md-6 p-l-0">
+                            <label>Front Cover Image <span class="required">*</span></label>
+                            @Html.DropDownListFor(m => m.FrontCoverImageId, Model.ImageList, new { @class = "form-control", @placeholder = "Title", @required = "required" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.FrontCoverImageId)</span>
+                            @if (!string.IsNullOrEmpty(Model.FrontCoverImageName))
+                            {
+                                <img class="embed-responsive-item img-responsive m-t-10 frontcover" src="@Url.Content("/AllImages/"+Model.FrontCoverImageId+"/"+Model.FrontCoverImageName)">
+                            }
+                        </div>
+                        <div class="col-md-6 p-l-0">
+                            <label>Back Cover Image<span class="required">*</span></label>
+                            @Html.DropDownListFor(m => m.BackCoverImageId, Model.ImageList, new { @class = "form-control", @placeholder = "Title", @required = "required" })
+                            <span style="color:red">@Html.ValidationMessageFor(m => m.BackCoverImageId)</span>
+                            @if (!string.IsNullOrEmpty(Model.BackCoverImageName))
+                            {
+                                <img class="embed-responsive-item img-responsive m-t-10 backcover" src="@Url.Content("/AllImages/"+Model.BackCoverImageId+"/"+Model.BackCoverImageName)">
+                            }
+
+                        </div>
+
+
+                    </div>
+                    <button type="submit" class="btn btn-purple waves-effect waves-light m-t-10" onclick="javascript: setTagsAndWorkout();">Submit</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+@section beforeappjs
+{
+    @Scripts.Render("~/bundle/jqueryfiler");
+    <script src="~/Content/assets/js/typeahead.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //Editor
+            if ($('.filename').text() != "") {
+                $('.filepreview').show();
+            } else {
+                $('.filepreview').hide();
+            }
+            if ($("#elm1").length > 0) {
+                tinymce.init({
+                    selector: "textarea#elm1",
+                    theme: "modern",
+                    height: 300,
+                    plugins: [
+                        "advlist autolink link image lists charmap print preview hr anchor pagebreak spellchecker",
+                        "searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking",
+                        "save table contextmenu directionality emoticons template paste textcolor"
+                    ],
+                    toolbar: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | print preview media fullpage | forecolor backcolor emoticons",
+                    style_formats: [
+                        { title: 'Bold text', inline: 'b' },
+                        { title: 'Red text', inline: 'span', styles: { color: '#ff0000' } },
+                        { title: 'Red header', block: 'h1', styles: { color: '#ff0000' } },
+                        { title: 'Example 1', inline: 'span', classes: 'example1' },
+                        { title: 'Example 2', inline: 'span', classes: 'example2' },
+                        { title: 'Table styles' },
+                        { title: 'Table row 1', selector: 'tr', classes: 'tablerow1' }
+                    ]
+                });
+                var tinyMCEContent =@Html.Raw(JsonConvert.SerializeObject(this.Model.WorkoutDescription));
+                $('#elm1').html(tinyMCEContent);
+            }
+
+
+
+            $('#WorkoutPDF').filer({
+                limit: 1,
+                maxSize: null,
+                extensions: null,
+                changeInput: '<div class="jFiler-input-dragDrop">' +
+                    '<div class="jFiler-input-inner">' +
+
+                    '<div class="jFiler-input-icon">' +
+                    '<i class="icon-jfi-cloud-up-o "></i>' +
+                    '</div>' +
+
+                    '<div class="fa fa-upload display-block">' +
+                    '<h3>Drag & Drop files here</h3>' +
+                    '<span style="display:inline-block;margin: 15px 0">or</span>' +
+                    '</div>' +
+
+                    '<a class="jFiler-input-choose-btn blue">Browse Files</a> </div </div>',
+                showThumbs: false,
+                appendTo: null,
+                theme: "default",
+                dragDrop: {
+                    dragEnter: function () {
+                    },
+                    dragLeave: null,
+                    drop: function (file) {
+                        var pdfFile = file[0];
+                        if (pdfFile != undefined && pdfFile.type != "application/pdf") {
+                            toastr.error("Only PDF file allowed!")
+                        } else {
+                            $(".filename").text(pdfFile.name);
+
+                            $('.filepreview').show();
+                        }
+                    },
+                },
+                addMore: false,
+                clipBoardPaste: true,
+                excludeName: null,
+                beforeShow: function () { return true },
+                onSelect: function () { },
+                afterShow: function () { },
+                onRemove: function () { },
+                onEmpty: function () { },
+                captions: {
+                    button: "Choose Files",
+                    feedback: "Choose files To Upload",
+                    feedback2: "files were chosen",
+                    drop: "Drop file here to Upload",
+                    removeConfirmation: "Are you sure you want to remove this file?",
+                    errors: {
+                        filesLimit: "Only {{fi-limit}} files are allowed to be uploaded.",
+                        filesType: "Only PDF is allowed to be uploaded.",
+                        filesSize: "{{fi-name}} is too large! Please upload file up to {{fi-maxSize}} MB.",
+                        filesSizeAll: "Files you've choosed are too large! Please upload files up to {{fi-maxSize}} MB."
+                    }
+                }
+            });
+
+            $('#WorkoutPDF').change(function () {
+                var pdfFile = $(this)[0].files[0];
+                if (pdfFile != undefined && pdfFile.type != "application/pdf") {
+                    toastr.error("Only PDF file allowed!")
+                } else {
+
+                    $(".filename").text(pdfFile.name);
+                    $('.filepreview').show();
+                }
+            });
+
+
+            $('#BackCoverImageId').change(function () {
+                SetCoverImage($(this).val(), "back");
+            });
+            $('#FrontCoverImageId').change(function () {
+                SetCoverImage($(this).val(), "front");
+            });
+
+            function SetCoverImage(id, type)
+            {
+                $.ajax({
+                    type: "GET",
+                    url:  "@Url.Action("ShowImage", "Image")?ID=" + id, // Location of the service
+                    contentType: "application/json", // content type sent to server
+                    success: function (data) {
+                        if (type == "back") {
+                            $('.backcover').attr('src', data);
+                        }
+                        if (type == "front") {
+
+                            $('.frontcover').attr('src', data);
+                        }
+                    }
+                });
+            }
+
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}

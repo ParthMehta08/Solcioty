@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SolciotyFitnessModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SolciotyFitnessEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="SolciotyFitnessModel.City" />
+    <EntitySet Name="FitnessTags" EntityType="SolciotyFitnessModel.FitnessTag" />
+    <EntitySet Name="GymLocationMappings" EntityType="SolciotyFitnessModel.GymLocationMapping" />
+    <EntitySet Name="GymUserMappings" EntityType="SolciotyFitnessModel.GymUserMapping" />
+    <EntitySet Name="Locations" EntityType="SolciotyFitnessModel.Location" />
+    <EntitySet Name="LocationSelectedWorkouts" EntityType="SolciotyFitnessModel.LocationSelectedWorkout" />
+    <EntitySet Name="MailLogs" EntityType="SolciotyFitnessModel.MailLog" />
+    <EntitySet Name="MailTemplates" EntityType="SolciotyFitnessModel.MailTemplate" />
+    <EntitySet Name="Permissions" EntityType="SolciotyFitnessModel.Permission" />
+    <EntitySet Name="Roles" EntityType="SolciotyFitnessModel.Role" />
+    <EntitySet Name="RolePermissionMappings" EntityType="SolciotyFitnessModel.RolePermissionMapping" />
+    <EntitySet Name="States" EntityType="SolciotyFitnessModel.State" />
+    <EntitySet Name="TemplateVideoMappings" EntityType="SolciotyFitnessModel.TemplateVideoMapping" />
+    <EntitySet Name="Users" EntityType="SolciotyFitnessModel.User" />
+    <EntitySet Name="UserLocationMappings" EntityType="SolciotyFitnessModel.UserLocationMapping" />
+    <EntitySet Name="UserRoleMappings" EntityType="SolciotyFitnessModel.UserRoleMapping" />
+    <EntitySet Name="Videos" EntityType="SolciotyFitnessModel.Video" />
+    <EntitySet Name="VideoTagMappings" EntityType="SolciotyFitnessModel.VideoTagMapping" />
+    <EntitySet Name="WorkoutMasters" EntityType="SolciotyFitnessModel.WorkoutMaster" />
+    <EntitySet Name="WorkoutSchedules" EntityType="SolciotyFitnessModel.WorkoutSchedule" />
+    <EntitySet Name="WorkoutTemplateMappings" EntityType="SolciotyFitnessModel.WorkoutTemplateMapping" />
+    <AssociationSet Name="FK_City_State" Association="SolciotyFitnessModel.FK_City_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="City" EntitySet="Cities" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Location_City" Association="SolciotyFitnessModel.FK_Location_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Location" EntitySet="Locations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTagMapping_FitnessTag" Association="SolciotyFitnessModel.FK_VideoTagMapping_FitnessTag">
+      <End Role="FitnessTag" EntitySet="FitnessTags" />
+      <End Role="VideoTagMapping" EntitySet="VideoTagMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymLocationMapping_Location" Association="SolciotyFitnessModel.FK_GymLocationMapping_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="GymLocationMapping" EntitySet="GymLocationMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymUserMapping_User" Association="SolciotyFitnessModel.FK_GymUserMapping_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="GymUserMapping" EntitySet="GymUserMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLocationMapping_Location" Association="SolciotyFitnessModel.FK_UserLocationMapping_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="UserLocationMapping" EntitySet="UserLocationMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutSchedule_Location" Association="SolciotyFitnessModel.FK_WorkoutSchedule_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LocationSelectedWorkouts_WorkoutSchedule" Association="SolciotyFitnessModel.FK_LocationSelectedWorkouts_WorkoutSchedule">
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedules" />
+      <End Role="LocationSelectedWorkout" EntitySet="LocationSelectedWorkouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_Role" Association="SolciotyFitnessModel.FK_UserRoleMapping_Role">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemplateVideoMapping_Video" Association="SolciotyFitnessModel.FK_TemplateVideoMapping_Video">
+      <End Role="Video" EntitySet="Videos" />
+      <End Role="TemplateVideoMapping" EntitySet="TemplateVideoMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserLocationMapping_User" Association="SolciotyFitnessModel.FK_UserLocationMapping_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserLocationMapping" EntitySet="UserLocationMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserRoleMapping_User" Association="SolciotyFitnessModel.FK_UserRoleMapping_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_User" Association="SolciotyFitnessModel.FK_Video_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_User1" Association="SolciotyFitnessModel.FK_Video_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VideoTagMapping_Video" Association="SolciotyFitnessModel.FK_VideoTagMapping_Video">
+      <End Role="Video" EntitySet="Videos" />
+      <End Role="VideoTagMapping" EntitySet="VideoTagMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutSchedule_WorkoutMaster" Association="SolciotyFitnessModel.FK_WorkoutSchedule_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMasters" />
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedules" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutTemplateMapping_WorkoutMaster" Association="SolciotyFitnessModel.FK_WorkoutTemplateMapping_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMasters" />
+      <End Role="WorkoutTemplateMapping" EntitySet="WorkoutTemplateMappings" />
+    </AssociationSet>
+    <EntitySet Name="ImageGalleries" EntityType="SolciotyFitnessModel.ImageGallery" />
+    <EntitySet Name="ImageTagMappings" EntityType="SolciotyFitnessModel.ImageTagMapping" />
+    <AssociationSet Name="FK_ImageTagMapping_FitnessTag" Association="SolciotyFitnessModel.FK_ImageTagMapping_FitnessTag">
+      <End Role="FitnessTag" EntitySet="FitnessTags" />
+      <End Role="ImageTagMapping" EntitySet="ImageTagMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageGalary_BackCoverImageId" Association="SolciotyFitnessModel.FK_ImageGalary_BackCoverImageId">
+      <End Role="ImageGallery" EntitySet="ImageGalleries" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageGalary_FrontCoverImageId" Association="SolciotyFitnessModel.FK_ImageGalary_FrontCoverImageId">
+      <End Role="ImageGallery" EntitySet="ImageGalleries" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMasters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ImageTagMapping_ImageGallery" Association="SolciotyFitnessModel.FK_ImageTagMapping_ImageGallery">
+      <End Role="ImageGallery" EntitySet="ImageGalleries" />
+      <End Role="ImageTagMapping" EntitySet="ImageTagMappings" />
+    </AssociationSet>
+    <EntitySet Name="Templates" EntityType="SolciotyFitnessModel.Template" />
+    <AssociationSet Name="FK_Template_User" Association="SolciotyFitnessModel.FK_Template_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Template" EntitySet="Templates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Template_User1" Association="SolciotyFitnessModel.FK_Template_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Template" EntitySet="Templates" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TemplateVideoMapping_Template" Association="SolciotyFitnessModel.FK_TemplateVideoMapping_Template">
+      <End Role="Template" EntitySet="Templates" />
+      <End Role="TemplateVideoMapping" EntitySet="TemplateVideoMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutTemplateMapping_Template" Association="SolciotyFitnessModel.FK_WorkoutTemplateMapping_Template">
+      <End Role="Template" EntitySet="Templates" />
+      <End Role="WorkoutTemplateMapping" EntitySet="WorkoutTemplateMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_City" Association="SolciotyFitnessModel.FK_User_City">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <EntitySet Name="TrainingPortals" EntityType="SolciotyFitnessModel.TrainingPortal" />
+    <EntitySet Name="TrainingPortalSubCategoryVideos" EntityType="SolciotyFitnessModel.TrainingPortalSubCategoryVideo" />
+    <EntitySet Name="TrainingPortalCategories" EntityType="SolciotyFitnessModel.TrainingPortalCategory" />
+    <AssociationSet Name="FK_TrainingPortalCategories_TrainingPortal" Association="SolciotyFitnessModel.FK_TrainingPortalCategories_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortals" />
+      <End Role="TrainingPortalCategory" EntitySet="TrainingPortalCategories" />
+    </AssociationSet>
+    <EntitySet Name="TrainingPortalSubCategories" EntityType="SolciotyFitnessModel.TrainingPortalSubCategory" />
+    <AssociationSet Name="FK_TrainingPortalSubCategories_TrainingPortal" Association="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortals" />
+      <End Role="TrainingPortalSubCategory" EntitySet="TrainingPortalSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalSubCategories_TrainingPortalCategories" Association="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortalCategories">
+      <End Role="TrainingPortalCategory" EntitySet="TrainingPortalCategories" />
+      <End Role="TrainingPortalSubCategory" EntitySet="TrainingPortalSubCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories" Association="SolciotyFitnessModel.FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories">
+      <End Role="TrainingPortalSubCategory" EntitySet="TrainingPortalSubCategories" />
+      <End Role="TrainingPortalSubCategoryVideo" EntitySet="TrainingPortalSubCategoryVideos" />
+    </AssociationSet>
+    <EntitySet Name="TrainingPortalUserMappings" EntityType="SolciotyFitnessModel.TrainingPortalUserMapping" />
+    <AssociationSet Name="FK_TrainingPortalUserMapping_TrainingPortal" Association="SolciotyFitnessModel.FK_TrainingPortalUserMapping_TrainingPortal">
+      <End Role="TrainingPortal" EntitySet="TrainingPortals" />
+      <End Role="TrainingPortalUserMapping" EntitySet="TrainingPortalUserMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrainingPortalUserMapping_User" Association="SolciotyFitnessModel.FK_TrainingPortalUserMapping_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TrainingPortalUserMapping" EntitySet="TrainingPortalUserMappings" />
+    </AssociationSet>
+    <EntitySet Name="WorkoutUserMappings" EntityType="SolciotyFitnessModel.WorkoutUserMapping" />
+    <AssociationSet Name="FK_WorkoutUserMapping_Location" Association="SolciotyFitnessModel.FK_WorkoutUserMapping_Location">
+      <End Role="Location" EntitySet="Locations" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUserMapping_User" Association="SolciotyFitnessModel.FK_WorkoutUserMapping_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutUserMapping_WorkoutMaster" Association="SolciotyFitnessModel.FK_WorkoutUserMapping_WorkoutMaster">
+      <End Role="WorkoutMaster" EntitySet="WorkoutMasters" />
+      <End Role="WorkoutUserMapping" EntitySet="WorkoutUserMappings" />
+    </AssociationSet>
+    <EntitySet Name="Gyms" EntityType="SolciotyFitnessModel.Gym" />
+    <AssociationSet Name="FK_GymLocationMapping_Gym" Association="SolciotyFitnessModel.FK_GymLocationMapping_Gym">
+      <End Role="Gym" EntitySet="Gyms" />
+      <End Role="GymLocationMapping" EntitySet="GymLocationMappings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GymUserMapping_Gym" Association="SolciotyFitnessModel.FK_GymUserMapping_Gym">
+      <End Role="Gym" EntitySet="Gyms" />
+      <End Role="GymUserMapping" EntitySet="GymUserMappings" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="StateCode" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="State" Relationship="SolciotyFitnessModel.FK_City_State" FromRole="City" ToRole="State" />
+    <NavigationProperty Name="Locations" Relationship="SolciotyFitnessModel.FK_Location_City" FromRole="City" ToRole="Location" />
+    <NavigationProperty Name="Users" Relationship="SolciotyFitnessModel.FK_User_City" FromRole="City" ToRole="User" />
+  </EntityType>
+  <EntityType Name="FitnessTag">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TagName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="VideoTagMappings" Relationship="SolciotyFitnessModel.FK_VideoTagMapping_FitnessTag" FromRole="FitnessTag" ToRole="VideoTagMapping" />
+    <NavigationProperty Name="ImageTagMappings" Relationship="SolciotyFitnessModel.FK_ImageTagMapping_FitnessTag" FromRole="FitnessTag" ToRole="ImageTagMapping" />
+  </EntityType>
+  <EntityType Name="GymLocationMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GymId" Type="Int32" />
+    <Property Name="LocationId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Location" Relationship="SolciotyFitnessModel.FK_GymLocationMapping_Location" FromRole="GymLocationMapping" ToRole="Location" />
+    <NavigationProperty Name="Gym" Relationship="SolciotyFitnessModel.FK_GymLocationMapping_Gym" FromRole="GymLocationMapping" ToRole="Gym" />
+  </EntityType>
+  <EntityType Name="GymUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GymId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_GymUserMapping_User" FromRole="GymUserMapping" ToRole="User" />
+    <NavigationProperty Name="Gym" Relationship="SolciotyFitnessModel.FK_GymUserMapping_Gym" FromRole="GymUserMapping" ToRole="Gym" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="City" Relationship="SolciotyFitnessModel.FK_Location_City" FromRole="Location" ToRole="City" />
+    <NavigationProperty Name="GymLocationMappings" Relationship="SolciotyFitnessModel.FK_GymLocationMapping_Location" FromRole="Location" ToRole="GymLocationMapping" />
+    <NavigationProperty Name="UserLocationMappings" Relationship="SolciotyFitnessModel.FK_UserLocationMapping_Location" FromRole="Location" ToRole="UserLocationMapping" />
+    <NavigationProperty Name="WorkoutSchedules" Relationship="SolciotyFitnessModel.FK_WorkoutSchedule_Location" FromRole="Location" ToRole="WorkoutSchedule" />
+    <NavigationProperty Name="WorkoutUserMappings" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_Location" FromRole="Location" ToRole="WorkoutUserMapping" />
+  </EntityType>
+  <EntityType Name="LocationSelectedWorkout">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkoutScheduleID" Type="Int32" Nullable="false" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" />
+    <Property Name="Token" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="WorkoutSchedule" Relationship="SolciotyFitnessModel.FK_LocationSelectedWorkouts_WorkoutSchedule" FromRole="LocationSelectedWorkout" ToRole="WorkoutSchedule" />
+  </EntityType>
+  <EntityType Name="MailLog">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MailTo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Subject" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MessageBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MailTemplate">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Subject" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MessageBody" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MailUDC" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Permission">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PermissionCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PermissionName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UDC" Type="String" Nullable="false" MaxLength="6" FixedLength="false" Unicode="false" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="UserRoleMappings" Relationship="SolciotyFitnessModel.FK_UserRoleMapping_Role" FromRole="Role" ToRole="UserRoleMapping" />
+  </EntityType>
+  <EntityType Name="RolePermissionMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PermissionCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PermissionType" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Abbreviation" />
+    </Key>
+    <Property Name="StateName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Abbreviation" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Cities" Relationship="SolciotyFitnessModel.FK_City_State" FromRole="State" ToRole="City" />
+  </EntityType>
+  <EntityType Name="TemplateVideoMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TemplateID" Type="Int32" Nullable="false" />
+    <Property Name="VideoID" Type="Int32" Nullable="false" />
+    <Property Name="VideoPosition" Type="Int32" />
+    <Property Name="IsBasicVideo" Type="Boolean" Nullable="false" />
+    <Property Name="IsAlterVideo" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Note" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Video" Relationship="SolciotyFitnessModel.FK_TemplateVideoMapping_Video" FromRole="TemplateVideoMapping" ToRole="Video" />
+    <NavigationProperty Name="Template" Relationship="SolciotyFitnessModel.FK_TemplateVideoMapping_Template" FromRole="TemplateVideoMapping" ToRole="Template" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserPassword" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SaltKey" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CityId" Type="Int32" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="PasswordResetToken" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="TokenExpiryDate" Type="DateTime" Precision="3" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GymUserMappings" Relationship="SolciotyFitnessModel.FK_GymUserMapping_User" FromRole="User" ToRole="GymUserMapping" />
+    <NavigationProperty Name="UserLocationMappings" Relationship="SolciotyFitnessModel.FK_UserLocationMapping_User" FromRole="User" ToRole="UserLocationMapping" />
+    <NavigationProperty Name="UserRoleMappings" Relationship="SolciotyFitnessModel.FK_UserRoleMapping_User" FromRole="User" ToRole="UserRoleMapping" />
+    <NavigationProperty Name="Videos" Relationship="SolciotyFitnessModel.FK_Video_User" FromRole="User" ToRole="Video" />
+    <NavigationProperty Name="Videos1" Relationship="SolciotyFitnessModel.FK_Video_User1" FromRole="User" ToRole="Video" />
+    <NavigationProperty Name="Templates" Relationship="SolciotyFitnessModel.FK_Template_User" FromRole="User" ToRole="Template" />
+    <NavigationProperty Name="Templates1" Relationship="SolciotyFitnessModel.FK_Template_User1" FromRole="User" ToRole="Template" />
+    <NavigationProperty Name="City" Relationship="SolciotyFitnessModel.FK_User_City" FromRole="User" ToRole="City" />
+    <NavigationProperty Name="TrainingPortalUserMappings" Relationship="SolciotyFitnessModel.FK_TrainingPortalUserMapping_User" FromRole="User" ToRole="TrainingPortalUserMapping" />
+    <NavigationProperty Name="WorkoutUserMappings" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_User" FromRole="User" ToRole="WorkoutUserMapping" />
+  </EntityType>
+  <EntityType Name="UserLocationMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="LocationID" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Location" Relationship="SolciotyFitnessModel.FK_UserLocationMapping_Location" FromRole="UserLocationMapping" ToRole="Location" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_UserLocationMapping_User" FromRole="UserLocationMapping" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserRoleMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Role" Relationship="SolciotyFitnessModel.FK_UserRoleMapping_Role" FromRole="UserRoleMapping" ToRole="Role" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_UserRoleMapping_User" FromRole="UserRoleMapping" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VideoTitle" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="VideoAttachment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="ContentType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SmallDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="FullDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CounterOfUseInWorkout" Type="Int32" />
+    <Property Name="RepsCount" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="TemplateVideoMappings" Relationship="SolciotyFitnessModel.FK_TemplateVideoMapping_Video" FromRole="Video" ToRole="TemplateVideoMapping" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_Video_User" FromRole="Video" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="SolciotyFitnessModel.FK_Video_User1" FromRole="Video" ToRole="User" />
+    <NavigationProperty Name="VideoTagMappings" Relationship="SolciotyFitnessModel.FK_VideoTagMapping_Video" FromRole="Video" ToRole="VideoTagMapping" />
+  </EntityType>
+  <EntityType Name="VideoTagMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VideoID" Type="Int32" Nullable="false" />
+    <Property Name="TagID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FitnessTag" Relationship="SolciotyFitnessModel.FK_VideoTagMapping_FitnessTag" FromRole="VideoTagMapping" ToRole="FitnessTag" />
+    <NavigationProperty Name="Video" Relationship="SolciotyFitnessModel.FK_VideoTagMapping_Video" FromRole="VideoTagMapping" ToRole="Video" />
+  </EntityType>
+  <EntityType Name="WorkoutMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="WorkoutDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsReadyForLocations" Type="Boolean" />
+    <Property Name="WorkoutName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PDFName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="FrontCoverImageId" Type="Int32" />
+    <Property Name="BackCoverImageId" Type="Int32" />
+    <NavigationProperty Name="WorkoutSchedules" Relationship="SolciotyFitnessModel.FK_WorkoutSchedule_WorkoutMaster" FromRole="WorkoutMaster" ToRole="WorkoutSchedule" />
+    <NavigationProperty Name="WorkoutTemplateMappings" Relationship="SolciotyFitnessModel.FK_WorkoutTemplateMapping_WorkoutMaster" FromRole="WorkoutMaster" ToRole="WorkoutTemplateMapping" />
+    <NavigationProperty Name="ImageGallery" Relationship="SolciotyFitnessModel.FK_ImageGalary_BackCoverImageId" FromRole="WorkoutMaster" ToRole="ImageGallery" />
+    <NavigationProperty Name="ImageGallery1" Relationship="SolciotyFitnessModel.FK_ImageGalary_FrontCoverImageId" FromRole="WorkoutMaster" ToRole="ImageGallery" />
+    <NavigationProperty Name="WorkoutUserMappings" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_WorkoutMaster" FromRole="WorkoutMaster" ToRole="WorkoutUserMapping" />
+  </EntityType>
+  <EntityType Name="WorkoutSchedule">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkoutMasterID" Type="Int32" Nullable="false" />
+    <Property Name="ScheduledDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LocationId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <NavigationProperty Name="Location" Relationship="SolciotyFitnessModel.FK_WorkoutSchedule_Location" FromRole="WorkoutSchedule" ToRole="Location" />
+    <NavigationProperty Name="LocationSelectedWorkouts" Relationship="SolciotyFitnessModel.FK_LocationSelectedWorkouts_WorkoutSchedule" FromRole="WorkoutSchedule" ToRole="LocationSelectedWorkout" />
+    <NavigationProperty Name="WorkoutMaster" Relationship="SolciotyFitnessModel.FK_WorkoutSchedule_WorkoutMaster" FromRole="WorkoutSchedule" ToRole="WorkoutMaster" />
+  </EntityType>
+  <EntityType Name="WorkoutTemplateMapping">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="WorkoutMasterID" Type="Int32" Nullable="false" />
+    <Property Name="TemplateID" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="WorkoutMaster" Relationship="SolciotyFitnessModel.FK_WorkoutTemplateMapping_WorkoutMaster" FromRole="WorkoutTemplateMapping" ToRole="WorkoutMaster" />
+    <NavigationProperty Name="Template" Relationship="SolciotyFitnessModel.FK_WorkoutTemplateMapping_Template" FromRole="WorkoutTemplateMapping" ToRole="Template" />
+  </EntityType>
+  <Association Name="FK_City_State">
+    <End Type="SolciotyFitnessModel.State" Role="State" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.City" Role="City" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Abbreviation" />
+      </Principal>
+      <Dependent Role="City">
+        <PropertyRef Name="StateCode" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Location_City">
+    <End Type="SolciotyFitnessModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.Location" Role="Location" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Location">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTagMapping_FitnessTag">
+    <End Type="SolciotyFitnessModel.FitnessTag" Role="FitnessTag" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.VideoTagMapping" Role="VideoTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FitnessTag">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VideoTagMapping">
+        <PropertyRef Name="TagID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymLocationMapping_Location">
+    <End Type="SolciotyFitnessModel.Location" Role="Location" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.GymLocationMapping" Role="GymLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GymLocationMapping">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymUserMapping_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.GymUserMapping" Role="GymUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="GymUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLocationMapping_Location">
+    <End Type="SolciotyFitnessModel.Location" Role="Location" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.UserLocationMapping" Role="UserLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLocationMapping">
+        <PropertyRef Name="LocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutSchedule_Location">
+    <End Type="SolciotyFitnessModel.Location" Role="Location" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutSchedule" Role="WorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutSchedule">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LocationSelectedWorkouts_WorkoutSchedule">
+    <End Type="SolciotyFitnessModel.WorkoutSchedule" Role="WorkoutSchedule" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.LocationSelectedWorkout" Role="LocationSelectedWorkout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutSchedule">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="LocationSelectedWorkout">
+        <PropertyRef Name="WorkoutScheduleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_Role">
+    <End Type="SolciotyFitnessModel.Role" Role="Role" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.UserRoleMapping" Role="UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemplateVideoMapping_Video">
+    <End Type="SolciotyFitnessModel.Video" Role="Video" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TemplateVideoMapping" Role="TemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TemplateVideoMapping">
+        <PropertyRef Name="VideoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserLocationMapping_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.UserLocationMapping" Role="UserLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserLocationMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserRoleMapping_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.UserRoleMapping" Role="UserRoleMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserRoleMapping">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_User1">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VideoTagMapping_Video">
+    <End Type="SolciotyFitnessModel.Video" Role="Video" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.VideoTagMapping" Role="VideoTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Video">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="VideoTagMapping">
+        <PropertyRef Name="VideoID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutSchedule_WorkoutMaster">
+    <End Type="SolciotyFitnessModel.WorkoutMaster" Role="WorkoutMaster" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutSchedule" Role="WorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutSchedule">
+        <PropertyRef Name="WorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutTemplateMapping_WorkoutMaster">
+    <End Type="SolciotyFitnessModel.WorkoutMaster" Role="WorkoutMaster" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutTemplateMapping" Role="WorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutTemplateMapping">
+        <PropertyRef Name="WorkoutMasterID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ImageGallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageTitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ImageFile" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="WorkoutMasters" Relationship="SolciotyFitnessModel.FK_ImageGalary_BackCoverImageId" FromRole="ImageGallery" ToRole="WorkoutMaster" />
+    <NavigationProperty Name="WorkoutMasters1" Relationship="SolciotyFitnessModel.FK_ImageGalary_FrontCoverImageId" FromRole="ImageGallery" ToRole="WorkoutMaster" />
+    <NavigationProperty Name="ImageTagMappings" Relationship="SolciotyFitnessModel.FK_ImageTagMapping_ImageGallery" FromRole="ImageGallery" ToRole="ImageTagMapping" />
+  </EntityType>
+  <EntityType Name="ImageTagMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImageId" Type="Int32" Nullable="false" />
+    <Property Name="TagId" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="FitnessTag" Relationship="SolciotyFitnessModel.FK_ImageTagMapping_FitnessTag" FromRole="ImageTagMapping" ToRole="FitnessTag" />
+    <NavigationProperty Name="ImageGallery" Relationship="SolciotyFitnessModel.FK_ImageTagMapping_ImageGallery" FromRole="ImageTagMapping" ToRole="ImageGallery" />
+  </EntityType>
+  <Association Name="FK_ImageTagMapping_FitnessTag">
+    <End Type="SolciotyFitnessModel.FitnessTag" Role="FitnessTag" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.ImageTagMapping" Role="ImageTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FitnessTag">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ImageTagMapping">
+        <PropertyRef Name="TagId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageGalary_BackCoverImageId">
+    <End Type="SolciotyFitnessModel.ImageGallery" Role="ImageGallery" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.WorkoutMaster" Role="WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="BackCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageGalary_FrontCoverImageId">
+    <End Type="SolciotyFitnessModel.ImageGallery" Role="ImageGallery" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.WorkoutMaster" Role="WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="FrontCoverImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ImageTagMapping_ImageGallery">
+    <End Type="SolciotyFitnessModel.ImageGallery" Role="ImageGallery" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.ImageTagMapping" Role="ImageTagMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ImageGallery">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ImageTagMapping">
+        <PropertyRef Name="ImageId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Template">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="TemplateDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsReadyForLocations" Type="Boolean" />
+    <Property Name="TemplateName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NumberOfBasicVideos" Type="Int32" Nullable="false" />
+    <Property Name="NumberOfAlterVideos" Type="Int32" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="PrimaryText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_Template_User" FromRole="Template" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="SolciotyFitnessModel.FK_Template_User1" FromRole="Template" ToRole="User" />
+    <NavigationProperty Name="TemplateVideoMappings" Relationship="SolciotyFitnessModel.FK_TemplateVideoMapping_Template" FromRole="Template" ToRole="TemplateVideoMapping" />
+    <NavigationProperty Name="WorkoutTemplateMappings" Relationship="SolciotyFitnessModel.FK_WorkoutTemplateMapping_Template" FromRole="Template" ToRole="WorkoutTemplateMapping" />
+  </EntityType>
+  <Association Name="FK_Template_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.Template" Role="Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Template">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Template_User1">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.Template" Role="Template" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Template">
+        <PropertyRef Name="UpdatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TemplateVideoMapping_Template">
+    <End Type="SolciotyFitnessModel.Template" Role="Template" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TemplateVideoMapping" Role="TemplateVideoMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Template">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TemplateVideoMapping">
+        <PropertyRef Name="TemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutTemplateMapping_Template">
+    <End Type="SolciotyFitnessModel.Template" Role="Template" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutTemplateMapping" Role="WorkoutTemplateMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Template">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutTemplateMapping">
+        <PropertyRef Name="TemplateID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_City">
+    <End Type="SolciotyFitnessModel.City" Role="City" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TrainingPortal">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPortalCategories" Relationship="SolciotyFitnessModel.FK_TrainingPortalCategories_TrainingPortal" FromRole="TrainingPortal" ToRole="TrainingPortalCategory" />
+    <NavigationProperty Name="TrainingPortalSubCategories" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortal" FromRole="TrainingPortal" ToRole="TrainingPortalSubCategory" />
+    <NavigationProperty Name="TrainingPortalUserMappings" Relationship="SolciotyFitnessModel.FK_TrainingPortalUserMapping_TrainingPortal" FromRole="TrainingPortal" ToRole="TrainingPortalUserMapping" />
+  </EntityType>
+  <EntityType Name="TrainingPortalSubCategoryVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="VideoPath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="TrainingPortalSubCategoryId" Type="Int64" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPortalSubCategory" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories" FromRole="TrainingPortalSubCategoryVideo" ToRole="TrainingPortalSubCategory" />
+  </EntityType>
+  <EntityType Name="TrainingPortalCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrainingPortalId" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IconString" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPortal" Relationship="SolciotyFitnessModel.FK_TrainingPortalCategories_TrainingPortal" FromRole="TrainingPortalCategory" ToRole="TrainingPortal" />
+    <NavigationProperty Name="TrainingPortalSubCategories" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortalCategories" FromRole="TrainingPortalCategory" ToRole="TrainingPortalSubCategory" />
+  </EntityType>
+  <Association Name="FK_TrainingPortalCategories_TrainingPortal">
+    <End Type="SolciotyFitnessModel.TrainingPortal" Role="TrainingPortal" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalCategory" Role="TrainingPortalCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalCategory">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TrainingPortalSubCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TrainingPortalId" Type="Int64" Nullable="false" />
+    <Property Name="TrainingPortalCategoryId" Type="Int64" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DisplayOrder" Type="Int32" Nullable="false" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPortal" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortal" FromRole="TrainingPortalSubCategory" ToRole="TrainingPortal" />
+    <NavigationProperty Name="TrainingPortalCategory" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategories_TrainingPortalCategories" FromRole="TrainingPortalSubCategory" ToRole="TrainingPortalCategory" />
+    <NavigationProperty Name="TrainingPortalSubCategoryVideos" Relationship="SolciotyFitnessModel.FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories" FromRole="TrainingPortalSubCategory" ToRole="TrainingPortalSubCategoryVideo" />
+  </EntityType>
+  <Association Name="FK_TrainingPortalSubCategories_TrainingPortal">
+    <End Type="SolciotyFitnessModel.TrainingPortal" Role="TrainingPortal" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalSubCategory" Role="TrainingPortalSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategory">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalSubCategories_TrainingPortalCategories">
+    <End Type="SolciotyFitnessModel.TrainingPortalCategory" Role="TrainingPortalCategory" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalSubCategory" Role="TrainingPortalSubCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortalCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategory">
+        <PropertyRef Name="TrainingPortalCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories">
+    <End Type="SolciotyFitnessModel.TrainingPortalSubCategory" Role="TrainingPortalSubCategory" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalSubCategoryVideo" Role="TrainingPortalSubCategoryVideo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortalSubCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalSubCategoryVideo">
+        <PropertyRef Name="TrainingPortalSubCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="TrainingPortalUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="TrainingPortalId" Type="Int64" Nullable="false" />
+    <Property Name="PermissionType" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="IsDeleted" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="TrainingPortal" Relationship="SolciotyFitnessModel.FK_TrainingPortalUserMapping_TrainingPortal" FromRole="TrainingPortalUserMapping" ToRole="TrainingPortal" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_TrainingPortalUserMapping_User" FromRole="TrainingPortalUserMapping" ToRole="User" />
+  </EntityType>
+  <Association Name="FK_TrainingPortalUserMapping_TrainingPortal">
+    <End Type="SolciotyFitnessModel.TrainingPortal" Role="TrainingPortal" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalUserMapping" Role="TrainingPortalUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TrainingPortal">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TrainingPortalUserMapping">
+        <PropertyRef Name="TrainingPortalId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrainingPortalUserMapping_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.TrainingPortalUserMapping" Role="TrainingPortalUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TrainingPortalUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="WorkoutUserMapping">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="WorkoutId" Type="Int32" Nullable="false" />
+    <Property Name="LocationId" Type="Int32" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="Int32" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Location" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_Location" FromRole="WorkoutUserMapping" ToRole="Location" />
+    <NavigationProperty Name="User" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_User" FromRole="WorkoutUserMapping" ToRole="User" />
+    <NavigationProperty Name="WorkoutMaster" Relationship="SolciotyFitnessModel.FK_WorkoutUserMapping_WorkoutMaster" FromRole="WorkoutUserMapping" ToRole="WorkoutMaster" />
+  </EntityType>
+  <Association Name="FK_WorkoutUserMapping_Location">
+    <End Type="SolciotyFitnessModel.Location" Role="Location" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.WorkoutUserMapping" Role="WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUserMapping_User">
+    <End Type="SolciotyFitnessModel.User" Role="User" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutUserMapping" Role="WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutUserMapping_WorkoutMaster">
+    <End Type="SolciotyFitnessModel.WorkoutMaster" Role="WorkoutMaster" Multiplicity="1" />
+    <End Type="SolciotyFitnessModel.WorkoutUserMapping" Role="WorkoutUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="WorkoutMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutUserMapping">
+        <PropertyRef Name="WorkoutId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Gym">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryBackground" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryGradientBackground" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PrimaryFontColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateText" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateBackground" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateGradientBackground" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AlternateFontColor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LogoutBackground" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ShowTime" Type="Boolean" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdatedDate" Type="DateTime" Precision="3" />
+    <Property Name="IsActive" Type="Boolean" />
+    <Property Name="IsDeleted" Type="Boolean" />
+    <Property Name="AlternateLogo" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="VideoTitleColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="VideoTitleBackgroundColor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GymLocationMappings" Relationship="SolciotyFitnessModel.FK_GymLocationMapping_Gym" FromRole="Gym" ToRole="GymLocationMapping" />
+    <NavigationProperty Name="GymUserMappings" Relationship="SolciotyFitnessModel.FK_GymUserMapping_Gym" FromRole="Gym" ToRole="GymUserMapping" />
+  </EntityType>
+  <Association Name="FK_GymLocationMapping_Gym">
+    <End Type="SolciotyFitnessModel.Gym" Role="Gym" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.GymLocationMapping" Role="GymLocationMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gym">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GymLocationMapping">
+        <PropertyRef Name="GymId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GymUserMapping_Gym">
+    <End Type="SolciotyFitnessModel.Gym" Role="Gym" Multiplicity="0..1" />
+    <End Type="SolciotyFitnessModel.GymUserMapping" Role="GymUserMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gym">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GymUserMapping">
+        <PropertyRef Name="GymId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

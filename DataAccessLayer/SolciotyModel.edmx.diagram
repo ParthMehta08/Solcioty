@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2a0794f7c4244c2ab9103f3c8c126884" Name="Diagram1" ZoomLevel="83">
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerTemplate" Width="1.5" PointX="7.5" PointY="30.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerTemplateVideoMapping" Width="1.5" PointX="12.75" PointY="33.375" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerWorkoutCategory" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerWorkoutMaster" Width="1.5" PointX="5.25" PointY="37.125" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerWorkoutSchedule" Width="1.5" PointX="7.5" PointY="43" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerWorkoutTemplateMapping" Width="1.5" PointX="12.75" PointY="28.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.BoxerWorkoutUserMapping" Width="1.5" PointX="7.5" PointY="25.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Category" Width="1.5" PointX="8.25" PointY="38.625" />
+        <EntityTypeShape EntityType="SolciotyNewModel.City" Width="1.5" PointX="3" PointY="28.125" />
+        <EntityTypeShape EntityType="SolciotyNewModel.FitnessTag" Width="1.5" PointX="13.5" PointY="48.625" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Gym" Width="1.5" PointX="8.25" PointY="8.5" />
+        <EntityTypeShape EntityType="SolciotyNewModel.GymLocationMapping" Width="1.5" PointX="10.5" PointY="20" />
+        <EntityTypeShape EntityType="SolciotyNewModel.GymUserMapping" Width="1.5" PointX="13.5" PointY="24.625" />
+        <EntityTypeShape EntityType="SolciotyNewModel.ImageGallery" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="SolciotyNewModel.ImageTagMapping" Width="1.5" PointX="17.75" PointY="29.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Location" Width="1.5" PointX="5.25" PointY="19.125" />
+        <EntityTypeShape EntityType="SolciotyNewModel.LocationSelectedBoxerWorkout" Width="1.5" PointX="9.75" PointY="43" />
+        <EntityTypeShape EntityType="SolciotyNewModel.LocationSelectedWorkout" Width="1.5" PointX="9.75" PointY="16" />
+        <EntityTypeShape EntityType="SolciotyNewModel.MailLog" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.MailTemplate" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Permission" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Role" Width="1.5" PointX="11.25" PointY="48" />
+        <EntityTypeShape EntityType="SolciotyNewModel.RolePermissionMapping" Width="1.5" PointX="5.75" PointY="3.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.State" Width="1.5" PointX="0.75" PointY="28.5" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Template" Width="1.5" PointX="7.5" PointY="49.5" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TemplateVideoMapping" Width="1.5" PointX="12.75" PointY="43.625" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TrainingPortal" Width="1.5" PointX="13.25" PointY="20.375" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TrainingPortalCategory" Width="1.5" PointX="15.5" PointY="20.25" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TrainingPortalSubCategory" Width="1.5" PointX="17.75" PointY="20.25" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TrainingPortalSubCategoryVideo" Width="1.5" PointX="20" PointY="20.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.TrainingPortalUserMapping" Width="1.5" PointX="15.5" PointY="30.375" />
+        <EntityTypeShape EntityType="SolciotyNewModel.User" Width="1.5" PointX="5.25" PointY="28.25" />
+        <EntityTypeShape EntityType="SolciotyNewModel.UserLocationMapping" Width="1.5" PointX="10.5" PointY="30.125" />
+        <EntityTypeShape EntityType="SolciotyNewModel.UserRoleMapping" Width="1.5" PointX="13.5" PointY="37.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.Video" Width="1.5" PointX="10.5" PointY="34.375" />
+        <EntityTypeShape EntityType="SolciotyNewModel.VideoTagMapping" Width="1.5" PointX="15.75" PointY="35.75" />
+        <EntityTypeShape EntityType="SolciotyNewModel.WorkoutCategory" Width="1.5" PointX="3" PointY="15.25" />
+        <EntityTypeShape EntityType="SolciotyNewModel.WorkoutMaster" Width="1.5" PointX="5.25" PointY="10" />
+        <EntityTypeShape EntityType="SolciotyNewModel.WorkoutSchedule" Width="1.5" PointX="7.5" PointY="19.875" />
+        <EntityTypeShape EntityType="SolciotyNewModel.WorkoutTemplateMapping" Width="1.5" PointX="9.75" PointY="51.375" />
+        <EntityTypeShape EntityType="SolciotyNewModel.WorkoutUserMapping" Width="1.5" PointX="10.5" PointY="25.75" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerTemplate_BoxerTemplate" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerTemplate_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerTemplate_User1" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerTemplateVideoMapping_BoxerTemplate" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutTemplateMapping_BoxerTemplate" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerTemplateVideoMapping_Video" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutMaster_BoxerWorkoutCategory" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutMaster_ImageGallery" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutMaster_ImageGallery1" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutSchedule_BoxerWorkoutMaster" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutTemplateMapping_BoxerWorkoutMaster" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutUserMapping_BoxerWorkoutMaster" />
+        <AssociationConnector Association="SolciotyNewModel.FK_LocationSelectedBoxerWorkouts_BoxerWorkoutSchedule" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutUserMapping_Location" />
+        <AssociationConnector Association="SolciotyNewModel.FK_BoxerWorkoutUserMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Video_Category" />
+        <AssociationConnector Association="SolciotyNewModel.FK_City_State" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Location_City" />
+        <AssociationConnector Association="SolciotyNewModel.FK_User_City" />
+        <AssociationConnector Association="SolciotyNewModel.FK_ImageTagMapping_FitnessTag" />
+        <AssociationConnector Association="SolciotyNewModel.FK_VideoTagMapping_FitnessTag" />
+        <AssociationConnector Association="SolciotyNewModel.FK_GymLocationMapping_Gym" />
+        <AssociationConnector Association="SolciotyNewModel.FK_GymUserMapping_Gym" />
+        <AssociationConnector Association="SolciotyNewModel.FK_GymLocationMapping_Location" />
+        <AssociationConnector Association="SolciotyNewModel.FK_GymUserMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_ImageGalary_BackCoverImageId" />
+        <AssociationConnector Association="SolciotyNewModel.FK_ImageGalary_FrontCoverImageId" />
+        <AssociationConnector Association="SolciotyNewModel.FK_ImageTagMapping_ImageGallery" />
+        <AssociationConnector Association="SolciotyNewModel.FK_UserLocationMapping_Location" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutSchedule_Location" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutSchedule_Location1" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutUserMapping_Location" />
+        <AssociationConnector Association="SolciotyNewModel.FK_LocationSelectedWorkouts_WorkoutSchedule" />
+        <AssociationConnector Association="SolciotyNewModel.FK_UserRoleMapping_Role" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Template_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Template_User1" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TemplateVideoMapping_Template" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutTemplateMapping_Template" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TemplateVideoMapping_Video" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalCategories_TrainingPortal" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalSubCategories_TrainingPortal" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalUserMapping_TrainingPortal" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalSubCategories_TrainingPortalCategories" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalSubCategoryVideo_TrainingPortalSubCategories" />
+        <AssociationConnector Association="SolciotyNewModel.FK_TrainingPortalUserMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_UserLocationMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_UserRoleMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Video_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_Video_User1" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutUserMapping_User" />
+        <AssociationConnector Association="SolciotyNewModel.FK_VideoTagMapping_Video" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutMaster_WorkoutCategory" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutSchedule_WorkoutMaster" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutTemplateMapping_WorkoutMaster" />
+        <AssociationConnector Association="SolciotyNewModel.FK_WorkoutUserMapping_WorkoutMaster" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

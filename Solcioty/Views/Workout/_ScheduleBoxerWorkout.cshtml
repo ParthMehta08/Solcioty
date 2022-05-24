@@ -1,0 +1,129 @@
+﻿
+@using Models;
+@model ModelBoxerWorkoutSchedule
+<div>
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="">
+
+                    @using (@Html.BeginForm("ScheduleBoxerWorkout", "Workout", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(m => m.BoxerWorkoutScheduleId)
+                        @*@Html.HiddenFor(m => m.WorkoutId)*@
+                        @Html.HiddenFor(m => m.LocationId)
+                        <div class="col-md-6">
+                            <label>Boxer Workout <span class="required">*</span></label>
+                            @Html.DropDownListFor(m => m.BoxerWorkoutId,
+                 new SelectList(Model.BoxerWorkoutList, "ID", "WorkoutName"), new { @class = "form-control workoutlist" }
+                 )
+                        </div>
+                        <div class="col-md-6">
+                            <label>Date <span class="required">*</span></label>
+                            @Html.HiddenFor(m => m.ScheduledDate)
+                            @Html.TextBoxFor(m => m.DisplayDate, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="checkbox checkbox-primary">
+                                    @{
+
+                                        var isChecked = Model != null && Model.IsActive ? "checked" : "";
+                                    }
+                                    <input type="checkbox" name="IsActiveString" id="IsActiveString" @isChecked>
+                                    <label class="activechk">Active</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
+                    }
+                </div>
+                <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="saveworkoutschedule">Submit</button>
+                @if (Model.BoxerWorkoutScheduleId > 0)
+                {
+                    <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="deleteworkoutschedule" data-ws-id="@Model.BoxerWorkoutScheduleId">Delete</button>
+                    <a href="@Url.Action("PreviewBoxer","Home",new { boxerWorkoutId = Model.BoxerWorkoutId})" target="_blank" class="btn btn-purple waves-effect waves-light m-left-5">Preview</a>
+                }
+
+                @*<button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="previewworkout" onclick="ViewWorkout(@Model.WorkoutId)">Preview</button>*@
+
+
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        if ($('#BoxerWorkoutId').val() == "0") {
+            $($("[name=BoxerWorkoutId]")[1]).val($($("[name=BoxerWorkoutId]")[1]).find("option:first").val());
+        }
+
+
+        $('.activechk').click(function () {
+            var isActiveControl = $(this).prev();
+            if ($(isActiveControl).prop('checked') == true) {
+                $(isActiveControl).prop('checked', false);
+            } else {
+                $(isActiveControl).prop('checked', true);
+            }
+        });
+        $('.workoutlist').change(function () {
+            var value = $(this).val();
+            $("#BoxerWorkoutId").val(value);
+        });
+        $('#DisplayDate').datepicker({
+            dateFormat: 'mm/dd/yyyy',
+            startDate: new Date(),
+            autoclose: true,
+            onSelect: function (dateText, inst) {
+                var date = $(this).val();
+                $("#ScheduledDate").val(date);
+
+            }
+        }).on("changeDate", function (e) {
+            $("#ScheduledDate").val(e.date.toDateString());
+        });
+
+        if ($('#BoxerWorkoutScheduleId').val() > 0) {
+            $('.workoutlist').prop('disabled', 'disabled');
+            $('#ScheduledDate').val(new Date($('#DisplayDate').val().replace('-', '/').replace('-', '/').replace('-', '/')).toDateString());
+        } else {
+            $('.workoutlist').prop('disabled', '');
+            $("#ScheduledDate").val(new Date().toDateString());
+        }
+        $('#saveworkoutschedule').click(function () {
+            debugger;
+            var requestData = {};
+            requestData.BoxerWorkoutScheduleId = parseInt($('#BoxerWorkoutScheduleId').val());
+            requestData.BoxerWorkoutId = parseInt($('#BoxerWorkoutId').val());
+            requestData.ScheduledDate = new Date($("#ScheduledDate").val()).toDateString();
+           // requestData.ScheduledDate = $("#ScheduledDate").val();
+            requestData.LocationId = $('#LocationId').val();
+            requestData.IsActiveString = $('#IsActiveString').prop('checked') == true ? "on" : "";
+            SaveWorkoutSchedule(requestData);
+        })
+
+        $('#deleteworkoutschedule').click(function () {
+            var requestData = {};
+            requestData.BoxerWorkoutScheduleId = parseInt($('#BoxerWorkoutScheduleId').val());
+            requestData.BoxerWorkoutId = parseInt($('#BoxerWorkoutId').val());
+            requestData.IsDeleted = true;
+            SaveWorkoutSchedule(requestData);
+        })
+    });
+
+
+
+</script>
+@section footerscript
+{
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>*@
+}
+
+
+
+

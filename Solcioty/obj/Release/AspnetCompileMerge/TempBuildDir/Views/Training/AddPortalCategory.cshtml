@@ -1,0 +1,142 @@
+﻿@using Newtonsoft.Json;
+@using Models;
+@using Services;
+@using System.Web.Optimization;
+@model ModelTrainingPortalCategory
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Add Training Portal Category";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                <h4 class="page-title">@ViewBag.PoratalName - Category Detail</h4>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box">
+
+
+                @using (@Html.BeginForm("AddPortalCategory", "Training", FormMethod.Post))
+                {
+                    @Html.HiddenFor(m => m.Id)
+                    @Html.HiddenFor(m => m.TraningPortalId)
+                    <div class="">
+                        <div class="row p-l-5 p-r-5">
+                            <div class="m-t-10  col-md-12">
+                                <label>Name <span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.Name)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <label>Icon<span class="required">*</span><span style="margin-left: 10px;">For reference:<font style="color: blue;margin-left: 10px;"><a href="https://fontawesome.com/" target="_blank">https://fontawesome.com/</a></font></span></label>
+                                @Html.TextBoxFor(m => m.IconString, new { @class = "form-control", @placeholder = "Ex. <i class='fa fa - users'></i>" })
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.IconString)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <label>Dispay Order<span class="required">*</span></label>
+                                @Html.TextBoxFor(m => m.DisplayOrder, new { @class = "form-control",@type="number"})
+                                <span style="color:red">@Html.ValidationMessageFor(m => m.DisplayOrder)</span>
+                            </div>
+                            <div class="m-t-10 col-md-12">
+                                <div class="form-group">
+                                    <div class="checkbox checkbox-primary">
+                                        @{
+
+                                            var isChecked = Model != null && Model.IsActive ? "checked" : "";
+                                        }
+                                        <input type="checkbox" name="IsPortalCategoryActiveString" id="IsPortalCategoryActiveString" @isChecked>
+                                        <label class="activechk">Active</label>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <button type="button" class="btn btn-purple waves-effect waves-light m-left-5" id="savetrainingportalcategory">Submit</button>
+
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Content/plugins/tinymce/tinymce.min.js"></script>
+<script type="text/javascript">
+</script>
+@section beforeappjs
+{
+    <script type="text/javascript">
+        var savetrainingportalcategory = function () {
+            var requestData = {};
+            requestData.Id = $('#Id').val();
+            requestData.TraningPortalId = $('#TraningPortalId').val();
+            requestData.DisplayOrder = $('#DisplayOrder').val();
+            requestData.Name = $('#Name').val();
+            requestData.IconString = $('#IconString').val();
+            if (requestData.Name == "") {
+                toastr.error("Please enter portal categoryname");
+                $('#savetrainingportalcategory').prop('disabled', '');
+                return;
+            }
+            if (requestData.DisplayOrder == "") {
+                toastr.error("Please enter display order");
+                $('#savetrainingportalcategory').prop('disabled', '');
+                return;
+            }
+            if (requestData.IconString == "") {
+                toastr.error("Please enter portal category icon");
+                $('#savetrainingportalcategory').prop('disabled', '');
+                return;
+            }
+
+            requestData.IsActiveString = $('#IsPortalCategoryActiveString').prop('checked')==true?"on":"";
+            var isError = false;
+
+             $.ajax({
+                     type: "post",
+                     url: "@Url.Action("AddPortalCategory","Training")", // Location of the service
+                     data: JSON.stringify(requestData), //Data sent to server
+                        contentType: "application/json", // content type sent to server
+                        success: function (result) {
+                            if (result.IsSuccess) {
+                               // toastr.success("Saved successfully!")
+                                window.location.href = "@Url.Action("Categories", "Training",new { id=Model.TraningPortalId })";
+                            }
+                            else {
+                                toastr.error("Something went wrong!")
+                                  if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                                     window.location.href = "@Url.Action("Unauthorized", "Account")"
+                                }
+                                $('#savetrainingportalcategory').prop('disabled', '');
+                            }
+                        }
+                });
+        }
+
+
+        $(document).ready(function () {
+            $('#savetrainingportalcategory').click(function () {
+                $(this).prop('disabled', 'disabled');
+                savetrainingportalcategory();
+            })
+        });
+    </script>
+
+}
+@section footerscript
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.js"></script>
+}
+
+
+
+

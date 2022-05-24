@@ -1,0 +1,639 @@
+﻿@using System.Web.Optimization;
+@using Models;
+@using Services;
+@model ModelWorkout
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Workout";
+    int Rows = 0;
+    string isChecked = "";
+    int WorkoutId = 0;
+}
+@{
+    var userData = Session["UserData"] as UserData;
+    var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Workouts);
+}
+@section beforeappcss{
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/style.css" rel="stylesheet" />
+    @*<link href="~/Content/assets/css/style2.css?v=@(DateTime.Now.Ticks)" rel="stylesheet" />*@
+    <!-- DataTables css -->
+    @Styles.Render("~/bundle/responsivedatatablecss")
+}
+<style type="text/css">
+    .deleteall, .moveall {
+        color: #5c4fab;
+        font-weight: bold;
+    }
+
+    .move-all {
+        margin-left: 50px;
+    }
+
+    .moveall:before {
+        content: "|";
+        color: #5c4fab;
+        margin-right: 10px;
+    }
+
+    #datatable-buttons_paginate {
+        margin-top: 80px;
+    }
+
+    #datatable-buttons_info {
+        margin-top: 55px;
+    }
+
+    .del-all, .move-all {
+        margin-top: -105px;
+        float: left;
+    }
+
+    .modal-content .carousel-inner > .active, .modal-content .carousel-inner > .next, .modal-content .carousel-inner > .prev {
+        display: inline-block;
+    }
+
+    .modal-content .Line1 {
+        position: relative;
+        float: left;
+        width: 100%;
+    }
+
+    /*.modal-content .sidebar1 {
+            position: absolute !important;
+            left: 0 !important;
+            top: 0px;
+            height: 100% !important;
+            float: left;
+            width: 50px !important;
+            z-index: 9999;
+        }*/
+    .card-box {
+        border: none;
+        background-color: transparent;
+    }
+    /* .modal-content .sidebar2 {
+            position: absolute;
+            left: 0;
+            top: 0; */
+    /* height: 100%;
+           float: left;
+            width: 80px;
+            z-index: 9999;
+            background: #000;*/
+    }
+
+    .modal-content .sidebar1 h3 {
+        font-size: 11px;
+        font-weight: bold;
+        text-align: center;
+        vertical-align: middle;
+        position: absolute;
+        left: 0;
+        right: 0;
+        margin-left: auto;
+        margin-right: auto;
+        top: 50%;
+        margin-top: -50px;
+    }
+
+    /*.sidebar2 h3 {
+            font-size: 11px;
+            font-weight: bold;
+            text-align: center;
+            vertical-align: middle;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: -50px;
+        }*/
+    .reps {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+
+    .video1 video {
+        height: 54%;
+    }
+
+    .video2 video {
+        height: 27%;
+    }
+
+    .video3 video {
+        height: 27%;
+    }
+
+    .workoutarea .item {
+        width: 100%;
+    }
+
+    .video4 video {
+        height: 26%;
+    }
+
+    .video5 video {
+        height: 27%;
+    }
+
+    @@media (max-width: 5000px) and (min-width: 2561px) {
+        .video1 video {
+            height: 80%;
+        }
+
+        .video5 video, .video4 video, .video3 video, .video2 video {
+            height: 80%;
+        }
+    }
+
+    @@media (min-width: 1920px) and (max-width: 2560px) {
+        .video1 video {
+            height: 80%;
+        }
+
+        .video2 video, .video3 video, .video4 video, .video5 video {
+            height: 50%;
+        }
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="page-title-box">
+                @if (ViewBag.Category != null && ViewBag.Category.Id > 0)
+                {
+
+                    <h4 class="page-title">@ViewBag.Category.Name Workouts </h4>
+                }
+                else
+                {
+                    <h4 class="page-title">All Workouts </h4>
+                }
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <!-- end row -->
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card-box table-responsive">
+                @*@if (TempData["OperationType"] == "success")
+                    {
+                        <div class="alert alert-success alert-dismissible fade in" role="alert">
+                            <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Success! </strong>@TempData["OperationMessage"]
+                        </div>
+                    }
+                    @if (TempData["OperationType"] == "fail")
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                            <button class="close" aria-label="Close" type="button" data-dismiss="alert">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                            <strong>Fail! </strong>@TempData["OperationMessage"]
+                        </div>
+                    }*@
+                @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                {
+                    <a href="~/Workout/Add" class="btn btn-purple waves-effect waves-light pull-right m-0">Add New</a>
+                    <a href="@Url.Action("Index", "WorkoutCategory")" class="btn editicon waves-effect waves-light pull-right m-0 m-r-10">Create Folder</a>
+                }
+
+                <table id="datatable-buttons" class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" class="selectallworkout" /></th>
+                            <th>#</th>
+                            <th>Name</th>
+                            @*<th>Ready For Location</th>*@
+                            @if (userData.RoleCode == RoleTypes.SuperAdmin)
+                            {
+
+                                <th>Client</th>
+                            }
+                            @if (permissionType == Models.Enums.PermissionType.ReadWrite || userData.RoleCode == RoleTypes.BranchAdmin)
+                            {
+                                <th>Action</th>
+                            }
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.ModelWorkoutList)
+                        {
+                            WorkoutId = item.ID;
+                            Rows++;
+                            <tr>
+                                <td><input type="checkbox" data-id="@item.ID" class="selectworkout" /></td>
+                                <td>@Rows</td>
+                                <td>@item.WorkoutName</td>
+
+                                @*<td>
+                                        @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                        {
+                                            <a href="javascript:void(0);" class="btn btn-purple waves-effect waves-light" onclick="readyforlocation(@item.ID);" title="Change Status"><i class="fa fa-camera-retro"></i></a>
+                                        }
+
+                                        <div class="readyflag_@item.ID" style="float:left;">@(item.IsReadyForLocations == true ? "Yes" : "No")</div>
+                                    </td>*@
+                                @if (userData.RoleCode == RoleTypes.SuperAdmin)
+                                {
+
+                                    <td>@item.ClientName</td>
+                                }
+                                @if (permissionType == Models.Enums.PermissionType.ReadWrite)
+                                {
+                                    <td>
+                                        <a href="@Url.Action("Edit","Workout",new { ID = item.ID})" class="btn editicon waves-effect waves-light">Edit</a>
+
+                                        @*<a href="#" data-toggle="modal" class="btn editicon waves-effect waves-light" onclick="ViewPDF(@item.ID)" data-target="#workoutpdf">View PDF</a>*@
+
+                                        <a href="#" class="btn editicon waves-effect waves-light" onclick="viewworkoutpdf(@item.ID)">View</a>
+
+                                        <a class="btn deleteicon waves-effect waves-light" onclick="deleteRow(this,@item.ID);">Delete</a>
+                                        @*<a href="~/Workout/Ready?ID=@item.ID&Ready=@item.IsReadyForLocations.ToString()" class="btn btn-purple waves-effect waves-light">
+                                                @(item.IsReadyForLocations == true ? "Not Ready" : "Ready" )
+                                            </a>*@
+                                        <a href="@Url.Action("Templates","Workout",new { ID = item.ID})" class="btn manageicon waves-effect waves-light">Blocks</a>
+                                        <a href="@Url.Action("WorkoutUsers","Workout",new { Id = item.ID})" class="btn manageicon waves-effect waves-light">Users</a>
+
+                                        @*<a href="#" class="btn editicon waves-effect waves-light" onclick="ViewWorkout(@item.ID)">Preview</a>*@
+                                        <a href="@Url.Action("Preview","Home",new { workoutId = item.ID })" target="_blank" class="btn editicon waves-effect waves-light">Preview</a>
+                                        <a href="@Url.Action("Share","Home",new { workoutId = item.ID ,userId=ViewBag.UserId,clientid=ViewBag.Clientid})" target="_blank" class="btn editicon waves-effect waves-light">Share</a>
+                                        <a onclick="viewworkoutwidget(@item.ID,@ViewBag.UserId,@ViewBag.Clientid)" class="btn editicon waves-effect waves-light">Embeded</a>
+                                        @* <a onclick="viewworkoutwidget(" Home/Share?workoutId=@item.ID&userId=@ViewBag.Userid&clientid=@ViewBag.Clientid")" class="btn editicon waves-effect waves-light">Widget</a>*@
+
+                                    </td>
+                                }
+                                else if (userData.RoleCode == RoleTypes.BranchAdmin)
+                                {
+                                    <td>
+
+                                        @*<a href="#" data-toggle="modal" class="btn editicon waves-effect waves-light" onclick="ViewPDF(@item.ID)" data-target="#workoutpdf">View</a>*@
+                                        <a href="#" class="btn editicon waves-effect waves-light" onclick="viewworkoutpdf(@item.ID)">View</a>
+                                        @*<a href="#" class="btn editicon waves-effect waves-light" onclick="ViewWorkout(@item.ID)">Preview</a>*@
+
+                                        <a href="@Url.Action("Preview","Home",new { workoutId = item.ID })" target="_blank" class="btn editicon waves-effect waves-light">Preview</a>
+
+
+                                    </td>
+                                }
+
+
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (permissionType == Models.Enums.PermissionType.ReadWrite && Model.ModelWorkoutList != null && Model.ModelWorkoutList.Count > 0)
+                {
+                    <div class="del-all">
+                        <span class="waves-effect waves-light pull-left m-0 deleteall">Delete</span>
+
+                    </div>
+                    <div class="move-all">
+                        <span class="waves-effect waves-light pull-left m-0 moveall">Move</span>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="dialog" style="display: none"></div>
+<div class="modal fade" style="z-index: 9999;" id="workoutpdf" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog workout-page" style="width:90%;" role="document">
+        <div class="modal-content">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body" style="display:inline-table;width:100%;" id="workoutpdfarea">
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="workoutdetailtable" style="z-index: 9999; overflow: inherit;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90% !important; height: 100%;" role="document">
+        <div class="modal-content" style="height: 100%;">
+            <div class="modal-header">
+                Workout Detail
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="display:inline-table;width:100% !important; height:100%;">
+                <div class="col-sm-12" style="height: 100%;">
+                    <div class="card-box table-responsive workoutarea" style="height: 100%;">
+                        <div class="workoutareabody Fullscreen"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" id="workoutcategories" style="z-index: 9999; overflow: inherit;" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="width:90% !important; height: 100%;" role="document">
+        <div class="modal-content" style="height: 100%;">
+            <div class="modal-header">
+                Workout Folders
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" style="display:inline-table;width:100% !important; height:100%;">
+                <div class="col-sm-12" style="height: 100%;">
+                    <div class="card-box table-responsive workoutarea" style="height: 100%;">
+                        <div class="workoutareabody Fullscreen">
+                            <label>Select Folder</label>
+                            @Html.DropDownList("workoutfolder", Model.Categories, new { @class = "form-control" })
+                            <a href="javascript:void(0)" id="moveallworkout" class="btn editicon waves-effect waves-light">Move</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="modal fade" style="z-index: 9999;" id="workoutwidjet" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog workout-page" style="width:90%;" role="document">
+        <div class="modal-content" style="margin-top:200px;">
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body" style="display:inline-table;width:100%;" id="workoutwidjetarea">
+            </div>
+        </div>
+
+    </div>
+</div>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+<script src="~/Content/assets/js/jquery.min.js"></script>
+<script src="~/Content/assets/js/bootstrap.min.js"></script>
+@section beforeappjs
+{
+    @Scripts.Render("~/bundle/responsivedatatablejs");
+}
+@section footerscript
+{
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $(".dt-buttons").css("display", "none");
+            $('.selectallworkout').change(function () {
+                if ($(this).prop('checked') == true)
+                    $('.selectworkout').prop('checked', true);
+                else
+                    $('.selectworkout').prop('checked', false);
+            });
+            $('.deleteall').click(function () {
+                var Ids = [];
+                if ($('.selectworkout:checked').length == 0) {
+                    toastr.error("please select at least one record to delete");
+                    return;
+                } else {
+                    var ids = '';
+                    $.each($('.selectworkout:checked'), function (i, element) {
+                        Ids.push($(element).attr('data-id'));
+                        //ids = ids + "," + $(element).attr('data-id');
+                    });
+                    deleteBulkWorkout(Ids);
+                    // console.log(ids);
+                }
+            });
+
+            $('.moveall').click(function () {
+                if ($('.selectworkout:checked').length == 0) {
+                    toastr.error("please select at least one record to move");
+                    return;
+                } else {
+
+                    $('#workoutcategories').modal();
+                }
+            });
+            $('#moveallworkout').click(function () {
+                var Ids = [];
+                if ($('.selectworkout:checked').length == 0) {
+                    toastr.error("please select at least one record to move");
+                    return;
+                } else {
+                    if (parseInt($('#workoutfolder').val()) > 0) {
+                        var ids = '';
+                        $.each($('.selectworkout:checked'), function (i, element) {
+                            Ids.push($(element).attr('data-id'));
+                            //ids = ids + "," + $(element).attr('data-id');
+                        });
+                        moveBulkWorkout(parseInt($('#workoutfolder').val()),Ids);
+                    } else {
+                        toastr.error("please select folder");
+                        return;
+                    }
+
+                    // console.log(ids);
+                }
+            });
+        });
+         var ViewWorkout = function (workoutId) {
+                $.ajax({
+                type: "get",
+                url: "@Url.Action("ViewWorkout","Workout")", // Location of the service
+                data: { WorkoutId: workoutId }, //Data sent to server
+                dataType: 'html',
+                success: function (data) {
+                    $('.workoutareabody').html(data);
+
+                    $($('.item')[0]).addClass('active');
+
+                    $('.carousel-indicators').hide();
+                    $('#workoutdetailtable').modal();
+                }
+                });
+            }
+        var ViewPDF = function (workoutId) {
+            var gymId = $('#GymId').val();
+            $.ajax({
+                url: "@Url.Action("ViewWorkoutPDF", "Workout")",
+                type: "get",
+                data: {WorkoutId:workoutId},
+                dataType: "html",
+                success: function (data) {
+                    if (data != null) {
+                        $('#workoutpdfarea').html(data);
+                        if ($('#workoutpdfarea').find('table').length == 0) {
+                            $('#btnSubmit').hide();
+                            toastr.error("There is no template for workout.");
+                        }
+                } else {
+
+                    toastr.error("Something went wrong!");
+                }
+            }
+            });
+        }
+
+        TableManageButtons.init();
+
+        function deleteRow(r, id) {
+            var result = confirm("Are you sure want to delete?");
+            if (result) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Workout/Delete", // Location of the service
+                    data: { ID: id }, //Data sent to server
+                    contentType: "application/json", // content type sent to server
+                    success: function (data, success) {
+                        if (data == true) {
+                            var i = r.parentNode.parentNode.rowIndex;
+                            document.getElementById("datatable-buttons").deleteRow(i);
+                            window.location.reload();
+                        }
+                    }
+                });
+            }
+
+        }
+        function readyforlocation(id) {
+            var flag = 'false';
+            var currentflag = $.trim($('.readyflag_' + id).html());
+            if (currentflag == "Yes") {
+                flag = true;
+            }
+            else {
+                flag = false;
+            }
+            $.ajax({
+                type: "GET",
+                url: "/Workout/Ready", // Location of the service
+                data: { ID: id, Ready: flag }, //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data, success) {
+                    if (data == true) {
+                        $('.readyflag_' + id).html('Yes');
+                    }
+                    else {
+                        $('.readyflag_' + id).html('No');
+                    }
+                }
+            });
+        }
+
+        var viewworkoutpdf = function (workoutId) {
+                     $.ajax({
+                        url: "@Url.Action("GetWorkoutPDF", "Workout")",
+                         type: "get",
+                         data: { workoutId: workoutId},
+                        dataType: "json",
+                         success: function (data) {
+                             if (data != null && data.Workout != null && data.Workout.PDFName!=null && data.Workout.PDFName != "") {
+                                var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"100%\" height=\"450px\">";
+                                object += "If you are unable to view file, you can download from <a href = \"{FileName}\">here</a>";
+                                object += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
+                                object += "</object>";
+                                object = object.replace(/{FileName}/g, "/AllPDFs/" + data.Workout.ID + "/" + data.Workout.PDFName);
+                               // $("#dialog").html(object);
+
+                                $('#workoutpdfarea').html(object);
+                                $('#workoutpdf').modal();
+                            } else {
+                                toastr.error("Workout PDF not found.");
+                            }
+                        }
+                    });
+        };
+
+        var viewworkoutwidget = function (workoutId,userId,clientId) {
+         
+            var workoutId = workoutId;
+            var userId = userId;
+            var clientId = clientId;
+            var object = "<input style='height:44px;width:100%' type=\"text\" value=\"<iframe src= \'http://180.211.98.106:8079//Home/Share?workoutId=" + workoutId + "&userId=" + userId + "&clientid=" + clientId + "\' style='height:1080px;width:500px'></iframe>\">";
+
+            $('#workoutwidjetarea').html(object);
+            $('#workoutwidjet').modal();
+        };
+
+        $('.user-icon-top').click(function () {
+            $(this).toggleClass("open");
+        })
+        var deleteBulkWorkout = function(workoutIds){
+            var result = confirm("Are you sure want to delete?");
+            if (result) {
+                $.ajax({
+                type: "post",
+                    url: "/workout/BulkDelete", // Location of the service
+                    data: JSON.stringify({ "Ids": workoutIds }), //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data, success) {
+                    if (data.status == true) {
+                        toastr.success(data.message);
+
+                        //var i = r.parentNode.parentNode.rowIndex;
+                        //document.getElementById("datatable-buttons").deleteRow(i).draw();;
+                        window.location.reload();
+                    } else {
+                        toastr.error(data.message);
+                        if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                        }
+                    }
+                }
+            });
+         }
+
+        }
+        var moveBulkWorkout = function(categoryId,workoutIds){
+            var result = confirm("Are you sure want to move?");
+            if (result) {
+                $.ajax({
+                type: "post",
+                    url: "/workout/BulkMove", // Location of the service
+                    data: JSON.stringify({ "CategoryId": categoryId, "Ids": workoutIds }), //Data sent to server
+                contentType: "application/json", // content type sent to server
+                success: function (data, success) {
+                    if (data.status == true) {
+                        toastr.success(data.message);
+
+                        //var i = r.parentNode.parentNode.rowIndex;
+                        //document.getElementById("datatable-buttons").deleteRow(i).draw();;
+                        window.location.reload();
+                    } else {
+                        toastr.error(data.message);
+                        if (data.IsAuthorized != null && data.IsAuthorized == false) {
+                            window.location.href = "@Url.Action("Unauthorized", "Account")"
+                        }
+                    }
+                }
+            });
+          }
+
+        }
+    </script>
+    @if (TempData["OperationType"] == "success")
+    {
+        <script type="text/javascript">
+        toastr.success("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+    @if (TempData["OperationType"] == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@TempData["OperationMessage"].ToString()")
+        </script>
+    }
+}

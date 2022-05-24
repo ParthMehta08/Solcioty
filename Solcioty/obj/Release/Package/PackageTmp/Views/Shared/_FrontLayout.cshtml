@@ -1,0 +1,280 @@
+﻿@using System.Web.Optimization;
+@using Models;
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/style2.css?dt=@(DateTime.Now.Ticks)" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <link href="~/Content/plugins/jquery-ui/jquery-ui.min.css" rel="stylesheet" />
+    <title>Visual Trainer</title>
+    @RenderSection("beforeappcss", false)
+    @*@Styles.Render("~/bundle/jqueryui")*@
+
+
+    <style type="text/css">
+    </style>
+    @Styles.Render("~/bundle/toastrcss")
+</head>
+@{
+    var grayBg = "";
+
+
+    var timeUtc = DateTime.UtcNow;
+    var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+    var today = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, easternZone);
+}
+<body>
+
+    @if (ViewBag.IsFutureWorkout != null && ViewBag.IsFutureWorkout == true)
+    {
+        grayBg = "grayBg";
+        @*<div class="overlay"></div>*@
+    }
+
+
+
+    <div class="Fullscreen">
+        <div class="header @grayBg">
+            @*@if (ViewBag.IsFutureWorkout != null && ViewBag.IsFutureWorkout == true)
+        {
+            <div class="overlay"></div>
+        }*@
+            @*<div class="logo1">
+
+            @if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+            {
+                <a href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+            }
+            else
+            {
+                <a href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+            }
+        </div>*@
+            @if (ViewBag.ShowTime != null && ViewBag.ShowTime)
+            {
+                <div class="date1 text-center">
+
+
+                    <strong></strong>
+
+                </div>
+            }
+            @*<div class="signout" style="background-color:#@ViewBag.SignoutColor">
+                <a href="@Url.Action("logout","account")" style="background-color:#@ViewBag.SignoutColor;color:#@ViewBag.SignoutFontColor">Sign Out</a>
+            </div>*@
+
+            <div class="signout">
+                <a href="@Url.Action("logout","account")">Sign Out</a>
+            </div>
+
+            @*<div class="changepassword">
+
+                <a href="@Url.Action("ChangePassword","Account")">Change Password</a>
+
+            </div>*@
+
+            <div class="header-indecator" style="display:none;">
+                <ol class="carousel-indicators">
+                    @*<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                <li data-target="#myCarousel" data-slide-to="4" class=""></li>*@
+
+                </ol>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+        @*<div class="header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                            <div class="logo">
+                                @if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+                                {
+                                    <a href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+                                }
+                                else
+                                {
+                                    <a href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-6 col-md-6 col-lg-6 text-center">
+                            @if (ViewBag.ShowTime)
+                            {
+                                <div class="date" style="display:block !important;">
+                                    @today.ToShortTimeString()
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                            <div class="signout">
+                                <a href="@Url.Action("Logout","Account")" style="background-color:#@ViewBag.SignoutColor"><span><img src="~/Content/assets/images/signout-icon.png" width="35" height="32"></span>Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        @RenderBody()
+    </div>
+    @*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
+    <script src="~/Content/assets/js/jquery.min.js"></script>
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+
+            setInterval(function () {
+                var timeString = formatAMPM(new Date());
+                //var hours = new Date().getHours();
+                //var minutes = new Date().getMinutes();
+                //var seconds = new Date().getSeconds();
+                //if (seconds > 59) {
+                //    minutes = minutes + 1;
+                //    seconds = 0;
+                //}
+                //if (minutes > 59) {
+                //    hours = hours + 1;
+                //    minutes = 0;
+                //}
+                //var mid = 'AM';
+                //if (hours == 0) { //At 00 hours we need to show 12 am
+                //    hours = 12;
+                //}
+                //else if (hours > 12) {
+                //    hours = hours % 12;
+                //    mid = 'PM';
+                //}
+                //$('.date1 strong').html((hours > 9 ? hours : "0" + hours) + ":" + (minutes > 9 ? minutes : "0" + minutes) + " " + mid);
+                $('.date1 strong').html(timeString);
+            }, 1000);
+
+            $('.logo1').click(function () {
+                if ($('.carousel-indicators li').length > 0) {
+                    $('.header-indecator').toggle();
+                    $('.signout').toggle();
+                    //  $('.changepassword').toggle();
+                } else {
+                    $('.header-indecator').hide();
+                    $('.signout').show();
+                    //$('.changepassword').show();
+                }
+                //$('.signout').toggle();
+                //$('.changepassword').toggle();
+            });
+
+            $('.carousel-indicators').click(function (e) {
+                if (e.offsetX > (this.offsetWidth - 42)) { //42 is the ::after element outerWidth
+                    $('.glyphicon-chevron-right').trigger('click');
+                } else if (e.target.nodeName != "LI") {
+                    $('.glyphicon-chevron-left').trigger('click');
+                }
+                if (e.target.nodeName == "LI") {
+                    $('.carousel-indicators li').removeClass('active');
+                    $(e.target).addClass('active');
+                    $('.carousel-indicators li').css('background-color', '#bdc1bc');
+                    //$(e.target).css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+                    var color = $($('.sidebar1').get(0)).css('background-color') + '!important';
+                    $(e.target).attr("style", "background-color:" + color);
+                }
+
+            });
+
+            $('.left').click(function () {
+                var count = $('.carousel-indicators li').length;
+                var index = 0;
+                $.each($('.carousel-indicators li'), function (i, element) {
+                    if ($(element).hasClass('active')) {
+                        index = i - 1;
+                    }
+                });
+                $('.carousel-indicators li').removeClass('active');
+                $('.carousel-indicators li').css('background-color', '#bdc1bc');
+                if (index < 0) {
+                    $('.carousel-indicators li:last').addClass('active');
+                    //$('.carousel-indicators li:last').css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+                    var color = $($('.sidebar1').get(0)).css('background-color') + '!important';
+                    $('.carousel-indicators li:last').attr("style", "background-color:" + color);
+                } else {
+                    $($('.carousel-indicators li')[index]).addClass('active');
+                    //$($('.carousel-indicators li')[index]).css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+                    var color = $($('.sidebar1').get(0)).css('background-color') + '!important';
+                    $($('.carousel-indicators li')[index]).attr("style", "background-color:" + color);
+                }
+            })
+            $('.right').click(function () {
+                // $('.glyphicon-chevron-right').trigger('click');
+                //var totalLis = $('.carousel-indicators').find('li').length;
+                var count = $('.carousel-indicators li').length;
+                $.each($('.carousel-indicators li'), function (i, element) {
+                    if ($(element).hasClass('active')) {
+                        index = i + 1;
+                    }
+                });
+                $('.carousel-indicators li').removeClass('active');
+                $('.carousel-indicators li').css('background-color', '#bdc1bc');
+
+                if (index >= count) {
+                    $('.carousel-indicators li:first').addClass('active');
+                   // $('.carousel-indicators li:first').css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+
+                    var color = $($('.sidebar1').get(0)).css('background-color') + '!important';
+                    $('.carousel-indicators li:first').attr("style", "background-color:" + color);
+                } else {
+                    $($('.carousel-indicators li')[index]).addClass('active');
+                   // $($('.carousel-indicators li')[index]).css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+                    var color = $($('.sidebar1').get(0)).css('background-color') + '!important';
+                    $($('.carousel-indicators li')[index]).attr("style", "background-color:" + color);
+                }
+                // $('.carousel-indicators li.active').removeClass('active').next('li').addClass('active');
+
+            })
+        });
+        function formatAMPM(date) {
+            var hours = date.getHours();
+            var minutes = date.getMinutes();
+            var ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12;
+            hours = hours ? hours : 12; // the hour '0' should be '12'
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            var strTime = hours + ':' + minutes + ' ' + ampm;
+            return strTime;
+        }
+    </script>
+    @Scripts.Render("~/bundle/toastrjs")
+    <script>
+        var resizefunc = [];
+        toastr.options = {
+            "closeButton": false,
+            "debug": false,
+            "positionClass": "toast-top-right",
+            "onclick": null,
+            "showDuration": "200",
+            "hideDuration": "1500",
+            "timeOut": "6000",
+            "extendedTimeOut": "1200",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        }
+    </script>
+    @RenderSection("footerscript", false)
+</body>
+</html>

@@ -1,0 +1,163 @@
+﻿@using System.Web.Optimization;
+@using Models;
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/Content/assets/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="~/Content/assets/css/style2.css?v=@(DateTime.Now.Ticks)" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,700" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <title>Solcioty fitness</title>
+    @RenderSection("beforeappcss", false)
+    @Styles.Render("~/bundle/jqueryui")
+
+
+    <style type="text/css">
+    </style>
+</head>
+@{
+    var timeUtc = DateTime.UtcNow;
+    var easternZone = TimeZoneInfo.FindSystemTimeZoneById("Eastern Standard Time");
+    var today = TimeZoneInfo.ConvertTimeFromUtc(timeUtc, easternZone);
+}
+<body>
+    <div class="Fullscreen">
+        <div class="header">
+            <div class="logo1">
+                @if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+                {
+                    <a href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+                }
+                else
+                {
+                    <a href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+                }
+            </div>
+            @if (ViewBag.ShowTime)
+            {
+                <div class="date1">
+                    @today.ToShortTimeString()
+                </div>
+            }
+            <div class="signout">
+                <a href="#"><span><img src="Image/signout-icon.png" width="35" height="32"></span>Sign Out</a>
+            </div>
+            <div class="header-indecator">
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="2" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="3" class=""></li>
+                    <li data-target="#myCarousel" data-slide-to="4" class=""></li>
+
+                </ol>
+                <!-- Left and right controls -->
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+        @*<div class="header">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                            <div class="logo">
+                                @if (ViewBag.ClientLogo != null && !string.IsNullOrEmpty(ViewBag.ClientLogo))
+                                {
+                                    <a href="#"><img src="~/ClientLogos/@ViewBag.ClientLogo" class="img-responsive"></a>
+                                }
+                                else
+                                {
+                                    <a href="#"><img src="~/Content/assets/images/default-logo.png" class="img-responsive"></a>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-xs-3 col-sm-6 col-md-6 col-lg-6 text-center">
+                            @if (ViewBag.ShowTime)
+                            {
+                                <div class="date" style="display:block !important;">
+                                    @today.ToShortTimeString()
+                                </div>
+                            }
+                        </div>
+
+                        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 text-right">
+                            <div class="signout">
+                                <a href="@Url.Action("Logout","Account")" style="background-color:#@ViewBag.SignoutColor"><span><img src="~/Content/assets/images/signout-icon.png" width="35" height="32"></span>Sign Out</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        @RenderBody()
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <script src="~/Content/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.logo').click(function () {
+                $('.carousel-indicators').toggle();
+                $('.signout').toggle();
+            });
+
+            $('.carousel-indicators').click(function (e) {
+                if (e.offsetX > (this.offsetWidth - 42)) { //42 is the ::after element outerWidth
+                    $('.glyphicon-chevron-right').trigger('click');
+                } else if (e.target.nodeName != "LI") {
+                    $('.glyphicon-chevron-left').trigger('click');
+                }
+                if (e.target.nodeName == "LI") {
+                    $('.carousel-indicators li').removeClass('active');
+                    $(e.target).addClass('active')
+                }
+
+            });
+
+            $('.left').click(function () {
+                var count = $('.carousel-indicators li').length;
+                var index = 0;
+                $.each($('.carousel-indicators li'), function (i, element) {                   
+                    if ($(element).hasClass('active')) {
+                        index = i - 1;
+                    }
+                });
+                $('.carousel-indicators li').removeClass('active');
+                if (index<0) {
+                    $('.carousel-indicators li:last').addClass('active');
+                } else {
+                    $($('.carousel-indicators li')[index]).addClass('active');
+                }
+            })
+            $('.right').click(function () {
+               // $('.glyphicon-chevron-right').trigger('click');
+                //var totalLis = $('.carousel-indicators').find('li').length;
+                var count = $('.carousel-indicators li').length;
+                $.each($('.carousel-indicators li'), function (i, element) {
+                    if ($(element).hasClass('active')) {
+                        index = i + 1;
+                    }
+                });
+                $('.carousel-indicators li').removeClass('active');
+                if (index >=count) {
+                    $('.carousel-indicators li:first').addClass('active');
+                } else {
+                    $($('.carousel-indicators li')[index]).addClass('active');
+                }
+               // $('.carousel-indicators li.active').removeClass('active').next('li').addClass('active');
+
+            })
+        });
+    </script>
+    @RenderSection("footerscript", false)
+</body>
+</html>

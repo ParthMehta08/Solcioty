@@ -1,0 +1,46 @@
+﻿@using Models;
+@model ModelLogin
+@{
+    Layout = "~/Views/Shared/_BlankLayout.cshtml";
+    ViewBag.Title = "Login";
+
+}
+<div class="userlogin" id="userlogintable" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content m-t-20p">
+            <div class="modal-header h4">
+                Login
+            </div>
+            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            {
+                <div class="modal-body p-5p" style="display:inline-table;">
+                    <div class="col-sm-12">
+                        <label>Username</label>
+                        @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "Username" })
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Username)</span>
+                    </div>
+                    <div class="col-sm-12 m-t-10">
+                        <label>Password</label>
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                        <span style="color:red">@Html.ValidationMessageFor(m => m.Password)</span>
+                    </div>
+                    <div class="col-sm-12 m-t-10 text-center">
+                        <a href="@Url.Action("ForgotPassword","Account")" class="pull-left">Forgot password</a>
+                        <button type="submit" class="btn btn-purple waves-effect waves-light pull-right" id="userlogin">Login</button>
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section footerscript
+{
+
+    @if (ViewBag.OperationType == "fail")
+    {
+        <script type="text/javascript">
+            toastr.error("@ViewBag.OperationMessage.ToString()")
+        </script>
+    }
+}

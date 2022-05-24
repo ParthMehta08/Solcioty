@@ -1,0 +1,694 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SolciotyNewModelStoreContainer" CdmEntityContainer="SolciotyNewEntities">
+    <FunctionImportMapping FunctionImportName="SP_Proc_Copy_Videos" FunctionName="SolciotyNewModel.Store.SP_Proc_Copy_Videos">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SolciotyNewModel.SP_Proc_Copy_Videos_Result">
+          <ScalarProperty Name="OldId" ColumnName="OldId" />
+          <ScalarProperty Name="NewId" ColumnName="NewId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+          <ScalarProperty Name="VideoTitle" ColumnName="VideoTitle" />
+          <ScalarProperty Name="VideoAttachment" ColumnName="VideoAttachment" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="SP_proc_copy_site" FunctionName="SolciotyNewModel.Store.SP_proc_copy_site">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SolciotyNewModel.SP_proc_copy_site_Result">
+          <ScalarProperty Name="SourceId" ColumnName="SourceId" />
+          <ScalarProperty Name="DestinationId" ColumnName="DestinationId" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="fn_split_string_to_column" FunctionName="SolciotyNewModel.Store.fn_split_string_to_column">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SolciotyNewModel.fn_split_string_to_column_Result">
+          <ScalarProperty Name="column_id" ColumnName="column_id" />
+          <ScalarProperty Name="value" ColumnName="value" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="BoxerTemplates">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerTemplate">
+        <MappingFragment StoreEntitySet="BoxerTemplate">
+          <ScalarProperty Name="FooterText" ColumnName="FooterText" />
+          <ScalarProperty Name="FooterTextColor" ColumnName="FooterTextColor" />
+          <ScalarProperty Name="IsFooterText" ColumnName="IsFooterText" />
+          <ScalarProperty Name="GoalText" ColumnName="GoalText" />
+          <ScalarProperty Name="BlockLineTwoText" ColumnName="BlockLineTwoText" />
+          <ScalarProperty Name="BlockLineOneText" ColumnName="BlockLineOneText" />
+          <ScalarProperty Name="TimeText" ColumnName="TimeText" />
+          <ScalarProperty Name="AlternateBackgroundColor" ColumnName="AlternateBackgroundColor" />
+          <ScalarProperty Name="PrimaryBackgroundColor" ColumnName="PrimaryBackgroundColor" />
+          <ScalarProperty Name="AlternateGradientColor" ColumnName="AlternateGradientColor" />
+          <ScalarProperty Name="PrimaryGradientColor" ColumnName="PrimaryGradientColor" />
+          <ScalarProperty Name="AlternateColor" ColumnName="AlternateColor" />
+          <ScalarProperty Name="PrimaryColor" ColumnName="PrimaryColor" />
+          <ScalarProperty Name="AlternateText" ColumnName="AlternateText" />
+          <ScalarProperty Name="PrimaryText" ColumnName="PrimaryText" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="NumberOfAlterVideos" ColumnName="NumberOfAlterVideos" />
+          <ScalarProperty Name="NumberOfBasicVideos" ColumnName="NumberOfBasicVideos" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="IsReadyForLocations" ColumnName="IsReadyForLocations" />
+          <ScalarProperty Name="TemplateDescription" ColumnName="TemplateDescription" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerTemplateVideoMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerTemplateVideoMapping">
+        <MappingFragment StoreEntitySet="BoxerTemplateVideoMapping">
+          <ScalarProperty Name="Reps" ColumnName="Reps" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsAlterVideo" ColumnName="IsAlterVideo" />
+          <ScalarProperty Name="IsBasicVideo" ColumnName="IsBasicVideo" />
+          <ScalarProperty Name="VideoPosition" ColumnName="VideoPosition" />
+          <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+          <ScalarProperty Name="BoxerTemplateID" ColumnName="BoxerTemplateID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerWorkoutCategories">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerWorkoutCategory">
+        <MappingFragment StoreEntitySet="BoxerWorkoutCategory">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerWorkoutMasters">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerWorkoutMaster">
+        <MappingFragment StoreEntitySet="BoxerWorkoutMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BackCoverImageId" ColumnName="BackCoverImageId" />
+          <ScalarProperty Name="FrontCoverImageId" ColumnName="FrontCoverImageId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PDFName" ColumnName="PDFName" />
+          <ScalarProperty Name="WorkoutName" ColumnName="WorkoutName" />
+          <ScalarProperty Name="IsReadyForLocations" ColumnName="IsReadyForLocations" />
+          <ScalarProperty Name="WorkoutDescription" ColumnName="WorkoutDescription" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerWorkoutSchedules">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerWorkoutSchedule">
+        <MappingFragment StoreEntitySet="BoxerWorkoutSchedule">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+          <ScalarProperty Name="BoxerWorkoutMasterID" ColumnName="BoxerWorkoutMasterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerWorkoutTemplateMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerWorkoutTemplateMapping">
+        <MappingFragment StoreEntitySet="BoxerWorkoutTemplateMapping">
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="BoxerTemplateID" ColumnName="BoxerTemplateID" />
+          <ScalarProperty Name="BoxerWorkoutMasterID" ColumnName="BoxerWorkoutMasterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BoxerWorkoutUserMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.BoxerWorkoutUserMapping">
+        <MappingFragment StoreEntitySet="BoxerWorkoutUserMapping">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="BoxerWorkoutId" ColumnName="BoxerWorkoutId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Category">
+        <MappingFragment StoreEntitySet="Category">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cities">
+      <EntityTypeMapping TypeName="SolciotyNewModel.City">
+        <MappingFragment StoreEntitySet="City">
+          <ScalarProperty Name="StateCode" ColumnName="StateCode" />
+          <ScalarProperty Name="CityName" ColumnName="CityName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FitnessTags">
+      <EntityTypeMapping TypeName="SolciotyNewModel.FitnessTag">
+        <MappingFragment StoreEntitySet="FitnessTag">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TagName" ColumnName="TagName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Gyms">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Gym">
+        <MappingFragment StoreEntitySet="Gym">
+          <ScalarProperty Name="HeaderTextColor" ColumnName="HeaderTextColor" />
+          <ScalarProperty Name="HeaderSecondaryColor" ColumnName="HeaderSecondaryColor" />
+          <ScalarProperty Name="HeaderPrimaryColor" ColumnName="HeaderPrimaryColor" />
+          <ScalarProperty Name="BackgroundImage" ColumnName="BackgroundImage" />
+          <ScalarProperty Name="VideoTitleBackgroundColor" ColumnName="VideoTitleBackgroundColor" />
+          <ScalarProperty Name="VideoTitleColor" ColumnName="VideoTitleColor" />
+          <ScalarProperty Name="AlternateLogo" ColumnName="AlternateLogo" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="ShowTime" ColumnName="ShowTime" />
+          <ScalarProperty Name="LogoutBackground" ColumnName="LogoutBackground" />
+          <ScalarProperty Name="AlternateFontColor" ColumnName="AlternateFontColor" />
+          <ScalarProperty Name="AlternateGradientBackground" ColumnName="AlternateGradientBackground" />
+          <ScalarProperty Name="AlternateBackground" ColumnName="AlternateBackground" />
+          <ScalarProperty Name="AlternateText" ColumnName="AlternateText" />
+          <ScalarProperty Name="PrimaryFontColor" ColumnName="PrimaryFontColor" />
+          <ScalarProperty Name="PrimaryGradientBackground" ColumnName="PrimaryGradientBackground" />
+          <ScalarProperty Name="PrimaryBackground" ColumnName="PrimaryBackground" />
+          <ScalarProperty Name="PrimaryText" ColumnName="PrimaryText" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GymLocationMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.GymLocationMapping">
+        <MappingFragment StoreEntitySet="GymLocationMapping">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="GymId" ColumnName="GymId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GymUserMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.GymUserMapping">
+        <MappingFragment StoreEntitySet="GymUserMapping">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="GymId" ColumnName="GymId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageGalleries">
+      <EntityTypeMapping TypeName="SolciotyNewModel.ImageGallery">
+        <MappingFragment StoreEntitySet="ImageGallery">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="ImageFile" ColumnName="ImageFile" />
+          <ScalarProperty Name="ImageTitle" ColumnName="ImageTitle" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ImageTagMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.ImageTagMapping">
+        <MappingFragment StoreEntitySet="ImageTagMapping">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TagId" ColumnName="TagId" />
+          <ScalarProperty Name="ImageId" ColumnName="ImageId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Locations">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Location">
+        <MappingFragment StoreEntitySet="Location">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationSelectedBoxerWorkouts">
+      <EntityTypeMapping TypeName="SolciotyNewModel.LocationSelectedBoxerWorkout">
+        <MappingFragment StoreEntitySet="LocationSelectedBoxerWorkouts">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="BoxerWorkoutScheduleID" ColumnName="BoxerWorkoutScheduleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="LocationSelectedWorkouts">
+      <EntityTypeMapping TypeName="SolciotyNewModel.LocationSelectedWorkout">
+        <MappingFragment StoreEntitySet="LocationSelectedWorkouts">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Token" ColumnName="Token" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="WorkoutScheduleID" ColumnName="WorkoutScheduleID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailLogs">
+      <EntityTypeMapping TypeName="SolciotyNewModel.MailLog">
+        <MappingFragment StoreEntitySet="MailLog">
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="MailTo" ColumnName="MailTo" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MailTemplates">
+      <EntityTypeMapping TypeName="SolciotyNewModel.MailTemplate">
+        <MappingFragment StoreEntitySet="MailTemplate">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="MailUDC" ColumnName="MailUDC" />
+          <ScalarProperty Name="MessageBody" ColumnName="MessageBody" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Permissions">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Permission">
+        <MappingFragment StoreEntitySet="Permission">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="PermissionName" ColumnName="PermissionName" />
+          <ScalarProperty Name="PermissionCode" ColumnName="PermissionCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="DisplayName" ColumnName="DisplayName" />
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="UDC" ColumnName="UDC" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RolePermissionMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.RolePermissionMapping">
+        <MappingFragment StoreEntitySet="RolePermissionMapping">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+          <ScalarProperty Name="PermissionCode" ColumnName="PermissionCode" />
+          <ScalarProperty Name="RoleCode" ColumnName="RoleCode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="SolciotyNewModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="Abbreviation" ColumnName="Abbreviation" />
+          <ScalarProperty Name="StateName" ColumnName="StateName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Templates">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Template">
+        <MappingFragment StoreEntitySet="Template">
+          <ScalarProperty Name="FooterText" ColumnName="FooterText" />
+          <ScalarProperty Name="FooterTextColor" ColumnName="FooterTextColor" />
+          <ScalarProperty Name="IsFooterText" ColumnName="IsFooterText" />
+          <ScalarProperty Name="GoalText" ColumnName="GoalText" />
+          <ScalarProperty Name="BlockLineTwoText" ColumnName="BlockLineTwoText" />
+          <ScalarProperty Name="BlockLineOneText" ColumnName="BlockLineOneText" />
+          <ScalarProperty Name="TimeText" ColumnName="TimeText" />
+          <ScalarProperty Name="AlternateBackgroundColor" ColumnName="AlternateBackgroundColor" />
+          <ScalarProperty Name="PrimaryBackgroundColor" ColumnName="PrimaryBackgroundColor" />
+          <ScalarProperty Name="AlternateGradientColor" ColumnName="AlternateGradientColor" />
+          <ScalarProperty Name="PrimaryGradientColor" ColumnName="PrimaryGradientColor" />
+          <ScalarProperty Name="AlternateColor" ColumnName="AlternateColor" />
+          <ScalarProperty Name="PrimaryColor" ColumnName="PrimaryColor" />
+          <ScalarProperty Name="AlternateText" ColumnName="AlternateText" />
+          <ScalarProperty Name="PrimaryText" ColumnName="PrimaryText" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="NumberOfAlterVideos" ColumnName="NumberOfAlterVideos" />
+          <ScalarProperty Name="NumberOfBasicVideos" ColumnName="NumberOfBasicVideos" />
+          <ScalarProperty Name="TemplateName" ColumnName="TemplateName" />
+          <ScalarProperty Name="IsReadyForLocations" ColumnName="IsReadyForLocations" />
+          <ScalarProperty Name="TemplateDescription" ColumnName="TemplateDescription" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TemplateVideoMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TemplateVideoMapping">
+        <MappingFragment StoreEntitySet="TemplateVideoMapping">
+          <ScalarProperty Name="Reps" ColumnName="Reps" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="Note" ColumnName="Note" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsAlterVideo" ColumnName="IsAlterVideo" />
+          <ScalarProperty Name="IsBasicVideo" ColumnName="IsBasicVideo" />
+          <ScalarProperty Name="VideoPosition" ColumnName="VideoPosition" />
+          <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingPortals">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TrainingPortal">
+        <MappingFragment StoreEntitySet="TrainingPortal">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingPortalCategories">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TrainingPortalCategory">
+        <MappingFragment StoreEntitySet="TrainingPortalCategories">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="IconString" ColumnName="IconString" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrainingPortalId" ColumnName="TrainingPortalId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingPortalSubCategories">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TrainingPortalSubCategory">
+        <MappingFragment StoreEntitySet="TrainingPortalSubCategories">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="TrainingPortalCategoryId" ColumnName="TrainingPortalCategoryId" />
+          <ScalarProperty Name="TrainingPortalId" ColumnName="TrainingPortalId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingPortalSubCategoryVideos">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TrainingPortalSubCategoryVideo">
+        <MappingFragment StoreEntitySet="TrainingPortalSubCategoryVideo">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TrainingPortalSubCategoryId" ColumnName="TrainingPortalSubCategoryId" />
+          <ScalarProperty Name="VideoPath" ColumnName="VideoPath" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TrainingPortalUserMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.TrainingPortalUserMapping">
+        <MappingFragment StoreEntitySet="TrainingPortalUserMapping">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="PermissionType" ColumnName="PermissionType" />
+          <ScalarProperty Name="TrainingPortalId" ColumnName="TrainingPortalId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SolciotyNewModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="WorkOutType" ColumnName="WorkOutType" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="TokenExpiryDate" ColumnName="TokenExpiryDate" />
+          <ScalarProperty Name="PasswordResetToken" ColumnName="PasswordResetToken" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="CityId" ColumnName="CityId" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="SaltKey" ColumnName="SaltKey" />
+          <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+          <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+          <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+          <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserLocationMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.UserLocationMapping">
+        <MappingFragment StoreEntitySet="UserLocationMapping">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LocationID" ColumnName="LocationID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserRoleMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.UserRoleMapping">
+        <MappingFragment StoreEntitySet="UserRoleMapping">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Videos">
+      <EntityTypeMapping TypeName="SolciotyNewModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="RepsCount" ColumnName="RepsCount" />
+          <ScalarProperty Name="CounterOfUseInWorkout" ColumnName="CounterOfUseInWorkout" />
+          <ScalarProperty Name="FullDescription" ColumnName="FullDescription" />
+          <ScalarProperty Name="SmallDescription" ColumnName="SmallDescription" />
+          <ScalarProperty Name="ContentType" ColumnName="ContentType" />
+          <ScalarProperty Name="VideoAttachment" ColumnName="VideoAttachment" />
+          <ScalarProperty Name="VideoTitle" ColumnName="VideoTitle" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VideoTagMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.VideoTagMapping">
+        <MappingFragment StoreEntitySet="VideoTagMapping">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TagID" ColumnName="TagID" />
+          <ScalarProperty Name="VideoID" ColumnName="VideoID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutCategories">
+      <EntityTypeMapping TypeName="SolciotyNewModel.WorkoutCategory">
+        <MappingFragment StoreEntitySet="WorkoutCategory">
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutMasters">
+      <EntityTypeMapping TypeName="SolciotyNewModel.WorkoutMaster">
+        <MappingFragment StoreEntitySet="WorkoutMaster">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+          <ScalarProperty Name="BackCoverImageId" ColumnName="BackCoverImageId" />
+          <ScalarProperty Name="FrontCoverImageId" ColumnName="FrontCoverImageId" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="PDFName" ColumnName="PDFName" />
+          <ScalarProperty Name="WorkoutName" ColumnName="WorkoutName" />
+          <ScalarProperty Name="IsReadyForLocations" ColumnName="IsReadyForLocations" />
+          <ScalarProperty Name="WorkoutDescription" ColumnName="WorkoutDescription" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutSchedules">
+      <EntityTypeMapping TypeName="SolciotyNewModel.WorkoutSchedule">
+        <MappingFragment StoreEntitySet="WorkoutSchedule">
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="ScheduledDate" ColumnName="ScheduledDate" />
+          <ScalarProperty Name="WorkoutMasterID" ColumnName="WorkoutMasterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutTemplateMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.WorkoutTemplateMapping">
+        <MappingFragment StoreEntitySet="WorkoutTemplateMapping">
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+          <ScalarProperty Name="IsDeleted" ColumnName="IsDeleted" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="TemplateID" ColumnName="TemplateID" />
+          <ScalarProperty Name="WorkoutMasterID" ColumnName="WorkoutMasterID" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="WorkoutUserMappings">
+      <EntityTypeMapping TypeName="SolciotyNewModel.WorkoutUserMapping">
+        <MappingFragment StoreEntitySet="WorkoutUserMapping">
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+          <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+          <ScalarProperty Name="WorkoutId" ColumnName="WorkoutId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
