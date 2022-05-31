@@ -52,6 +52,7 @@ namespace Models
         public IList<ModelTemplateVideoMapping> BasicModelTemplateVideoMappingList { get; set; }
         public IList<ModelTemplateVideoMapping> AlterModelTemplateVideoMappingList { get; set; }
         public IList<ModelVideo> VideosTable { get; set; }
+        public IList<ModelImage> ImagesTable { get; set; }
 
         public string ClientName { get; set; }
     }

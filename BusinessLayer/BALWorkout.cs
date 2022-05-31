@@ -1515,6 +1515,174 @@ namespace BusinessLayer
             }
         }
 
+
+        // backup by parth
+        //public BoxerWorkoutDetailModel GetWorkoutTemplateDetailBoxer(int boxerWorkoutId)
+        //{
+        //    try
+        //    {
+        //        var boxerWorkoutDetail = new BoxerWorkoutDetailModel();
+        //        var boxerWorkoutInfo = _dbcontext.BoxerWorkoutMasters.Include("BoxerWorkoutTemplateMappings").FirstOrDefault(e => e.ID == boxerWorkoutId);
+        //        var templateResult = _dbcontext.BoxerTemplates.Include("BoxerTemplateVideoMappings").Include("BoxerTemplateVideoMappings.Video").Where(e => e.IsDeleted == false).ToList();
+        //        var allTemplates = templateResult.Select(e => new BoxerTemplateDetail
+        //        {
+        //            BoxerTemplateId = e.ID,
+        //            BoxerTemplateName = e.TemplateName,
+        //            //Description = e.TemplateDescription,
+        //            NumberOfBasicVideos = e.NumberOfBasicVideos,
+        //            NumberOfAlternateVideos = e.NumberOfAlterVideos,
+        //            PrimaryText = e.PrimaryText,
+        //            AlternateText = e.AlternateText,
+        //            PrimaryColor = e.PrimaryColor,
+        //            AlternateColor = e.AlternateColor,
+        //            PrimaryBackgroundColor = e.PrimaryBackgroundColor,
+        //            AlternateBackgroundColor = e.AlternateBackgroundColor,
+        //            PrimaryGradientColor = e.PrimaryGradientColor,
+        //            AlternateGradientColor = e.AlternateGradientColor,
+        //            IsSelected = false,
+        //            IsFooterText = Convert.ToBoolean(e.IsFooterText),
+        //            FooterText = e.FooterText,
+        //            FooterTextColor = e.FooterTextColor,
+        //            GoalText = e.GoalText == null ? " " : e.GoalText,
+        //            TimeText = e.TimeText == null ? " " : e.TimeText,
+        //            BlockLineOneText = e.BlockLineOneText == null ? " " : e.BlockLineOneText,
+        //            BlockLineTwoText = e.BlockLineTwoText == null ? " " : e.BlockLineTwoText,
+        //            BasicVideos = e.BoxerTemplateVideoMappings.Where(tv => tv.BoxerTemplateID == e.ID && tv.IsBasicVideo && !tv.IsDeleted).Select(tv => new TemplateVideoDetail
+        //            {
+        //                IsAlterVideo = tv.IsAlterVideo,
+        //                IsBasicVideo = tv.IsBasicVideo,
+        //                VideoFile = tv.Video.VideoAttachment,
+        //                VideoId = tv.Video.ID,
+        //                VideoPosition = Convert.ToInt32(tv.VideoPosition),
+        //                VideoTitle = tv.Video.VideoTitle,
+        //                SmallDescription = tv.Video.SmallDescription,
+        //                Note = tv.Note == null || tv.Note == "0" ? " " : tv.Note,
+        //                Reps = tv.Reps == null || tv.Reps == "0" ? " " : tv.Reps
+        //            }).OrderBy(tv => tv.VideoPosition).ToList(),
+        //            AlternateVideos = e.BoxerTemplateVideoMappings.Where(tv => tv.BoxerTemplateID == e.ID && tv.IsAlterVideo && !tv.IsDeleted).Select(tv => new TemplateVideoDetail
+        //            {
+        //                IsAlterVideo = tv.IsAlterVideo,
+        //                IsBasicVideo = tv.IsBasicVideo,
+        //                VideoFile = tv.Video.VideoAttachment,
+        //                VideoId = tv.Video.ID,
+        //                VideoPosition = Convert.ToInt32(tv.VideoPosition),
+        //                VideoTitle = tv.Video.VideoTitle,
+        //                SmallDescription = tv.Video.SmallDescription,
+        //                Note = tv.Note == null || tv.Note == "0" ? " " : tv.Note,
+        //                Reps = tv.Reps == null || tv.Reps == "0" ? " " : tv.Reps
+        //            }).OrderBy(tv => tv.VideoPosition).ToList(),
+        //        }).ToList();
+
+
+        //        if (boxerWorkoutInfo != null)
+        //        {
+        //            boxerWorkoutDetail.BoxerWorkoutId = boxerWorkoutInfo.ID;
+        //            boxerWorkoutDetail.BoxerWorkoutName = boxerWorkoutInfo.WorkoutName;
+        //            boxerWorkoutDetail.FrontCoverImageId = boxerWorkoutInfo.FrontCoverImageId;
+        //            boxerWorkoutDetail.FrontCoverImageName = boxerWorkoutInfo.ImageGallery1 != null ? boxerWorkoutInfo.ImageGallery1.ImageFile : string.Empty;
+
+        //            boxerWorkoutDetail.BackCoverImageId = boxerWorkoutInfo.BackCoverImageId;
+        //            boxerWorkoutDetail.BackCoverImageName = boxerWorkoutInfo.ImageGallery != null ? boxerWorkoutInfo.ImageGallery.ImageFile : string.Empty;
+        //            if (boxerWorkoutInfo.BoxerWorkoutTemplateMappings != null && boxerWorkoutInfo.BoxerWorkoutTemplateMappings.Count > 0)
+        //            {
+        //                // allTemplates.ForEach(x => x.IsSelected = && x.WorkoutTemplateMapId == workoutInfo.WorkoutTemplateMappings.FirstOrDefault(y => y.TemplateID == x.TemplateId).ID);
+        //                //foreach (var template in allTemplates)
+        //                //{
+        //                //	//template.IsSelected = workoutInfo.WorkoutTemplateMappings.Any(y => y.TemplateID == template.TemplateId && y.IsActive==true);
+        //                //	var workoutTemplateMap = workoutInfo.WorkoutTemplateMappings.FirstOrDefault(y => y.TemplateID == template.TemplateId);
+        //                //	if (workoutTemplateMap != null)
+        //                //	{
+        //                //		template.WorkoutTemplateMapId = workoutTemplateMap.ID;
+        //                //		template.IsDeleted = Convert.ToBoolean(workoutTemplateMap.IsDeleted);
+        //                //		template.IsSelected = Convert.ToBoolean(workoutTemplateMap.IsActive);
+        //                //		template.DisplayOrder = workoutTemplateMap.DisplayOrder;
+        //                //	}
+
+        //                //}
+        //                var boxerWorkoutMappedTemplates = boxerWorkoutInfo.BoxerWorkoutTemplateMappings.Where(y => y.IsDeleted != true && y.BoxerWorkoutMaster.IsDeleted != true && y.BoxerTemplate.IsDeleted != true).OrderBy(x => x.DisplayOrder).ToList();
+        //                boxerWorkoutDetail.BoxerTemplates = new List<BoxerTemplateDetail>();
+        //                foreach (var template in boxerWorkoutMappedTemplates)
+        //                {
+        //                    var templateDetail = templateResult.Where(x => x.ID == template.BoxerTemplateID).Select(e => new BoxerTemplateDetail
+        //                    {
+        //                        BoxerTemplateId = e.ID,
+        //                        BoxerTemplateName = e.TemplateName,
+        //                        //    Description = e.TemplateDescription,
+        //                        NumberOfBasicVideos = e.NumberOfBasicVideos,
+        //                        NumberOfAlternateVideos = e.NumberOfAlterVideos,
+        //                        PrimaryText = e.PrimaryText,
+        //                        AlternateText = e.AlternateText,
+        //                        PrimaryColor = e.PrimaryColor,
+        //                        AlternateColor = e.AlternateColor,
+        //                        PrimaryBackgroundColor = e.PrimaryBackgroundColor,
+        //                        AlternateBackgroundColor = e.AlternateBackgroundColor,
+        //                        PrimaryGradientColor = e.PrimaryGradientColor,
+        //                        AlternateGradientColor = e.AlternateGradientColor,
+        //                        IsSelected = false,
+        //                        IsFooterText = Convert.ToBoolean(e.IsFooterText),
+        //                        FooterText = e.FooterText,
+        //                        GoalText = e.GoalText == null ? " " : e.GoalText,
+        //                        TimeText = e.TimeText == null ? " " : e.TimeText,
+        //                        BlockLineOneText = e.BlockLineOneText == null ? " " : e.BlockLineOneText,
+        //                        BlockLineTwoText = e.BlockLineTwoText == null ? " " : e.BlockLineTwoText,
+        //                        FooterTextColor = e.FooterTextColor,
+        //                        BasicVideos = e.BoxerTemplateVideoMappings.Where(tv => tv.BoxerTemplateID == e.ID && tv.IsBasicVideo && !tv.IsDeleted).Select(tv => new TemplateVideoDetail
+        //                        {
+        //                            IsAlterVideo = tv.IsAlterVideo,
+        //                            IsBasicVideo = tv.IsBasicVideo,
+        //                            VideoFile = tv.Video.VideoAttachment,
+        //                            VideoId = tv.Video.ID,
+        //                            VideoPosition = Convert.ToInt32(tv.VideoPosition),
+        //                            VideoTitle = tv.Video.VideoTitle,
+        //                            SmallDescription = tv.Video.SmallDescription,
+        //                            Note = tv.Note == null || tv.Note == "0" ? " " : tv.Note,
+        //                            Reps = tv.Reps == null || tv.Reps == "0" ? " " : tv.Reps
+        //                        }).OrderBy(tv => tv.VideoPosition).ToList(),
+        //                        AlternateVideos = e.BoxerTemplateVideoMappings.Where(tv => tv.BoxerTemplateID == e.ID && tv.IsAlterVideo && !tv.IsDeleted).Select(tv => new TemplateVideoDetail
+        //                        {
+        //                            IsAlterVideo = tv.IsAlterVideo,
+        //                            IsBasicVideo = tv.IsBasicVideo,
+        //                            VideoFile = tv.Video.VideoAttachment,
+        //                            VideoId = tv.Video.ID,
+        //                            VideoPosition = Convert.ToInt32(tv.VideoPosition),
+        //                            VideoTitle = tv.Video.VideoTitle,
+        //                            SmallDescription = tv.Video.SmallDescription,
+        //                            Note = tv.Note == null || tv.Note == "0" ? " " : tv.Note,
+        //                            Reps = tv.Reps == null || tv.Reps == "0" ? " " : tv.Reps
+        //                        }).OrderBy(tv => tv.VideoPosition).ToList(),
+        //                    }).FirstOrDefault();
+        //                    // = new TemplateDetail();
+        //                    //templateDetail = allTemplates.FirstOrDefault(x => x.TemplateId == template.TemplateID);
+        //                    //templateDetail.TemplateId = template.TemplateID;
+
+        //                    templateDetail.BoxerWorkoutTemplateMapId = template.ID;
+        //                    templateDetail.IsDeleted = Convert.ToBoolean(template.IsDeleted);
+        //                    templateDetail.IsSelected = Convert.ToBoolean(template.IsActive);
+        //                    templateDetail.DisplayOrder = template.DisplayOrder;
+
+        //                    boxerWorkoutDetail.BoxerTemplates.Add(templateDetail);
+
+
+        //                }
+        //                //var workoutMappedTemplates = _dbcontext.WorkoutTemplateMappings.Where(x=>x.WorkoutMasterID == workoutInfo.ID)
+        //            }
+        //        }
+
+        //        //workoutDetail.Templates = allTemplates.Where(e => e.IsDeleted == false && e.WorkoutTemplateMapId > 0).OrderBy(e => e.DisplayOrder).ToList();
+        //        boxerWorkoutDetail.BoxerTemplates = boxerWorkoutDetail.BoxerTemplates != null ? boxerWorkoutDetail.BoxerTemplates.OrderBy(e => e.DisplayOrder).ToList() : null;
+        //        return boxerWorkoutDetail;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw;
+        //    }
+        //}
+
+
+
+
+
+
         public BoxerWorkoutDetailModel GetWorkoutTemplateDetailBoxer(int boxerWorkoutId)
         {
             try
@@ -1549,8 +1717,9 @@ namespace BusinessLayer
                     {
                         IsAlterVideo = tv.IsAlterVideo,
                         IsBasicVideo = tv.IsBasicVideo,
-                        VideoFile = tv.Video.VideoAttachment,
-                        VideoId = tv.Video.ID,
+                        FileType = tv.FileType,
+                        VideoFile = tv.FileType == "V" ? tv.Video.VideoAttachment : _dbcontext.ImageGalleries.Where(x => x.Id == tv.VideoID).FirstOrDefault().ImageFile,
+                        VideoId = tv.FileType == "V" ?  tv.Video.ID : tv.VideoID,
                         VideoPosition = Convert.ToInt32(tv.VideoPosition),
                         VideoTitle = tv.Video.VideoTitle,
                         SmallDescription = tv.Video.SmallDescription,
@@ -1561,8 +1730,9 @@ namespace BusinessLayer
                     {
                         IsAlterVideo = tv.IsAlterVideo,
                         IsBasicVideo = tv.IsBasicVideo,
-                        VideoFile = tv.Video.VideoAttachment,
-                        VideoId = tv.Video.ID,
+                        FileType = tv.FileType,
+                        VideoFile = tv.FileType == "V" ? tv.Video.VideoAttachment : _dbcontext.ImageGalleries.Where(x => x.Id == tv.VideoID).FirstOrDefault().ImageFile,
+                        VideoId = tv.FileType == "V" ? tv.Video.ID : tv.VideoID,
                         VideoPosition = Convert.ToInt32(tv.VideoPosition),
                         VideoTitle = tv.Video.VideoTitle,
                         SmallDescription = tv.Video.SmallDescription,
@@ -1628,8 +1798,9 @@ namespace BusinessLayer
                                 {
                                     IsAlterVideo = tv.IsAlterVideo,
                                     IsBasicVideo = tv.IsBasicVideo,
-                                    VideoFile = tv.Video.VideoAttachment,
-                                    VideoId = tv.Video.ID,
+                                    FileType = tv.FileType,
+                                    VideoFile = tv.FileType == "V" ? tv.Video.VideoAttachment : _dbcontext.ImageGalleries.Where(x => x.Id == tv.VideoID).FirstOrDefault().ImageFile,
+                                    VideoId = tv.FileType == "V" ? tv.Video.ID : tv.VideoID,
                                     VideoPosition = Convert.ToInt32(tv.VideoPosition),
                                     VideoTitle = tv.Video.VideoTitle,
                                     SmallDescription = tv.Video.SmallDescription,
@@ -1640,8 +1811,9 @@ namespace BusinessLayer
                                 {
                                     IsAlterVideo = tv.IsAlterVideo,
                                     IsBasicVideo = tv.IsBasicVideo,
-                                    VideoFile = tv.Video.VideoAttachment,
-                                    VideoId = tv.Video.ID,
+                                    FileType = tv.FileType,
+                                    VideoFile = tv.FileType == "V" ? tv.Video.VideoAttachment : _dbcontext.ImageGalleries.Where(x => x.Id == tv.VideoID).FirstOrDefault().ImageFile,
+                                    VideoId = tv.FileType == "V" ? tv.Video.ID : tv.VideoID,
                                     VideoPosition = Convert.ToInt32(tv.VideoPosition),
                                     VideoTitle = tv.Video.VideoTitle,
                                     SmallDescription = tv.Video.SmallDescription,
@@ -1675,6 +1847,8 @@ namespace BusinessLayer
                 throw;
             }
         }
+
+
 
         /// <summary>
         /// Get Template detail for Workout

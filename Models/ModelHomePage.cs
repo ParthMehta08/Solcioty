@@ -19,6 +19,7 @@ namespace Models
         public BoxerWorkoutDetailModel BoxerWorkoutInfo { get; set; }
         public List<BoxerWorkoutDetailModel> BoxerWorkoutInfos { get; set; }
         public List<ModelBoxerWorkout> BoxerWorkoutList { get; set; }
+        public List<ModelBoxerWorkout> FutureBoxerWorkoutList { get; set; }
         public IList<ModelBoxerTemplate> BoxerTempalteList { get; set; }
         public bool IsTrainingPortalAccessible { get; set; }
     }

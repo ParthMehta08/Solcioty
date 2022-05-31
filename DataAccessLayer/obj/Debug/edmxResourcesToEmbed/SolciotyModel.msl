@@ -67,6 +67,7 @@
     <EntitySetMapping Name="BoxerTemplateVideoMappings">
       <EntityTypeMapping TypeName="SolciotyNewModel.BoxerTemplateVideoMapping">
         <MappingFragment StoreEntitySet="BoxerTemplateVideoMapping">
+          <ScalarProperty Name="FileType" ColumnName="FileType" />
           <ScalarProperty Name="Reps" ColumnName="Reps" />
           <ScalarProperty Name="UpdatedDate" ColumnName="UpdatedDate" />
           <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />

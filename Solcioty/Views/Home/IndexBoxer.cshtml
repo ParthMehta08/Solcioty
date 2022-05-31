@@ -1,18 +1,24 @@
 ﻿@using Models
 @model ModelBoxerHomePage
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_FrontLayout.cshtml";
-}
+
 
 <link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+@*old backup by parth*@
+@*@if (Model.BoxerWorkoutInfo != null && Model.BoxerWorkoutInfo.BoxerTemplates != null && Model.BoxerWorkoutInfo.BoxerTemplates.Count > 0)
+    {
+        @Html.Partial("~/Views/Workout/_ViewBoxerWorkout.cshtml", Model)
+    }*@
 @if (Model.BoxerWorkoutInfo != null && Model.BoxerWorkoutInfo.BoxerTemplates != null && Model.BoxerWorkoutInfo.BoxerTemplates.Count > 0)
 {
-    @Html.Partial("~/Views/Workout/_ViewBoxerWorkout.cshtml", Model)
+    Layout = null;
+    @Html.Partial("~/Views/Template/Template.cshtml", Model)
 }
 else if ((Model.BoxerWorkoutList != null) || (Model.BoxerTempalteList != null))
 {
-
+    
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    
     <div class="workoutinfo workoutzone">
         <div class="row">
             <div class="col-sm-6 col-xs-12">
@@ -27,7 +33,7 @@ else if ((Model.BoxerWorkoutList != null) || (Model.BoxerTempalteList != null))
                                   "---- Select Template ----",
                                   new { @class = "form-control futureworkoutlist" })
 
-                        <button type="button" class="btn btn-info btn-lg viewfutureworkout"  style="display:none;">Select</button>
+                        <button type="button" class="btn btn-info btn-lg viewfutureworkout" style="display:none;">Select</button>
                         <a href="javascript:void(0);" class="btn btn-info btn-lg viewfutureworkout" style="margin-bottom: 0px;
     background: #36404d;
     padding: 2% 3%;
@@ -238,9 +244,9 @@ else
             $('.viewfutureworkout').click(function () {
                 debugger
                 if ($('.futureworkoutlist').val() > 0) {
-                   
+
                     var IDVAL = $('.futureworkoutlist').val();
-                  
+
                     window.location.href = 'Template/BoxerTemplate/' + IDVAL;
 
                 } else {

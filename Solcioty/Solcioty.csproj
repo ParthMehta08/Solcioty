@@ -148,7 +148,37 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AllImages\1008\image001.png" />
+    <Content Include="AllImages\10\Final Slide.jpg" />
+    <Content Include="AllImages\10\Final.jpg" />
+    <Content Include="AllImages\11\1172839431amazing horse gif 2.gif" />
+    <Content Include="AllImages\11\Dotted Horse and Stars Illustrations Purple Poster.png" />
+    <Content Include="AllImages\11\HIIT by LAF Studio Opening screen Mar12.jpg" />
+    <Content Include="AllImages\12\seminar on gynaecological problems in equines and foal mortality.jpg" />
+    <Content Include="AllImages\13\goodmon2w 20.gif" />
+    <Content Include="AllImages\14\trafic.jpg" />
     <Content Include="AllImages\1\12.jpg" />
+    <Content Include="AllImages\1\HIIT_VT-Alternarte Logo.png.jpg" />
+    <Content Include="AllImages\1\HIIT_VT-Logo 3.jpg" />
+    <Content Include="AllImages\27\Final.jpg" />
+    <Content Include="AllImages\28\1st slide.jpg" />
+    <Content Include="AllImages\2\Final.jpg" />
+    <Content Include="AllImages\2\HIIT cover.jpg" />
+    <Content Include="AllImages\2\img 3.jpg" />
+    <Content Include="AllImages\35\img 1.jpg" />
+    <Content Include="AllImages\36\img 5.jpg" />
+    <Content Include="AllImages\4\12.jpg" />
+    <Content Include="AllImages\4\ClubOS APIIssue.png" />
+    <Content Include="AllImages\5\3.png" />
+    <Content Include="AllImages\5\5s.jpg" />
+    <Content Include="AllImages\6\poster2.jpg" />
+    <Content Include="AllImages\6\Push Cover.jpg" />
+    <Content Include="AllImages\7\Push Cover Final.jpg" />
+    <Content Include="AllImages\8\EVVehicleImage.png" />
+    <Content Include="AllImages\8\First Slide.jpg" />
+    <Content Include="AllImages\9\1st slide.jpg" />
+    <Content Include="AllImages\9\2.png" />
+    <Content Include="AllImages\9\ebede532f6f5cf644a3fcf79d14b046c.gif" />
     <Content Include="AllImages\test.jpg" />
     <Content Include="AllImages\thankyou.jpg" />
     <Content Include="AllImages\welcome.jpg" />
@@ -1362,6 +1392,7 @@
     <Content Include="fonts\ProximaNovaExCn-Semibold.ttf" />
     <Content Include="fonts\ProximaNovaExCn-Semibold.woff" />
     <Content Include="fonts\ProximaNovaExCn-Semibold.woff2" />
+    <Content Include="AllPDFS\1\dummy.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
@@ -1499,6 +1530,7 @@
     <Content Include="Views\Home\ShareBoxer.cshtml" />
     <Content Include="Views\Template\Template.cshtml" />
     <Content Include="Views\Home\IndexBoxer.cshtml" />
+    <Content Include="Views\Template\_ViewImage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -1507,13 +1539,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AllImages\2\" />
     <Folder Include="AllImages\3\" />
-    <Folder Include="AllImages\4\" />
-    <Folder Include="AllImages\5\" />
-    <Folder Include="AllImages\6\" />
-    <Folder Include="AllImages\7\" />
-    <Folder Include="AllPDFS\" />
     <Folder Include="AllVideos\13\" />
     <Folder Include="AllVideos\15\" />
     <Folder Include="AllVideos\17\" />

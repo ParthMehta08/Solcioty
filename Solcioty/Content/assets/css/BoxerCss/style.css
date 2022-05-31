@@ -6,7 +6,6 @@
 
 body {
     font-size: 14px;
-    font-family: Arial, Helvetica, sans-serif;
     background: url(../../images/Boxertemplate/black-bg.jpg) no-repeat center bottom;
     background-size: cover;
     font-family: proxima-nova, sans-serif;
@@ -150,11 +149,12 @@ div[role="progressbar"] {
 
 .middle-section {
     height: 57%;
-    padding: 0 8%;
+    padding: 0 6%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
 }
 
 .ten-col-section {
@@ -165,8 +165,14 @@ div[role="progressbar"] {
     height: 100%;
 }
 
+.top-section {
+    height: 50%;
+    width: 100%;
+}
+
 .bottom-section {
-    height: 60%;
+    height: 50%;
+    width: 100%;
 }
 
 .ten-col-section .col {
@@ -176,7 +182,6 @@ div[role="progressbar"] {
     font-weight: 700;
     color: #fff;
     position: relative;
-    padding: 7px 0;
     border: #ccc solid 0px;
     display: flex;
     align-items: baseline;
@@ -186,7 +191,7 @@ div[role="progressbar"] {
 .img-col {
     margin: 0 auto;
     display: block;
-    height: 70%;
+    height: 100%;
     overflow: hidden;
     width: 100%;
 }
@@ -209,12 +214,16 @@ div[role="progressbar"] {
     object-fit: cover;
 }
 
+.bottom-section .col {
+    justify-content: center;
+}
+
 .col {
     padding: 7px 10px;
 }
 
     .col .extra-large-text {
-        font-size: 4.2rem;
+        font-size: 3.2rem;
         line-height: 1;
         height: 30%;
     }
@@ -256,7 +265,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-one .col {
@@ -278,7 +286,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-two .col {
@@ -300,7 +307,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-three .col {
@@ -322,7 +328,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-four .col {
@@ -344,7 +349,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-five .col {
@@ -366,7 +370,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-six .col {
@@ -388,7 +391,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-seven .col {
@@ -410,7 +412,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-eight .col {
@@ -432,7 +433,6 @@ div[role="progressbar"] {
     justify-content: space-between;
     flex-wrap: nowrap;
     width: 100%;
-    height: 100%;
 }
 
     .two-by-nine .col {
@@ -448,6 +448,49 @@ div[role="progressbar"] {
         flex-direction: column;
     }
 
+.one-by-one, .one-by-two, .one-by-three, .one-by-four, .one-by-five, .one-by-six, .one-by-seven, .one-by-eight, .one-by-nine, .one-by-ten {
+    width: 100%;
+}
+
+    .one-by-one .col {
+        width: 100%;
+    }
+
+    .one-by-two .col {
+        width: 50%;
+    }
+
+    .one-by-three .col {
+        width: 33.333%;
+    }
+
+    .one-by-four .col {
+        width: 25%;
+    }
+
+    .one-by-five .col {
+        width: 20%;
+    }
+
+    .one-by-six .col {
+        width: 16.666%;
+    }
+
+    .one-by-seven .col {
+        width: 14.123%;
+    }
+
+    .one-by-eight .col {
+        width: 12.5%;
+    }
+
+    .one-by-nine .col {
+        width: 11.111%;
+    }
+
+    .one-by-ten .col {
+        width: 10%;
+    }
 
 @media (max-width: 767px) {
     .header {
@@ -594,7 +637,7 @@ div[role="progressbar"] {
         }
 
     .col .extra-large-text {
-        font-size: 2rem;
+        font-size: 1rem;
         line-height: 1;
     }
 
@@ -689,7 +732,7 @@ div[role="progressbar"] {
 
 @media (min-width: 1300px) {
     .col .extra-large-text {
-        font-size: 2.8rem;
+        font-size: 2rem;
         line-height: 1;
     }
 
@@ -708,7 +751,7 @@ div[role="progressbar"] {
 
 @media (min-width: 1367px) {
     .col .extra-large-text {
-        font-size: 3.5rem;
+        font-size: 2rem;
         line-height: 1;
     }
 
@@ -726,7 +769,7 @@ div[role="progressbar"] {
 
 @media (min-width: 1800px) {
     .col .extra-large-text {
-        font-size: 4rem;
+        font-size: 2.5rem;
         line-height: 1;
     }
 
@@ -745,7 +788,7 @@ div[role="progressbar"] {
 
 @media (min-width: 2100px) {
     .col .extra-large-text {
-        font-size: 4.8rem;
+        font-size: 3rem;
         line-height: 1;
         margin-top: 20px;
     }
@@ -783,7 +826,7 @@ div[role="progressbar"] {
     }
 
     .col .extra-large-text {
-        font-size: 4.8rem;
+        font-size: 3.5rem;
         line-height: 1;
         margin-top: 20px;
     }
@@ -833,7 +876,7 @@ div[role="progressbar"] {
     }
 
     .col .extra-large-text {
-        font-size: 8.8rem;
+        font-size: 6.8rem;
         line-height: 1;
         margin-top: 20px;
     }
@@ -891,7 +934,7 @@ div[role="progressbar"] {
     }
 
     .col .extra-large-text {
-        font-size: 11.8rem;
+        font-size: 5.8rem;
         line-height: 1;
         margin-top: 20px;
     }
@@ -949,7 +992,7 @@ div[role="progressbar"] {
     }
 
     .col .extra-large-text {
-        font-size: 15.8rem;
+        font-size: 7.8rem;
         line-height: 1;
         margin-top: 20px;
     }

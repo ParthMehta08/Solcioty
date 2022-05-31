@@ -355,6 +355,7 @@
     <Property Name="Reps" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="BoxerTemplate" Relationship="SolciotyNewModel.FK_BoxerTemplateVideoMapping_BoxerTemplate" FromRole="BoxerTemplateVideoMapping" ToRole="BoxerTemplate" />
     <NavigationProperty Name="Video" Relationship="SolciotyNewModel.FK_BoxerTemplateVideoMapping_Video" FromRole="BoxerTemplateVideoMapping" ToRole="Video" />
+    <Property Name="FileType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
   </EntityType>
   <EntityType Name="BoxerWorkoutCategory">
     <Key>

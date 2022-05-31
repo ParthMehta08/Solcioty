@@ -67,6 +67,7 @@ namespace Models
         public string FileName { get; set; }
         public string Note { get; set; }
         public string Reps { get; set; }
+        public string FileType { get; set; }
     }
 
 
@@ -185,6 +186,7 @@ namespace Models
     public class TemplateVideoDetail
     {
         public int VideoId { get; set; }
+        public string FileType { get; set; }
         public int VideoPosition { get; set; }
         public bool IsBasicVideo { get; set; }
         public bool IsAlterVideo { get; set; }

@@ -15,11 +15,13 @@ namespace Solcioty.Controllers
         private BALTemplate _balTemplate;
         private BALTemplateVideoMapping _balTemplateVideoMapping;
         private BALVideo _balVideo;
+        private BALImage _balImage;
         public TemplateController()
         {
             _balTemplate = new BALTemplate();
             _balTemplateVideoMapping = new BALTemplateVideoMapping();
             _balVideo = new BALVideo();
+            _balImage = new BALImage();
         }
 
         #region Template Block
@@ -459,16 +461,14 @@ namespace Solcioty.Controllers
         //added by parth mehta for Tempalte render
         public ActionResult BoxerTemplate(Int32 ID)
         {
-            //var userData = Session["UserData"] as UserData;
-            //var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.BoxerTemplates);
-            //if (permissionType == Models.Enums.PermissionType.Read)
-            //{
-            //    return RedirectToAction("Unauthorized", "Account");
-            //}
-            BoxerTemplateModel objmodel = new BoxerTemplateModel();
-
-            objmodel = _balTemplate.GetTemplateById(ID);
-            return View("Template", objmodel);
+            var userData = Session["UserData"] as UserData;
+            var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.BoxerTemplates);
+            if (permissionType == Models.Enums.PermissionType.Read)
+            {
+                return RedirectToAction("Unauthorized", "Account");
+            }
+            List<BoxerTemplateModel> boxerTemplateModels = _balTemplate.GetTemplateById(ID);
+            return View("Template", boxerTemplateModels);
         }
         [HttpGet]
         [HasPermissionFilter(PermissionCode = Permission.BoxerTemplates)]
@@ -565,6 +565,7 @@ namespace Solcioty.Controllers
         /// </summary>
         /// <param name="ID">Template Id</param>
         /// <returns></returns>
+       
         [HttpGet]
         [HasPermissionFilter(PermissionCode = Permission.BoxerTemplates)]
         public ActionResult VideosBoxer(Int32 ID)
@@ -577,19 +578,43 @@ namespace Solcioty.Controllers
                 objModel = _balTemplateVideoMapping.GetTemplateVideosBoxer(objModel);
                 if (userData.RoleCode == RoleTypes.SuperAdmin)
                 {
-                    objModel.VideosTable = _balVideo.GetAllVideos(userData.UserId, null, true).Where(p => p.IsActive == true).ToList();
+                    if (Session["VideosTable"] as IList<ModelVideo> == null)
+                    {
+                        Session["VideosTable"] = _balVideo.GetAllVideos(userData.UserId, null, true).Where(p => p.IsActive == true).ToList();
+                        objModel.ImagesTable = _balImage.GetAllImages(userData.UserId, true).Where(p => p.IsActive == true).ToList();
+                        objModel.VideosTable = Session["VideosTable"] as IList<ModelVideo>;
+                    }
+                    else
+                    {
+                        objModel.VideosTable = Session["VideosTable"] as IList<ModelVideo>;
+                        objModel.ImagesTable = _balImage.GetAllImages(userData.UserId, true).Where(p => p.IsActive == true).ToList();
 
+                    }
                 }
                 else
                 {
-                    objModel.VideosTable = _balVideo.GetAllVideos(userData.ClientOwnerId, null, false).Where(p => p.IsActive == true).ToList();
+                    if (Session["VideosTable"] as IList<ModelVideo> == null)
+                    {
+                        Session["VideosTable"] = _balVideo.GetAllVideos(userData.ClientOwnerId, null, false).Where(p => p.IsActive == true).ToList();
+                        objModel.ImagesTable = _balImage.GetAllImages(userData.ClientOwnerId, false).Where(p => p.IsActive == true).ToList();
+                        objModel.VideosTable = Session["VideosTable"] as IList<ModelVideo>;
+                    }
+                    else
+                    {
+                        objModel.VideosTable = Session["VideosTable"] as IList<ModelVideo>;
+                        objModel.ImagesTable = _balImage.GetAllImages(userData.ClientOwnerId, false).Where(p => p.IsActive == true).ToList();
+
+                    }
                 }
                 objModel.BasicModelTemplateVideoMappingList = objModel.BasicModelTemplateVideoMappingList.OrderBy(p => p.VideoPosition).ToList();
                 objModel.AlterModelTemplateVideoMappingList = objModel.AlterModelTemplateVideoMappingList.OrderBy(p => p.VideoPosition).ToList();
             }
 
+
+
             return View(objModel);
         }
+
 
         /// <summary>
         /// Save All Videos for Templates
@@ -619,8 +644,10 @@ namespace Solcioty.Controllers
         /// <returns></returns>
         [HttpGet]
         [HasPermissionFilter(PermissionCode = Permission.Videos)]
-        public ActionResult ViewVideoBoxer(Int32 ID, bool OnlyVideo = false)
+        public ActionResult ViewVideoBoxer(Int32 ID, bool OnlyVideo = false,string FileType="")
         {
+            if (FileType == "V")
+            {
             ModelVideo objModel = _balVideo.GetVideoByID(ID);
             if (OnlyVideo)
             {
@@ -635,6 +662,49 @@ namespace Solcioty.Controllers
                 ViewBag.SmallSize = false;
             }
             return PartialView("_ViewVideo", objModel);
+            }
+            else
+            {
+                ModelImage objModel = _balImage.GetImageByID(ID);
+                if (OnlyVideo)
+                {
+                    var temp = new ModelImage();
+                    temp.Id = objModel.Id;
+                    temp.ImageTitle = objModel.ImageTitle;
+                    temp.ImageFile = objModel.ImageFile;
+                    temp.ImageName = objModel.ImageName;
+                    objModel = temp;
+                    ViewBag.SmallSize = true;
+                }
+                else
+                {
+                    ViewBag.SmallSize = false;
+                }
+                return PartialView("_ViewImage", objModel);
+            }
+        }
+
+
+        //added by parth 
+
+        [HttpGet]
+        [HasPermissionFilter(PermissionCode = Permission.Videos)]
+        public ActionResult ViewIamgeBoxer(Int32 ID, bool OnlyVideo = false)
+        {
+            ModelImage objModel = _balImage.GetImageByID(ID);
+            if (OnlyVideo)
+            {
+                var temp = new ModelImage();
+                temp.Id = objModel.Id;
+                temp.ImageTitle= objModel.ImageTitle;
+                objModel = temp;
+                ViewBag.SmallSize = true;
+            }
+            else
+            {
+                ViewBag.SmallSize = false;
+            }
+            return PartialView("_ViewImage", objModel);
         }
 
         #endregion

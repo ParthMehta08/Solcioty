@@ -46,6 +46,7 @@
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="Reps" Type="varchar" MaxLength="50" />
+    <Property Name="FileType" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="BoxerWorkoutCategory">
     <Key>
@@ -662,18 +663,6 @@
       </Principal>
       <Dependent Role="BoxerTemplateVideoMapping">
         <PropertyRef Name="BoxerTemplateID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BoxerTemplateVideoMapping_Video">
-    <End Role="Video" Type="Self.Video" Multiplicity="1" />
-    <End Role="BoxerTemplateVideoMapping" Type="Self.BoxerTemplateVideoMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Video">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BoxerTemplateVideoMapping">
-        <PropertyRef Name="VideoID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1360,10 +1349,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_BoxerTemplateVideoMapping_BoxerTemplate" Association="Self.FK_BoxerTemplateVideoMapping_BoxerTemplate">
       <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
-      <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BoxerTemplateVideoMapping_Video" Association="Self.FK_BoxerTemplateVideoMapping_Video">
-      <End Role="Video" EntitySet="Video" />
       <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
     </AssociationSet>
     <AssociationSet Name="FK_BoxerWorkoutMaster_ImageGallery" Association="Self.FK_BoxerWorkoutMaster_ImageGallery">

@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\AppleTVDT2305\wetransfer_solcioty-bak_2022-05-22_0806\solcioty-Dev\solcioty-Dev\DataAccessLayer\SolciotyModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\SolciotyModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

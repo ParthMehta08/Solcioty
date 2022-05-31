@@ -523,32 +523,24 @@ namespace BusinessLayer
                 throw;
             }
         }
-        public BoxerTemplateModel GetTemplateById(Int32 ID)
+        public List<BoxerTemplateModel> GetTemplateById(Int32 ID)
         {
-            BoxerTemplateModel OBJ = new BoxerTemplateModel();
-            var data = _dbcontext.BoxerTemplates.FirstOrDefault(p => p.ID == ID);
-
-            var data2 = (from BWM in _dbcontext.BoxerWorkoutMasters
-                         join BTM in _dbcontext.BoxerWorkoutTemplateMappings on BWM.ID equals BTM.BoxerWorkoutMasterID
-                         join BT in _dbcontext.BoxerTemplates on BTM.BoxerTemplateID equals BT.ID
-                         where BTM.BoxerTemplateID == ID 
-                         select new BoxerWorkoutModelList
+            List<BoxerTemplateModel> model = (from BT in _dbcontext.BoxerTemplates
+                         join BTVM in _dbcontext.BoxerTemplateVideoMappings on BT.ID equals BTVM.BoxerTemplateID
+                         join V in _dbcontext.Videos on BTVM.VideoID equals V.ID
+                         where BT.ID == ID && BTVM.IsDeleted != true
+                         select new BoxerTemplateModel
                          {
-                             ID = BWM.ID,
-                             WorkoutName = BWM.WorkoutName,
-                             PDFName = BWM.PDFName,
-                           
-
+                            BoxerTemplateID = BT.ID,
+                            Reps = BTVM.Reps,
+                            Note = BTVM.Note,
+                            VideoID = V.ID,
+                            FileName = V.VideoAttachment,
+                            TemplateName = BT.TemplateName,
+                            TimeText = BT.TimeText,
+                            FileType = V.ContentType
                          }).ToList();
-            OBJ.ID = data.ID;
-            OBJ.TemplateName = data.TemplateName;
-            OBJ.TimeText = data.TimeText;
-            OBJ.NumberOfBasicVideos = data.NumberOfBasicVideos;
-            OBJ.NumberOfAlterVideos = data.NumberOfAlterVideos;
-            OBJ.boxerWorkoutModelLists = data2;
-
-
-            return OBJ;
+            return model;
         }
 
         #endregion
@@ -692,6 +684,7 @@ namespace BusinessLayer
                             find.VideoID = item.VideoID;
                             find.Note = item.Note;
                             find.Reps = item.Reps;
+                            find.FileType = item.FileType;
                             _dbcontext.Entry(find).State = System.Data.Entity.EntityState.Modified;
                             _dbcontext.SaveChanges();
                         }
@@ -717,6 +710,7 @@ namespace BusinessLayer
                             objdal.Note = item.Note;
                             objdal.Reps = item.Reps;
                             objdal.VideoPosition = item.VideoPosition;
+                            objdal.FileType = item.FileType;
                             _dbcontext.BoxerTemplateVideoMappings.Add(objdal);
                             _dbcontext.SaveChanges();
                         }
@@ -738,6 +732,7 @@ namespace BusinessLayer
                             find.VideoID = item.VideoID;
                             find.Note = item.Note;
                             find.Reps = item.Reps;
+                            find.FileType = item.FileType;
                             _dbcontext.Entry(find).State = System.Data.Entity.EntityState.Modified;
                             _dbcontext.SaveChanges();
                         }
@@ -763,6 +758,7 @@ namespace BusinessLayer
                             objdal.VideoPosition = item.VideoPosition;
                             objdal.Note = item.Note;
                             objdal.Reps = item.Reps;
+                            objdal.FileType = item.FileType;
                             _dbcontext.BoxerTemplateVideoMappings.Add(objdal);
                             _dbcontext.SaveChanges();
                         }
@@ -920,7 +916,16 @@ namespace BusinessLayer
                     model.Note = find.Note;
                     model.Reps = find.Reps;
                     model.VideoPosition = find.VideoPosition.HasValue ? find.VideoPosition.Value : 0;
-                    model.FileName = find.Video.VideoAttachment;
+                    if (find.FileType == "V")
+                    {
+                        model.FileName = find.Video.VideoAttachment;
+
+                    }
+                    else
+                    {
+                        model.FileName = _dbcontext.ImageGalleries.Where(x=>x.Id == find.VideoID).FirstOrDefault().ImageFile;
+                    }
+                    model.FileType = find.FileType;
                     Template.BasicModelTemplateVideoMappingList.Add(model);
                 }
                 else
@@ -933,6 +938,7 @@ namespace BusinessLayer
                     model.VideoID = 0;
                     model.Note = string.Empty;
                     model.Reps = " ";
+                    model.FileType = "";
                     Template.BasicModelTemplateVideoMappingList.Add(model);
                 }
             }
@@ -961,8 +967,18 @@ namespace BusinessLayer
                     model.VideoID = find.VideoID;
                     model.Note = find.Note;
                     model.Reps = find.Reps;
+                    model.FileType = find.FileType;
                     model.VideoPosition = find.VideoPosition.HasValue ? find.VideoPosition.Value : 0;
-                    model.FileName = find.Video.VideoAttachment;
+                    if (find.FileType == "V")
+                    {
+                        model.FileName = find.Video.VideoAttachment;
+
+                    }
+                    else
+                    {
+                        model.FileName = _dbcontext.ImageGalleries.Where(x => x.Id == find.VideoID).FirstOrDefault().ImageFile;
+
+                    }
                     Template.AlterModelTemplateVideoMappingList.Add(model);
                 }
                 else
@@ -975,6 +991,7 @@ namespace BusinessLayer
                     model.VideoID = 0;
                     model.Note = string.Empty;
                     model.Reps = " ";
+                    model.FileType = "";
                     Template.AlterModelTemplateVideoMappingList.Add(model);
                 }
             }

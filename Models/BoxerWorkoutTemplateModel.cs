@@ -8,20 +8,13 @@ namespace Models
 {
     public class BoxerTemplateModel
     {
-        public int ID { get; set; }
+        public int BoxerTemplateID { get; set; }
         public string TemplateName { get; set; }
         public string TimeText { get; set; }
-        public int NumberOfBasicVideos { get; set; }
-        public int NumberOfAlterVideos { get; set; }
-
-        public List<BoxerWorkoutModelList> boxerWorkoutModelLists { get; set; }
-    }
-
-    public class BoxerWorkoutModelList
-    {
-        public int ID { get; set; }
-        public string WorkoutName { get; set; }
-        public string PDFName { get; set; }
-        
+        public string Reps { get; set; }
+        public string Note { get; set; }
+        public int VideoID { get; set; }
+        public string FileName { get; set; }
+        public string FileType { get; set; }
     }
 }
