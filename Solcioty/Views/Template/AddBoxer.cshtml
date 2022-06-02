@@ -77,6 +77,7 @@
                         </div>
                     </div>
 
+<<<<<<< HEAD
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label>Primary Text</label>
@@ -159,6 +160,90 @@
                                 @Html.HiddenFor(m => m.NumberOfBasicVideos, new { @class = "form-control", @min = "1", @max = "6" })
                             </div>
                         </div>
+=======
+                                    @*<div class="row">
+                                        <div class="form-group col-md-6">
+                                            <label>Primary Text</label>
+                                            @Html.TextBoxFor(m => m.PrimaryText, new { @class = "form-control", @maxlength = "10" })
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label>Alternate Text</label>
+                                            @Html.TextBoxFor(m => m.AlternateText, new { @class = "form-control", @maxlength = "10" })
+                                        </div>
+                                    </div>*@
+
+                                                    <div class="row">
+                                                        <div class="form-group col-md-3">
+                                                            <label>Time Text</label>
+                                                            @Html.TextBoxFor(m => m.TimeText, new { @class = "form-control", @maxlength = "20" })
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @*<label>Block Line One Text</label>
+                                                            @Html.TextBoxFor(m => m.BlockLineOneText, new { @class = "form-control", @maxlength = "10" })*@
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @*<label>Block Line Two Text</label>
+                                                            @Html.TextBoxFor(m => m.BlockLineTwoText, new { @class = "form-control", @maxlength = "10" })*@
+                                                        </div>
+                                                        <div class="form-group col-md-3">
+                                                            @*<label>Goal Text</label>
+                                                            @Html.TextBoxFor(m => m.GoalText, new { @class = "form-control", @maxlength = "20" })*@
+                                                        </div>
+                                                    </div>
+                                                                    @*<div class="row">
+                                                                        <div class="form-group col-md-3">
+                                                                            <label>Footer Text</label>
+                                                                            @Html.CheckBoxFor(m => m.IsFooterText, new { @class = "form-control", @maxlength = "40", @style = "height : 15px;margin-top:-22px;" })
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>Footer Text Color</label>
+                                                                            @Html.TextBoxFor(m => m.FooterTextColor, new { @class = "form-control jscolor {required:false}" })
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <label>Footer Text</label>
+                                                                            @Html.TextBoxFor(m => m.FooterText, new { @class = "form-control", @maxlength = "300" })
+                                                                            @Html.Label("lbl", "too many characters are input.", new { id = "lblid" })
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Primary Background Color</label>
+                                                                            @Html.TextBoxFor(m => m.PrimaryBackgroundColor, new { @class = "form-control  jscolor {required:false}" })
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Primary Gradient Color</label>
+                                                                            @Html.TextBoxFor(m => m.PrimaryGradientColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Primary Font Color</label>
+                                                                            @Html.TextBoxFor(m => m.PrimaryColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                        </div>
+
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Alternate Background Color</label>
+                                                                            @Html.TextBoxFor(m => m.AlternateBackgroundColor, new { @class = "form-control  jscolor {required:false}" })
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Alternate Gradient Color</label>
+                                                                            @Html.TextBoxFor(m => m.AlternateGradientColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                        </div>
+                                                                        <div class="form-group col-md-4">
+                                                                            <label>Alternate Font Color</label>
+                                                                            @Html.TextBoxFor(m => m.AlternateColor, new { @class = "form-control  jscolor {required:false}", @maxlength = "10" })
+                                                                        </div>
+                                                                    
+                                                                    </div>*@ 
+                                                                    @*<div class="col-sm-6">
+                                                                                                                                            <div class="form-group">
+                                                                                                                                                <label>Number of basic videos</label>
+                                                                                                                                                @Html.HiddenFor(m => m.NumberOfBasicVideos, new { @class = "form-control", @min = "1", @max = "6" })
+                                                                                                                                            </div>
+                                                                                                                                        </div>
+>>>>>>> b6b11337d26992dcf28937d5893bad7036e3c577
 
                         <div class="col-sm-6">
                             <div class="form-group">

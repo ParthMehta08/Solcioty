@@ -33,6 +33,25 @@
     </head>
     <body>
         <div id="wrapper">
+            @{
+                int Minutes = 0;
+                int Seconds = 0;
+                if (!string.IsNullOrEmpty(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Trim()) && Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText != " ")
+                {
+                    if(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':').Count() > 1)
+                    {
+                        Minutes = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[0]);
+                        Seconds = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[1]);
+                    }
+                    else
+                    {
+                        Minutes = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[0]);
+                        Seconds = 0;
+                    }
+                }
+            }
+            <input type="hidden" id="Minutes" value="@Minutes" />
+            <input type="hidden" id="Seconds" value="@Seconds" />
             <header class="header">
                 <div class="logo">
                     <img src="~/Content/assets/images/Boxertemplate/logo.png" />
@@ -70,10 +89,23 @@
                         }
                         else if (items.NumberOfBasicVideos == 1 && items.NumberOfAlternateVideos == 2)
                         {
+<<<<<<< HEAD
                             //("1 X 2");
                             clssname = "two-by-one";
                             numberofbasicvideos = 1;
                             numberofalternatevideo = 1;
+=======
+                            <div class="col">
+                                <div class="img-col">
+                                    <video autoplay loop controls>
+                                        <source src="images/7202-Loop-Bicep-Curl.mp4" type="video/mp4">
+                                        <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
+
+                                    </video>
+                                </div>
+
+                            </div>
+>>>>>>> b6b11337d26992dcf28937d5893bad7036e3c577
                         }
                         else if (items.NumberOfBasicVideos == 2 && items.NumberOfAlternateVideos == 1)
                         {
@@ -84,6 +116,7 @@
                         }
                         else if (items.NumberOfBasicVideos == 2 && items.NumberOfAlternateVideos == 2)
                         {
+<<<<<<< HEAD
                             //("2 X 2");
                             clssname = "two-by-two";
                             numberofbasicvideos = 2;
@@ -200,12 +233,25 @@
                             clssname = "";
                             numberofbasicvideos = 10;
                             numberofalternatevideo = 10;
+=======
+                            <div class="col">
+                                <div class="img-col">
+                                    <video autoplay loop controls>
+                                        <source src="images/7202-Loop-Bicep-Curl.mp4" type="video/mp4">
+                                        <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
+
+                                    </video>
+                                </div>
+
+                            </div>
+>>>>>>> b6b11337d26992dcf28937d5893bad7036e3c577
                         }
 
 
 
 
 
+<<<<<<< HEAD
                         <div>
                             <div class="ten-col-section top-section @clssname">
                                 @foreach (var item in items.BasicVideos.Take(numberofbasicvideos))
@@ -324,5 +370,28 @@
                     }, 1000);
                 </script>
 </body>
+=======
+            </div>
+        </div>
+        @Scripts.Render("~/bundle/jquery")
+        <script>
+            var minutes = $("#Minutes").val();
+            var seconds = $("#Seconds").val();
+            var x = setInterval(function () {
+                if (seconds == 0) {
+                    if (minutes == 0) {
+                        document.getElementById("demo").innerHTML = 0 + ':' + 0;
+                        return;
+                    } else {
+                        minutes--;
+                        seconds = 60;
+                    }
+                }
+                document.getElementById("demo").innerHTML = minutes + ':' + seconds;
+                seconds--;
+            }, 1000);
+        </script>
+    </body>
+>>>>>>> b6b11337d26992dcf28937d5893bad7036e3c577
 
 </html>
