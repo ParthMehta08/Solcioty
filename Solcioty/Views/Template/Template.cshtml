@@ -167,6 +167,25 @@
     </head>
     <body>
         <div id="wrapper">
+            @{
+                int Minutes = 0;
+                int Seconds = 0;
+                if (!string.IsNullOrEmpty(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Trim()) && Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText != " ")
+                {
+                    if(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':').Count() > 1)
+                    {
+                        Minutes = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[0]);
+                        Seconds = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[1]);
+                    }
+                    else
+                    {
+                        Minutes = Convert.ToInt32(Model.BoxerWorkoutInfo.BoxerTemplates[0].TimeText.Split(':')[0]);
+                        Seconds = 0;
+                    }
+                }
+            }
+            <input type="hidden" id="Minutes" value="@Minutes" />
+            <input type="hidden" id="Seconds" value="@Seconds" />
             <header class="header">
                 <div class="logo">
                     <img src="~/Content/assets/images/Boxertemplate/logo.png" />
@@ -206,7 +225,7 @@
                         {
                             <div class="col">
                                 <div class="img-col">
-                                    <video controls>
+                                    <video autoplay loop controls>
                                         <source src="images/7202-Loop-Bicep-Curl.mp4" type="video/mp4">
                                         <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
 
@@ -242,7 +261,7 @@
                         {
                             <div class="col">
                                 <div class="img-col">
-                                    <video controls>
+                                    <video autoplay loop controls>
                                         <source src="images/7202-Loop-Bicep-Curl.mp4" type="video/mp4">
                                         <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
 
@@ -262,34 +281,22 @@
 
             </div>
         </div>
-
+        @Scripts.Render("~/bundle/jquery")
         <script>
-            // Set the date we're counting down to
-            var countDownDate = new Date("Jan 5, 2024 15:37:25").getTime();
-
-            // Update the count down every 1 second
+            var minutes = $("#Minutes").val();
+            var seconds = $("#Seconds").val();
             var x = setInterval(function () {
-
-                // Get today's date and time
-                var now = new Date().getTime();
-
-                // Find the distance between now and the count down date
-                var distance = countDownDate - now;
-
-                // Time calculations for days, hours, minutes and seconds
-                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                // Output the result in an element with id="demo"
-                document.getElementById("demo").innerHTML = minutes + ":" + seconds;
-
-                // If the count down is over, write some text
-                if (distance < 0) {
-                    clearInterval(x);
-                    document.getElementById("demo").innerHTML = "EXPIRED";
+                if (seconds == 0) {
+                    if (minutes == 0) {
+                        document.getElementById("demo").innerHTML = 0 + ':' + 0;
+                        return;
+                    } else {
+                        minutes--;
+                        seconds = 60;
+                    }
                 }
+                document.getElementById("demo").innerHTML = minutes + ':' + seconds;
+                seconds--;
             }, 1000);
         </script>
     </body>
