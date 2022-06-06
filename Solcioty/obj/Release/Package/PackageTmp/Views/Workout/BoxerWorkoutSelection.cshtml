@@ -284,13 +284,13 @@
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var ViewWorkout = function (workoutId, workoutScheduledId, IsSelected) {
-                var workoutScheduledId = workoutScheduledId;
+            var ViewWorkout = function (boxerWorkoutId, boxerWorkoutScheduledId, IsSelected) {
+                var workoutScheduledId = boxerWorkoutScheduledId;
                 var isSelected = IsSelected;
                 $.ajax({
                 type: "get",
                 url: "@Url.Action("ViewBoxerWorkout", "Workout")", // Location of the service
-                data: { WorkoutId: workoutId }, //Data sent to server
+                    data: { boxerWorkoutId: boxerWorkoutId }, //Data sent to server
                 dataType: 'html',
                 success: function (data) {
                     $('.workoutareabody').html(data);
@@ -344,8 +344,8 @@
                                             end: moment(data.DisplayDate).format('YYYY-MM-DD'),
                                             backgroundColor: data.IsSelected == true ? "#008000" :"#ff0000",
                                             borderColor: "#000",
-                                            id: data.WorkoutScheduleId,
-                                            workoutId: data.WorkoutId,
+                                            id: data.BoxerWorkoutScheduleId,
+                                            workoutId: data.BoxerWorkoutId,
                                             isSelected: data.IsSelected
 
                                         });
@@ -365,11 +365,11 @@
                         });
                 },
                 eventClick: function (calEvent, jsEvent, view) {
-                    var workoutShceduleId = calEvent.id;
-                    var workoutId = calEvent.workoutId;
+                    var boxerWorkoutScheduleID = calEvent.id;
+                    var boxerWorkoutId = calEvent.workoutId;
                     var IsSelected = calEvent.isSelected;
                     //SelectWorkoutSchedule(workoutShceduleId)
-                    ViewWorkout(workoutId, workoutShceduleId, IsSelected)
+                    ViewWorkout(boxerWorkoutId, boxerWorkoutScheduleID, IsSelected)
 
                 }
             });
@@ -381,7 +381,7 @@
                 type: "get",
                 dataType: "JSON",
                 contentType: "application/json", // content type sent to server
-                data: { WorkoutScheduleId: WorkoutScheduleId  },
+                data: { BoxerWorkoutScheduleId: WorkoutScheduleId  },
                 success: function (result) {
                     if (result.IsSuccess) {
                         toastr.success(result.Message);

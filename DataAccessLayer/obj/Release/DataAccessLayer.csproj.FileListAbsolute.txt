@@ -85,3 +85,28 @@ D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\s
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\DataAccessLayer\obj\Release\DataAccessLayer.dll
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\DataAccessLayer\obj\Release\DataAccessLayer.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\DataAccessLayer.dll.config
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\DataAccessLayer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\DataAccessLayer.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\EntityFramework.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Helpers.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Mvc.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\EntityFramework.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Helpers.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Mvc.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\bin\Release\System.Web.WebPages.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\obj\Release\DataAccessLayer.csprojAssemblyReference.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CoreCompileInputs.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\obj\Release\DataAccessLayer.csproj.CopyComplete
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\obj\Release\DataAccessLayer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\DataAccessLayer\obj\Release\DataAccessLayer.pdb

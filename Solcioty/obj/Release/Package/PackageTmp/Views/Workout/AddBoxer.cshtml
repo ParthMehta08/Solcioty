@@ -64,7 +64,7 @@
                     </div>
                     <div>
                         <label>Workout PDF</label>
-                        <input type="file" name="WorkoutPDF" accept="application/pdf" id="WorkoutPDF" />
+                        <input type="file" name="WorkoutPDF" @*accept="application/pdf"*@ id="WorkoutPDF" />
                         <div class="filepreview">
 
                             <label>Uploaded File:</label>
@@ -167,13 +167,15 @@
                     dragLeave: null,
                     drop: function (file) {
                         var pdfFile = file[0];
-                        if (pdfFile != undefined && pdfFile.type != "application/pdf") {
-                            toastr.error("Only PDF file allowed!")
-                        } else {
-                            $(".filename").text(pdfFile.name);
+                        //if (pdfFile != undefined && pdfFile.type != "application/pdf") {
+                        //    toastr.error("Only PDF file allowed!")
+                        //} else {
+                        //    $(".filename").text(pdfFile.name);
 
-                            $('.filepreview').show();
-                        }
+                        //    $('.filepreview').show();
+                        //}
+                        $(".filename").text(pdfFile.name);
+                        $('.filepreview').show();
                     },
                 },
                 addMore: false,
@@ -201,13 +203,15 @@
 
             $('#WorkoutPDF').change(function () {
                 var pdfFile = $(this)[0].files[0];
-                if (pdfFile != undefined && pdfFile.type != "application/pdf") {
-                    toastr.error("Only PDF file allowed!")
-                } else {
+                //if (pdfFile != undefined && pdfFile.type != "application/pdf") {
+                //    toastr.error("Only PDF file allowed!")
+                //} else {
 
-                    $(".filename").text(pdfFile.name);
-                    $('.filepreview').show();
-                }
+                //    $(".filename").text(pdfFile.name);
+                //    $('.filepreview').show();
+                //}
+                $(".filename").text(pdfFile.name);
+                $('.filepreview').show();
             });
 
 

@@ -625,6 +625,7 @@ namespace Solcioty.Controllers
         [HasPermissionFilter(PermissionCode = Permission.BoxerTemplates)]
         public ActionResult VideosBoxer(ModelBoxerTemplate objmodel)
         {
+            
             var userData = Session["UserData"] as UserData;
             var permissionType = AccessbilityService.GetPermission(userData.RoleCode, Permission.Videos);
             if (permissionType == Models.Enums.PermissionType.Read)

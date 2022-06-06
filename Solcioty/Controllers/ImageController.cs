@@ -114,7 +114,7 @@ namespace Solcioty.Controllers
 					objModel.CreatedBy = userData.ClientOwnerId;
 					objModel.UpdatedBy = userData.ClientOwnerId;
 					//Convert video to stream to save in database
-					if (objModel.ImageFile != null && objModel.ImageFile.FileName != "" && (objModel.ImageFile.ContentType == "image/jpg" || objModel.ImageFile.ContentType == "image/jpeg" || objModel.ImageFile.ContentType == "image/png" || objModel.ImageFile.ContentType == "image/svg"))
+					if (objModel.ImageFile != null && objModel.ImageFile.FileName != "" && (objModel.ImageFile.ContentType == "image/jpg" || objModel.ImageFile.ContentType == "image/jpeg" || objModel.ImageFile.ContentType == "image/png" || objModel.ImageFile.ContentType == "image/svg" || objModel.ImageFile.ContentType == "image/gif"))
 					{
 						HttpPostedFileBase file = objModel.ImageFile;
 						var buffer = new byte[file.ContentLength];

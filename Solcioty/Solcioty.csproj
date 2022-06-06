@@ -198,6 +198,8 @@
     <Content Include="AllVideos\8\7202-Loop-Bicep-Curl[1].mp4" />
     <Content Include="Content\assets\css\bootstrap.css" />
     <Content Include="Content\assets\css\bootstrap.min.css" />
+    <Content Include="Content\assets\css\BoxerCss\owl.carousel.css" />
+    <Content Include="Content\assets\css\BoxerCss\owl.theme.default.css" />
     <Content Include="Content\assets\css\BoxerCss\style.css" />
     <Content Include="Content\assets\css\colorpicker.css" />
     <Content Include="Content\assets\css\components.css" />
@@ -622,6 +624,8 @@
     <Content Include="Content\assets\images\users\avatar-8.jpg" />
     <Content Include="Content\assets\images\users\avatar-9.jpg" />
     <Content Include="Content\assets\js\bootstrap.min.js" />
+    <Content Include="Content\assets\js\Boxerjs\jquery.min.js" />
+    <Content Include="Content\assets\js\Boxerjs\owl.carousel.js" />
     <Content Include="Content\assets\js\colorpicker.js" />
     <Content Include="Content\assets\js\detect.js" />
     <Content Include="Content\assets\js\eye.js" />
@@ -1250,7 +1254,6 @@
     <Content Include="Content\plugins\tooltipster\tooltipster.core.min.js" />
     <Content Include="Content\plugins\waypoints\jquery.waypoints.min.js" />
     <Content Include="Content\Site.css" />
-    <Content Include="Content\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="fonts\ProximaNovaExCn-Black.svg" />
     <Content Include="fonts\ProximaNovaExCn-Bold.svg" />

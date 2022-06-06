@@ -69,7 +69,7 @@
                                             <a href="javascript:void(0);" class="m-l-10 deletevideo_basic_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a> }
 
                                         <div class="form-group row">
-                                            <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                            <label class="col-sm-3 col-form-label" style="padding-top:10px;">Text</label>
                                             <div class="col-sm-9">
                                                 @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
                                             </div>
@@ -136,7 +136,7 @@
                                         <a href="javascript:void(0);" class="m-l-10 deletevideo_basic_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'basic_@i');">Delete</a> }
 
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                        <label class="col-sm-3 col-form-label" style="padding-top:10px;">Text</label>
                                         <div class="col-sm-9"> @Html.TextBoxFor(m => m.BasicModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" }) </div>
                                     </div>
                                     <div class="form-group row">
@@ -210,7 +210,7 @@
 
                                                 <a href="javascript:void(0);" class="m-l-10 deletevideo_Alter_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a> }
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                <label class="col-sm-3 col-form-label" style="padding-top:10px;">Text</label>
                                                 <div class="col-sm-9">
                                                     @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
                                                 </div>
@@ -276,7 +276,7 @@
 
                                                 <a href="javascript:void(0);" class="m-l-10 deletevideo_Alter_@i" style="display:none;" onclick="DeleteVideoToPostion(0,'Alter_@i');">Delete</a> }
                                             <div class="form-group row">
-                                                <label class="col-sm-3 col-form-label" style="padding-top:10px;">Number</label>
+                                                <label class="col-sm-3 col-form-label" style="padding-top:10px;">Text</label>
                                                 <div class="col-sm-9">
                                                     @Html.TextBoxFor(m => m.AlterModelTemplateVideoMappingList[i].Note, new { @class = "form-control", @maxlength = "20", @placeholder = "Note" })
                                                 </div>
@@ -531,6 +531,7 @@
             }
             $(".deletevideo_" + videoLoadTo).css("display", "");
             $('.close').trigger('click');
+            $("#BasicModelTemplateVideoMappingList_" + videoLoadTo.split('_')[1] + "__Note").prop('disabled', true); 
             toastr.success('selected successfully!')
 
         }
@@ -542,6 +543,7 @@
                 $(".oldvideo_" + div).css("display", "none");
                 $(".showvideo_" + videoLoadTo).text("Select Video");
                 $(".deletevideo_" + videoLoadTo).css("display", "none");
+                $("#BasicModelTemplateVideoMappingList_" + videoLoadTo.split('_')[1] + "__Note").prop('disabled', false); 
                 toastr.success('video removed successfully!')
             }
 

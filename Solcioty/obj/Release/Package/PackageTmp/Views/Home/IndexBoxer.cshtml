@@ -1,0 +1,299 @@
+﻿@using Models
+@model ModelBoxerHomePage
+
+
+<link href="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/themes/blitzer/jquery-ui.css" rel="stylesheet" type="text/css" />
+@*old backup by parth*@
+@*@if (Model.BoxerWorkoutInfo != null && Model.BoxerWorkoutInfo.BoxerTemplates != null && Model.BoxerWorkoutInfo.BoxerTemplates.Count > 0)
+    {
+        @Html.Partial("~/Views/Workout/_ViewBoxerWorkout.cshtml", Model)
+    }*@
+@if (Model.BoxerWorkoutInfo != null && Model.BoxerWorkoutInfo.BoxerTemplates != null && Model.BoxerWorkoutInfo.BoxerTemplates.Count > 0)
+{
+    Layout = null;
+    @Html.Partial("~/Views/Template/Template.cshtml", Model)
+}
+else if ((Model.BoxerWorkoutList != null) || (Model.BoxerTempalteList != null))
+{
+    
+        ViewBag.Title = "Index";
+        Layout = "~/Views/Shared/_FrontLayout.cshtml";
+    
+    <div class="workoutinfo workoutzone">
+        <div class="row">
+            <div class="col-sm-6 col-xs-12">
+                <div class="box-col">
+                    <div class="box-col-info">
+                        <h2>View Boxer Templates</h2>
+                        @Html.DropDownList("ID", Model.BoxerTempalteList.Select(e => new SelectListItem
+                        {
+                            Text = e.TemplateName,
+                            Value = e.ID.ToString()
+                        }).Distinct().ToList(),
+                                  "---- Select Template ----",
+                                  new { @class = "form-control futureworkoutlist" })
+
+                        <button type="button" class="btn btn-info btn-lg viewfutureworkout" style="display:none;">Select</button>
+                        <a href="javascript:void(0);" class="btn btn-info btn-lg viewfutureworkout" style="margin-bottom: 0px;
+    background: #36404d;
+    padding: 2% 3%;
+    width: 30% !important;
+    display: inline-block;
+    color: #fff;
+    font-size: 1.2vw;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border: #36404d;
+    margin-top: 20px;" id="futureworkoutpdflink">Select</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 smalldevicehide">
+                <div class="box-col">
+                    <div class="box-col-info">
+                        <h2>Select Workout</h2>
+                        <form action="@Url.Action("Index","Home")" method="post" id="workoutlistform">
+                            <input type="hidden" id="boxerWorkoutId" value="@ViewBag.BoxerWorkoutId" />
+                            @*<select id="ID" name="ID" style="display:inline-block;" class="form-control workoutlist"></select>*@
+                            @Html.DropDownList("ID", Model.BoxerWorkoutList.Select(e => new SelectListItem
+                            {
+                                Text = e.WorkoutName,
+                                Value = e.ID.ToString()
+                            }).ToList(),
+                                                                        "---- Select Workout ----",
+                                                                        new { @class = "form-control workoutlist" })
+
+                            <button class="btn viewworkout">Select</button>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model.IsTrainingPortalAccessible)
+            {
+                <div class="col-sm-6">
+                    <div class="box-col box-last">
+                        <div class="box-col-info">
+                            <h2>Exercise Video Library</h2>
+                            <button type="button" class="btn btn-info btn-lg viewvideolibrary">Select</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="box-col box-last">
+                        <div class="box-col-info">
+                            <h2>Training Portal</h2>
+                            <button type="button" class="btn btn-info btn-lg viewtrainingportal">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="col-sm-12">
+                    <div class="box-col box-last">
+                        <div class="box-col-info">
+                            <h2>Exercise Video Library</h2>
+                            <button type="button" class="btn btn-info btn-lg viewvideolibrary">Select</button>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+    </div>
+
+
+    @*<input id="btnShow" type="button" value="Show PDF" />*@
+    <div id="dialog" style="display: none">
+    </div>
+    @*<div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-lg">
+
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Modal Header</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src='http://localhost:55291/ClientLogos/sample.pdf' height="100%" width="90%"></iframe>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>*@
+}
+else
+{
+    <img src="~/Content/assets/images/noworkout.jpg" style="width:100%;height:90vh;" />
+}
+@section footerscript
+{
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="https://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.9/jquery-ui.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.carousel-indicators').html($('.carousel-indicatorsnone').html());
+            if ($('.carousel-indicators').find('li').length == 0) {
+                $('.signout').toggle();
+                $('.changepassword').toggle();
+            }
+            if ($('.workoutzone').length > 0 || $('.carousel-inner').length == 0) {
+                $('.header-indecator').hide();
+                $('.signout').show();
+                $('.changepassword').show();
+            }
+            if ($('.carousel-inner').length > 0) {
+
+                $($('.item')[0]).addClass('active');
+                $('.carousel-indicators li:first').css('background-color', $($('.sidebar1').get(0)).css('background-color'));
+                $('.header-indecator').show();
+                $('.signout').hide();
+                $('.changepassword').hide();
+            }
+            //if ($('#workoutid').val() <= 0 || $('#workoutid').val() == undefined) {
+            //    $('.header-indecator').hide();
+            //} else {
+            //    $('.header-indecator').show();
+            //}
+             @*$.ajax({
+                url: "@Url.Action("TodaysWorkouts", "Home")",
+                type: "get",
+                dataType: "json",
+                 success: function (data) {
+                     if (data != null && data.Wokrouts != null && data.Wokrouts.length > 1) {
+                         var htmlString = '<option label="---- Select Workout ----" value="0" />';
+                         $.each(data.Wokrouts, function (i, w) {
+                             htmlString += '<option label="' + w.WorkoutName + '" value="' + w.ID + '" >' + w.WorkoutName+'</option>';
+                         });
+                         $('#ID').html(htmlString);
+
+                        // $('.workoutinfo').show();
+                         if ($('#workoutid').val() > 0) {
+                             $('#ID').val($('#workoutid').val());
+                         } else {
+                             $('#ID').val("0");
+                         }
+                } else {
+
+                         $('.workoutinfo').hide();
+                }
+            }
+            });*@
+
+            $('.viewworkout').click(function () {
+                if ($('.workoutlist').val() > 0) {
+                    $('.workoutinfo').hide();
+                    $('#workoutlistform').submit();
+                } else {
+                    toastr.error("Please select workout");
+                    return false;
+                }
+            });
+            @*$('.futureworkoutlist').change(function () {
+                if ($(this).val() > 0) {
+                    $.ajax({
+                        url: "@Url.Action("GetBoxerWorkoutPDF", "Workout")",
+                        type: "get",
+                        data: { boxerWorkoutId: $(this).val() },
+                        dataType: "json",
+                        success: function (data) {
+                            debugger;
+                            if (data != null && data.BoxerWorkout != null && data.BoxerWorkout.PDFName != null && data.BoxerWorkout.PDFName != "") {
+
+                                if (data.BoxerWorkout.PDFName.includes(".pdf")) {
+                                    $('#futureworkoutpdflink').attr("href", "/AllPDFs/" + data.BoxerWorkout.ID + "/" + data.BoxerWorkout.PDFName);
+                                    $('#futureworkoutpdflink').attr("target", "_blank");
+                                }
+                                else if (data.BoxerWorkout.PDFName.includes(".jpeg") || data.BoxerWorkout.PDFName.includes(".png") || data.BoxerWorkout.PDFName.includes(".jpg") || data.BoxerWorkout.PDFName.includes(".gif")) {
+                                    $('#futureworkoutpdflink').attr("href", "/AllImages/" + data.BoxerWorkout.ID + "/" + data.BoxerWorkout.PDFName);
+                                    $('#futureworkoutpdflink').attr("target", "_blank");
+                                }
+                                else if (data.BoxerWorkout.PDFName.includes(".mp4")) {
+                                    $('#futureworkoutpdflink').attr("href", "/AllVideos/" + data.BoxerWorkout.ID + "/" + data.BoxerWorkout.PDFName);
+                                    $('#futureworkoutpdflink').attr("target", "_blank");
+
+                                }
+                                else if (data.BoxerWorkout.PDFName.includes(".txt")) {
+                                    $('#futureworkoutpdflink').attr("href", "/AllTextes/" + data.BoxerWorkout.ID + "/" + data.BoxerWorkout.PDFName);
+                                    $('#futureworkoutpdflink').attr("target", "_blank");
+                                }
+                            } else {
+                                $('#futureworkoutpdflink').attr("href", 'javascript:void(0);');
+                                $('#futureworkoutpdflink').attr("target", "");
+                                toastr.error("Workout PDF not found.");
+                            }
+                        }
+                    });
+
+                } else {
+                    $('#futureworkoutpdflink').attr("href", 'javascript:void(0);');
+                    $('#futureworkoutpdflink').attr("target", "");
+                    return false;
+                }
+            });*@
+            $('.viewfutureworkout').click(function () {
+                debugger
+                if ($('.futureworkoutlist').val() > 0) {
+
+                    var IDVAL = $('.futureworkoutlist').val();
+
+                    window.location.href = 'Template/BoxerTemplate/' + IDVAL;
+
+                } else {
+                    toastr.error("Please select workout");
+                    return false;
+                }
+            });
+
+            //$('.workoutlist').change(function () {
+            //    if ($(this).val() > 0) {
+            //        $('.workoutinfo').hide();
+            //        $('#workoutlistform').submit();
+            //    }
+            //});
+            //$('.logo1').click(function () {
+            //    $('.carousel-indicators').toggle();
+            //    $('.signout').toggle();
+            //});
+
+            //$("#btnShow").click(function () {
+            //    $("#dialog").dialog({
+            //        modal: true,
+            //        title: "Sample.pdf",
+            //        width: 540,
+            //        height: 450,
+            //        buttons: {
+            //            Close: function () {
+            //                $(this).dialog('close');
+            //            }
+            //        },
+            //        open: function () {
+            //            var object = "<object data=\"{FileName}\" type=\"application/pdf\" width=\"500px\" height=\"300px\">";
+            //            object += "If you are unable to view file, you can download from <a href = \"{FileName}\">here</a>";
+            //            object += " or download <a target = \"_blank\" href = \"http://get.adobe.com/reader/\">Adobe PDF Reader</a> to view the file.";
+            //            object += "</object>";
+            //            object = object.replace(/{FileName}/g, "http://localhost:55291/ClientLogos/sample.pdf");
+            //            $("#dialog").html(object);
+            //        }
+            //    });
+            //});
+
+            $('.viewvideolibrary').click(function () {
+                window.location.href = "@Url.Action("VideoLibrary", "Home")";
+            })
+             $('.viewtrainingportal').click(function () {
+                window.location.href = "@Url.Action("TrainingPortal", "Home")";
+            })
+        });
+    </script>
+}

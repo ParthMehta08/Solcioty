@@ -921,7 +921,7 @@ namespace BusinessLayer
                         model.FileName = find.Video.VideoAttachment;
 
                     }
-                    else
+                    else 
                     {
                         model.FileName = _dbcontext.ImageGalleries.Where(x=>x.Id == find.VideoID).FirstOrDefault().ImageFile;
                     }
@@ -974,7 +974,7 @@ namespace BusinessLayer
                         model.FileName = find.Video.VideoAttachment;
 
                     }
-                    else
+                    else 
                     {
                         model.FileName = _dbcontext.ImageGalleries.Where(x => x.Id == find.VideoID).FirstOrDefault().ImageFile;
 

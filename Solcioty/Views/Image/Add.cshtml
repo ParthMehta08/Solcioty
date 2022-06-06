@@ -190,7 +190,7 @@
                     dragLeave: null,
                     drop: function (file) {
                         var imageFile = file[0];
-                        if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg")) {
+                        if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg" || imageFile.type == "image/gif")) {
                             $('#existimage').hide();
                             $('#preview').hide();
                             var fileURL = URL.createObjectURL(videoFile)
@@ -227,7 +227,7 @@
 
             $('#ImageFile').change(function () {
                 var imageFile = $(this)[0].files[0];
-                if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg"))
+                if (imageFile != undefined && (imageFile.type == "image/jpg" || imageFile.type == "image/jpeg" || imageFile.type == "image/png" || imageFile.type == "image/svg" || imageFile.type == "image/gif"))
                 {
                     $('#existimage').hide();
                     $('#preview').hide();

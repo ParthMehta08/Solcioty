@@ -46,6 +46,7 @@
     <Property Name="CreatedDate" Type="datetime" />
     <Property Name="UpdatedDate" Type="datetime" />
     <Property Name="Reps" Type="varchar" MaxLength="50" />
+    <Property Name="FileType" Type="char" MaxLength="1" />
   </EntityType>
   <EntityType Name="BoxerWorkoutCategory">
     <Key>
@@ -488,6 +489,7 @@
     <Property Name="PasswordResetToken" Type="varchar" MaxLength="200" />
     <Property Name="TokenExpiryDate" Type="datetime" />
     <Property Name="Username" Type="varchar" MaxLength="50" />
+    <Property Name="WorkOutType" Type="int" />
   </EntityType>
   <EntityType Name="UserLocationMapping">
     <Key>
@@ -616,6 +618,18 @@
     <Property Name="UpdatedBy" Type="int" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
   </EntityType>
+  <Association Name="FK_BoxerTemplate_BoxerTemplate">
+    <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="1" />
+    <End Role="BoxerTemplate1" Type="Self.BoxerTemplate" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerTemplate">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="BoxerTemplate1">
+        <PropertyRef Name="ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_BoxerTemplate_User">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="BoxerTemplate" Type="Self.BoxerTemplate" Multiplicity="*" />
@@ -652,30 +666,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_BoxerTemplateVideoMapping_Video">
-    <End Role="Video" Type="Self.Video" Multiplicity="1" />
-    <End Role="BoxerTemplateVideoMapping" Type="Self.BoxerTemplateVideoMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Video">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BoxerTemplateVideoMapping">
-        <PropertyRef Name="VideoID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BoxerWorkoutMaster_BoxerWorkoutCategory">
-    <End Role="BoxerWorkoutCategory" Type="Self.BoxerWorkoutCategory" Multiplicity="0..1" />
-    <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="BoxerWorkoutCategory">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="BoxerWorkoutMaster">
-        <PropertyRef Name="CategoryId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_BoxerWorkoutMaster_ImageGallery">
     <End Role="ImageGallery" Type="Self.ImageGallery" Multiplicity="0..1" />
     <End Role="BoxerWorkoutMaster" Type="Self.BoxerWorkoutMaster" Multiplicity="*" />
@@ -709,18 +699,6 @@
       </Principal>
       <Dependent Role="BoxerWorkoutSchedule">
         <PropertyRef Name="BoxerWorkoutMasterID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_BoxerWorkoutSchedule_Location">
-    <End Role="Location" Type="Self.Location" Multiplicity="1" />
-    <End Role="BoxerWorkoutSchedule" Type="Self.BoxerWorkoutSchedule" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Location">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="BoxerWorkoutSchedule">
-        <PropertyRef Name="LocationId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -1168,6 +1146,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_WorkoutMaster_BoxerWorkoutCategory">
+    <End Role="BoxerWorkoutCategory" Type="Self.BoxerWorkoutCategory" Multiplicity="0..1" />
+    <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BoxerWorkoutCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="WorkoutMaster">
+        <PropertyRef Name="CategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_WorkoutMaster_WorkoutCategory">
     <End Role="WorkoutCategory" Type="Self.WorkoutCategory" Multiplicity="0..1" />
     <End Role="WorkoutMaster" Type="Self.WorkoutMaster" Multiplicity="*" />
@@ -1181,6 +1171,18 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_WorkoutSchedule_Location">
+    <End Role="Location" Type="Self.Location" Multiplicity="1" />
+    <End Role="WorkoutSchedule" Type="Self.WorkoutSchedule" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Location">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="WorkoutSchedule">
+        <PropertyRef Name="LocationId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_WorkoutSchedule_Location1">
     <End Role="Location" Type="Self.Location" Multiplicity="1" />
     <End Role="WorkoutSchedule" Type="Self.WorkoutSchedule" Multiplicity="*" />
     <ReferentialConstraint>
@@ -1333,6 +1335,10 @@
     <EntitySet Name="WorkoutSchedule" EntityType="Self.WorkoutSchedule" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkoutTemplateMapping" EntityType="Self.WorkoutTemplateMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="WorkoutUserMapping" EntityType="Self.WorkoutUserMapping" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_BoxerTemplate_BoxerTemplate" Association="Self.FK_BoxerTemplate_BoxerTemplate">
+      <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
+      <End Role="BoxerTemplate1" EntitySet="BoxerTemplate" />
+    </AssociationSet>
     <AssociationSet Name="FK_BoxerTemplate_User" Association="Self.FK_BoxerTemplate_User">
       <End Role="User" EntitySet="User" />
       <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
@@ -1345,14 +1351,6 @@
       <End Role="BoxerTemplate" EntitySet="BoxerTemplate" />
       <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
     </AssociationSet>
-    <AssociationSet Name="FK_BoxerTemplateVideoMapping_Video" Association="Self.FK_BoxerTemplateVideoMapping_Video">
-      <End Role="Video" EntitySet="Video" />
-      <End Role="BoxerTemplateVideoMapping" EntitySet="BoxerTemplateVideoMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BoxerWorkoutMaster_BoxerWorkoutCategory" Association="Self.FK_BoxerWorkoutMaster_BoxerWorkoutCategory">
-      <End Role="BoxerWorkoutCategory" EntitySet="BoxerWorkoutCategory" />
-      <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
-    </AssociationSet>
     <AssociationSet Name="FK_BoxerWorkoutMaster_ImageGallery" Association="Self.FK_BoxerWorkoutMaster_ImageGallery">
       <End Role="ImageGallery" EntitySet="ImageGallery" />
       <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
@@ -1363,10 +1361,6 @@
     </AssociationSet>
     <AssociationSet Name="FK_BoxerWorkoutSchedule_BoxerWorkoutMaster" Association="Self.FK_BoxerWorkoutSchedule_BoxerWorkoutMaster">
       <End Role="BoxerWorkoutMaster" EntitySet="BoxerWorkoutMaster" />
-      <End Role="BoxerWorkoutSchedule" EntitySet="BoxerWorkoutSchedule" />
-    </AssociationSet>
-    <AssociationSet Name="FK_BoxerWorkoutSchedule_Location" Association="Self.FK_BoxerWorkoutSchedule_Location">
-      <End Role="Location" EntitySet="Location" />
       <End Role="BoxerWorkoutSchedule" EntitySet="BoxerWorkoutSchedule" />
     </AssociationSet>
     <AssociationSet Name="FK_BoxerWorkoutTemplateMapping_BoxerTemplate" Association="Self.FK_BoxerWorkoutTemplateMapping_BoxerTemplate">
@@ -1517,11 +1511,19 @@
       <End Role="Video" EntitySet="Video" />
       <End Role="VideoTagMapping" EntitySet="VideoTagMapping" />
     </AssociationSet>
+    <AssociationSet Name="FK_WorkoutMaster_BoxerWorkoutCategory" Association="Self.FK_WorkoutMaster_BoxerWorkoutCategory">
+      <End Role="BoxerWorkoutCategory" EntitySet="BoxerWorkoutCategory" />
+      <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
+    </AssociationSet>
     <AssociationSet Name="FK_WorkoutMaster_WorkoutCategory" Association="Self.FK_WorkoutMaster_WorkoutCategory">
       <End Role="WorkoutCategory" EntitySet="WorkoutCategory" />
       <End Role="WorkoutMaster" EntitySet="WorkoutMaster" />
     </AssociationSet>
     <AssociationSet Name="FK_WorkoutSchedule_Location" Association="Self.FK_WorkoutSchedule_Location">
+      <End Role="Location" EntitySet="Location" />
+      <End Role="WorkoutSchedule" EntitySet="WorkoutSchedule" />
+    </AssociationSet>
+    <AssociationSet Name="FK_WorkoutSchedule_Location1" Association="Self.FK_WorkoutSchedule_Location1">
       <End Role="Location" EntitySet="Location" />
       <End Role="WorkoutSchedule" EntitySet="WorkoutSchedule" />
     </AssociationSet>

@@ -161,3 +161,36 @@ D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\s
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.dll
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\BusinessLayer\obj\Release\BusinessLayer.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\BusinessLayer.dll.config
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\BusinessLayer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\BusinessLayer.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\DataAccessLayer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\EntityFramework.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\EntityFramework.SqlServer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Models.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Services.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Helpers.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Mvc.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\DataAccessLayer.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\DataAccessLayer.dll.config
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Models.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Services.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\Services.dll.config
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\EntityFramework.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\EntityFramework.SqlServer.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Helpers.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Mvc.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\bin\Release\System.Web.WebPages.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\obj\Release\BusinessLayer.csprojAssemblyReference.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\obj\Release\BusinessLayer.csproj.CoreCompileInputs.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\obj\Release\BusinessLayer.csproj.CopyComplete
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\obj\Release\BusinessLayer.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\BusinessLayer\obj\Release\BusinessLayer.pdb

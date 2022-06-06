@@ -98,3 +98,23 @@ D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\s
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Models\obj\Release\Models.csproj.CopyComplete
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Models\obj\Release\Models.dll
 D:\SIGMASOLVE\APPLE TV & BOXER\18.05.2022\Socioty_DB\solcioty-Dev\solcioty-Dev\solcioty-Dev\Models\obj\Release\Models.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\Models.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\Models.pdb
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\Microsoft.Web.Infrastructure.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Helpers.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Mvc.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.Deployment.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.Razor.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Helpers.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Mvc.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.Deployment.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\bin\Release\System.Web.WebPages.Razor.xml
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\obj\Release\Models.csprojAssemblyReference.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\obj\Release\Models.csproj.CoreCompileInputs.cache
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\obj\Release\Models.csproj.CopyComplete
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\obj\Release\Models.dll
+C:\Sigmasolve\solcioty-Dev\solcioty-new2\Models\obj\Release\Models.pdb

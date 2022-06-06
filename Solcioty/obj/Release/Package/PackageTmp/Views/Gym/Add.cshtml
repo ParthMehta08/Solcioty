@@ -208,7 +208,7 @@
  
             var requestData = {};
             requestData.Id = $('#Id').val();
-            requestData.Name = $('#Name').val();
+            requestData.Name = $('#Name').val();            
             if (requestData.Name == "") {
                 toastr.error("Please fill out all required details!");
                 $('#savegym').prop('disabled', '');
@@ -229,6 +229,7 @@
                 owner.EmailId = user.find('#EmailId').val();
                 owner.Password = user.find('#Password').val();
                 owner.Username = user.find('#Username').val();
+                owner.WorkOutType = user.find('#WorkOutType').val();
                 //owner.Phone = user.find('#Phone').val();
                 //owner.AddressLine1 = user.find('#AddressLine1').val();
                 //owner.AddressLine2 = user.find('#AddressLine2').val();
@@ -246,7 +247,7 @@
                 if (!emailReg.test(owner.EmailId)) {
                     invalidEmail = true;
                 }
-                if (owner.FirstName == "" || owner.LastName == "" || owner.Phone == "" || owner.AddressLine1 == "" || owner.ZipCode == "" || owner.CityName == "") {
+                if (owner.FirstName == "" || owner.LastName == "" || owner.Phone == "" || owner.AddressLine1 == "" || owner.ZipCode == "" || owner.CityName == "" || owner.WorkOutType == "0") {
                     isError = true;
                 }
                 if (owner.UserId <= 0 && owner.Password == "") {
@@ -272,7 +273,7 @@
                 $('#savegym').prop('disabled', '');
                 return;
             }
-            if (isError) {
+            if (isError) {                
                 toastr.error("Please fill out all required details!");
                 $('#savegym').prop('disabled', '');
                 return;

@@ -49,6 +49,13 @@
 
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Workout Type <span class="required">*</span></label>                                
+                                @Html.DropDownListFor(m => m.WorkOutType, (IEnumerable<SelectListItem>)ViewBag.WorkoutBag, "Select Type", new { @class = "form-control" ,@name = "WorkOutType" })
+
+                            </div>
+                        </div>
                         @*<div class="col-md-6">
                                 <div class="form-group">
                                     <label>Phone <span class="required">*</span></label>
