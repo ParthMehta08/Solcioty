@@ -1396,6 +1396,8 @@
     <Content Include="fonts\ProximaNovaExCn-Semibold.woff" />
     <Content Include="fonts\ProximaNovaExCn-Semibold.woff2" />
     <Content Include="AllPDFS\1\dummy.pdf" />
+    <Content Include="Content\assets\css\BoxerCss\fonts\brandon_bold-webfont.woff" />
+    <Content Include="Content\assets\css\BoxerCss\fonts\brandon_bold-webfont.woff2" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />

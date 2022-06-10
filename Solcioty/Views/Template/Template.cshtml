@@ -9,9 +9,16 @@
 @{
     var lastIndex = Model.BoxerWorkoutInfo.BoxerTemplates != null ? Model.BoxerWorkoutInfo.BoxerTemplates.Count + 1 : 1;
     var isFutureWorkout = Model.BoxerWorkoutInfo != null && Model.BoxerWorkoutInfo.IsFutureWorkout ? Model.BoxerWorkoutInfo.IsFutureWorkout : false;
+    double seconds = 0;
 
-    
-    double seconds = TimeSpan.Parse(Model.BoxerWorkoutInfo.BoxerTemplates[1].TimeText).TotalSeconds;
+    foreach (var item in Model.BoxerWorkoutInfo.BoxerTemplates)
+    {
+        if(item.TimeText != null || item.TimeText != "" )
+        {
+            seconds = TimeSpan.Parse(item.TimeText).TotalSeconds + seconds;
+        }
+    }
+
 
 
 }
@@ -42,11 +49,11 @@
                     @Model.BoxerWorkoutInfo.BoxerWorkoutName
                 </div>
 
-                <div role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:50">
+                <div id="timer" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100" style="--value:0">
 
-                    <div class="header-right-timmer">
+                    <div class="header-right-timmer" style= "cursor: pointer;">
                         <span>Time</span>
-                        <h2 id="app"></h2>
+                        <h2 id="app" ></h2>
                         <span>REMAINING</span>
                     </div>
 
@@ -212,99 +219,126 @@
                         @if (items.NumberOfAlternateVideos != 1)
                         {
 
-                            <div class="ten-col-section top-section @clssname">
-                                @foreach (var item in items.BasicVideos.Take(numberofbasicvideos))
+                        <div class="ten-col-section top-section @clssname">
+                            @foreach (var item in items.BasicVideos.Take(numberofbasicvideos))
+                            {
+                                if (item.FileType == "I")
                                 {
-                                    if (item.FileType == "I")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
-                                                <img src="~/AllImages/@item.VideoId/@item.VideoFile" /> }
-                                            </div>
-
+                                    <div class="col">
+                                        <div class="img-col">
+                                            @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
+                                            <img src="~/AllImages/@item.VideoId/@item.VideoFile" />
                                         </div>
-                                    }
-                                    else if (item.FileType == "V")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                <video controls autoplay>
 
-                                                    <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
+                                    </div>
+                                }
+                                else if (item.FileType == "V")
+                                {
+                                    <div class="col">
+                                        <div class="img-col">
+                                            <video loop autoplay>
 
-                                                </video>
-                                            </div>
+                                                <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
 
+                                            </video>
                                         </div>
-                                    }
 
+                                    </div>
+                                }
+                                else if (item.FileType == "T")
+                                {
+                                    <div class="col">
+                                        <div class="extra-large-text">
+                                           @item.Note x @item.Reps
+                                        </div>
 
+                                    </div>
                                 }
 
-                            </div>
+
+                            }
+
+                        </div>
 
 
-                            <div class="ten-col-section bottom-section @clssname">
-                                @foreach (var item in items.AlternateVideos.Take(numberofalternatevideo))
+                        <div class="ten-col-section bottom-section @clssname">
+                            @foreach (var item in items.AlternateVideos.Take(numberofalternatevideo))
+                            {
+                                if (item.FileType == "I")
                                 {
-                                    if (item.FileType == "I")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
-                                                <img src="~/AllImages/@item.VideoId/@item.VideoFile" /> }
-                                            </div>
-
+                                    <div class="col">
+                                        <div class="img-col">
+                                            @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
+                                            <img src="~/AllImages/@item.VideoId/@item.VideoFile" />
                                         </div>
-                                    }
-                                    else if (item.FileType == "V")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                <video controls autoplay>
-                                                    <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
-                                                </video>
-                                            </div>
-                                        </div>
-                                    }
 
+                                    </div>
                                 }
-                            </div>
+                                else if (item.FileType == "V")
+                                {
+                                    <div class="col">
+                                        <div class="img-col">
+                                            <video controls autoplay>
+                                                <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                }
+                                else if (item.FileType == "T")
+                                {
+                                    <div class="col">
+                                        <div class="extra-large-text">
+                                            @item.Note x @item.Reps
+                                        </div>
+
+                                    </div>
+                                }
+
+                            }
+                        </div>
                         }
                         else
                         {
-                            <div class="ten-col-section  @clssname">
-                                @foreach (var item in items.BasicVideos.Take(numberofbasicvideos))
-                                {
-                                    if (item.FileType == "I")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
-                                                <img src="~/AllImages/@item.VideoId/@item.VideoFile" /> }
-                                            </div>
+                    <div class="ten-col-section  @clssname">
+                        @foreach (var item in items.BasicVideos.Take(numberofbasicvideos))
+                        {
+                            if (item.FileType == "I")
+                            {
+                                <div class="col">
+                                    <div class="img-col">
+                                        @*<img src="images/karolis-milisauskas-eoVdk1z4ihI-unsplash.jpg" />*@
+                                        <img src="~/AllImages/@item.VideoId/@item.VideoFile" />
+                                    </div>
 
-                                        </div>
-                                    }
-                                    else if (item.FileType == "V")
-                                    {
-                                        <div class="col">
-                                            <div class="img-col">
-                                                <video controls autoplay>
+                                </div>
+                            }
+                            else if (item.FileType == "V")
+                            {
+                                <div class="col">
+                                    <div class="img-col">
+                                        <video controls autoplay>
 
-                                                    <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
+                                            <source src="@Url.Content($"/AllVideos/{@item.VideoId}/{@item.VideoFile}")" type="video/mp4">
 
-                                                </video>
-                                            </div>
+                                        </video>
+                                    </div>
 
-                                        </div>
-                                    }
+                                </div>
+                            }
+                            else if (item.FileType == "T")
+                            {
+                                <div class="col">
+                                    <div class="extra-large-text">
+                                        @item.Note x @item.Reps
+                                    </div>
+
+                                </div>
+                            }
 
 
-                                }
+                        }
 
-                            </div>
+                    </div>
 
                         }
                     </div>
@@ -332,11 +366,8 @@
                         }
                     }
                 })
+              
             })
-
-
-
-
 
             //timer with start stop
       ;(function () {
@@ -350,7 +381,7 @@
   //
 
   // The timer duration
-    const duration = @seconds;
+  const duration = @seconds;
 
   // The timer component
   let app;
@@ -417,7 +448,7 @@
 
     // Otherwise, show the time remaining
     return `
-      <p id="${pausedState.toLowerCase()}" style= "cursor: pointer;">
+      <p id="${pausedState.toLowerCase()}" >
         ${format(props.time)}
       </p>
       
@@ -425,10 +456,10 @@
   }
 
   
-  function countdown () {
-    // Decrease the time remaining
-    app.data.time--;
-
+          function countdown() {
+        // Decrease the time remaining
+        app.data.time--;
+        $("#timer").css('--value', ((100 / duration) * app.data.time).toString());
     // If the timer is done, stop it
     if (app.data.time < 1) {
       clearInterval(timer);
@@ -506,7 +537,7 @@
 
   // Handle click events
   app.elem.addEventListener('click', handleClick);
-
+  $('#start').click();
 }) ();
 
             //end

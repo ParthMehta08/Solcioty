@@ -672,10 +672,14 @@ namespace BusinessLayer
                 var BasicVideoMappingList = _dbcontext.BoxerTemplateVideoMappings.Where(p => p.BoxerTemplateID == objmodel.ID && p.IsDeleted == false && p.IsBasicVideo == true).ToList();
                 foreach (var item in objmodel.BasicModelTemplateVideoMappingList)
                 {
+                    if(item.Note != null)
+                    {
+                        item.FileType = "T";
+                    }
                     var find = BasicVideoMappingList.FirstOrDefault(p => p.VideoPosition == item.VideoPosition);
                     if (find != null)
                     {
-                        if (item.VideoID > 0)
+                        if (item.VideoID > 0 || item.Note != null)
                         {
                             //edit
                             find.IsAlterVideo = false;
@@ -698,7 +702,7 @@ namespace BusinessLayer
                     else
                     {
                         //add
-                        if (item.VideoID > 0)
+                        if (item.VideoID > 0 || item.Note != null)
                         {
                             var objdal = new BoxerTemplateVideoMapping();
                             //edit
@@ -720,10 +724,14 @@ namespace BusinessLayer
                 var AlterVideoMappingList = _dbcontext.BoxerTemplateVideoMappings.Where(p => p.BoxerTemplateID == objmodel.ID && p.IsDeleted == false && p.IsAlterVideo == true).ToList();
                 foreach (var item in objmodel.AlterModelTemplateVideoMappingList)
                 {
+                    if (item.Note != null)
+                    {
+                        item.FileType = "T";
+                    }
                     var find = AlterVideoMappingList.FirstOrDefault(p => p.VideoPosition == item.VideoPosition);
                     if (find != null)
                     {
-                        if (item.VideoID > 0)
+                        if (item.VideoID > 0 || item.Note != null)
                         {
                             //edit
                             find.IsAlterVideo = true;
@@ -746,7 +754,7 @@ namespace BusinessLayer
                     else
                     {
                         //add
-                        if (item.VideoID > 0)
+                        if (item.VideoID > 0 || item.Note != null)
                         {
                             var objdal = new BoxerTemplateVideoMapping();
                             //edit
@@ -916,6 +924,8 @@ namespace BusinessLayer
                     model.Note = find.Note;
                     model.Reps = find.Reps;
                     model.VideoPosition = find.VideoPosition.HasValue ? find.VideoPosition.Value : 0;
+                    if(find.FileType != "T")
+                    {
                     if (find.FileType == "V")
                     {
                         model.FileName = find.Video.VideoAttachment;
@@ -924,6 +934,7 @@ namespace BusinessLayer
                     else 
                     {
                         model.FileName = _dbcontext.ImageGalleries.Where(x=>x.Id == find.VideoID).FirstOrDefault().ImageFile;
+                    }
                     }
                     model.FileType = find.FileType;
                     Template.BasicModelTemplateVideoMappingList.Add(model);
@@ -969,15 +980,18 @@ namespace BusinessLayer
                     model.Reps = find.Reps;
                     model.FileType = find.FileType;
                     model.VideoPosition = find.VideoPosition.HasValue ? find.VideoPosition.Value : 0;
-                    if (find.FileType == "V")
+                    if (find.FileType != "T")
                     {
-                        model.FileName = find.Video.VideoAttachment;
+                        if (find.FileType == "V")
+                        {
+                            model.FileName = find.Video.VideoAttachment;
 
-                    }
-                    else 
-                    {
-                        model.FileName = _dbcontext.ImageGalleries.Where(x => x.Id == find.VideoID).FirstOrDefault().ImageFile;
+                        }
+                        else
+                        {
+                            model.FileName = _dbcontext.ImageGalleries.Where(x => x.Id == find.VideoID).FirstOrDefault().ImageFile;
 
+                        }
                     }
                     Template.AlterModelTemplateVideoMappingList.Add(model);
                 }

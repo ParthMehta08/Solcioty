@@ -32,7 +32,7 @@
                 <div class="card-box table-responsive">
                     <button type="submit" class="btn btn-purple waves-effect waves-light pull-right">Save Changes</button>
 
-                    <h4>Basic</h4>
+                    <h4>TOP</h4>
                     <table id="datatable-buttonsBasic" class="table table-striped table-bordered emptyHeight">
                         <tbody>
                             <tr style="background-color:@Model.PrimaryGradientColor">
@@ -177,7 +177,7 @@
                     </table>
                     @if (Model.NumberOfBasicVideos == 1 && Model.NumberOfAlterVideos == 2)
                     {
-    <h4>Alter</h4>
+    <h4>BOTTOM</h4>
                         <table id="datatable-buttonsAlter" class="table table-striped table-bordered">
                             <tbody>
                                 <tr style="background-color:#@Model.AlternateGradientColor">
@@ -242,7 +242,7 @@
                         </table>}
                     @if (Model.NumberOfBasicVideos != 1 && Model.NumberOfAlterVideos != 1)
                     {
-    <h4>Alter</h4>
+                <h4>BOTTOM</h4>
                         <table id="datatable-buttonsAlter" class="table table-striped table-bordered">
                             <tbody>
                                 <tr style="background-color:#@Model.AlternateGradientColor">
